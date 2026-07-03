@@ -1,0 +1,4 @@
+# Auto detect text files and perform LF normalization
+* text=auto
+modules/bdilka_za_pm_v3.apk filter=lfs diff=lfs merge=lfs -text
+*.mp3 filter=lfs diff=lfs merge=lfs -text
