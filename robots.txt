@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+Sitemap: https://otherside-world.ru/sitemap.xml
+Host: https://otherside-world.ru/

@@ -1,0 +1,1200 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="icon" type="image/x-icon" href="./modules/images/favicon.png?v=2.0" />
+<title>Куратор средств</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Orbitron&display=swap');
+  
+  body {
+    background: #0b0f23;
+    color: #9affff;
+    font-family: 'Orbitron', sans-serif;
+    margin: 20px;
+  }
+  h1 {
+    text-align: center;
+    color: #00ffee;
+    text-shadow: 0 0 10px #00ffee;
+  }
+  #description {
+    max-width: 800px;
+    margin: 0 auto 30px;
+    font-size: 1.1em;
+    line-height: 1.4em;
+    color: #66ffff;
+    text-align: center;
+  }
+  button.toggle-btn {
+    background: #001122;
+    border: 2px solid #00ffee;
+    color: #00ffee;
+    font-family: 'Orbitron', monospace;
+    font-size: 1em;
+    padding: 8px 14px;
+    margin: 10px auto;
+    display: block;
+    cursor: pointer;
+    user-select: none;
+    width: 220px;
+    border-radius: 8px;
+    box-shadow: 0 0 8px #00ffee;
+    transition: background 0.3s, color 0.3s;
+  }
+  button.toggle-btn:hover {
+    background: #00ffee;
+    color: #001122;
+  }
+  .section-container {
+    max-width: 800px;
+    margin: 0 auto 20px;
+    border: 1px solid #00ffee;
+    border-radius: 10px;
+    background: #041227;
+    box-shadow: 0 0 15px #00ffee88;
+  }
+  .section-header {
+    padding: 12px 20px;
+    font-weight: 700;
+    font-size: 1.3em;
+    color: #00ffee;
+    user-select: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    border-bottom: 1px solid #00ffee;
+	            text-align: center;
+  }
+  .section-header span.arrow {
+    font-size: 1.5em;
+    transition: transform 0.3s;
+  }
+  .section-header.collapsed span.arrow {
+    transform: rotate(-90deg);
+  }
+  .content {
+    overflow: hidden;
+    transition: max-height 0.5s ease;
+    max-height: 0;
+    padding: 0 20px;
+    color: #a0ffff;
+  }
+  .content.open {
+    padding: 10px 20px 20px;
+    max-height: 2000px; /* достаточно для раскрытия */
+  }
+  .day {
+    background: #002233;
+    border-radius: 7px;
+    margin: 8px 0;
+    padding: 12px 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 0 5px #00ffeeaa;
+  }
+  .day.past {
+    opacity: 0.6;
+  }
+  .date {
+    flex-shrink: 0;
+    font-weight: 700;
+    color: #00ffcc;
+    min-width: 110px;
+  }
+  .desc {
+    flex-grow: 1;
+    padding-left: 15px;
+    font-size: 1em;
+    line-height: 1.3em;
+    position: relative;
+    color: #aaffff;
+  }
+  .desc span.income {
+    color: #00ff88;
+    font-weight: 700;
+  }
+  .desc span.expense {
+    color: #ff5555;
+    font-weight: 700;
+  }
+input[type="checkbox"] {
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border: 2px solid #00ff88;
+  border-radius: 4px;
+  background-color: #0b0f14;
+  box-shadow: 0 0 4px #00ff88;
+  cursor: pointer;
+  position: relative;
+  transition: all 0.2s ease-in-out;
+}
+
+/* Галочка-псевдоэлемент */
+input[type="checkbox"]::after {
+  content: "";
+  position: absolute;
+  top: 2px;
+  left: 6px;
+  width: 4px;
+  height: 10px;
+  border: solid #00ff88;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+  opacity: 0.15; /* Блеклый намёк по умолчанию */
+  transition: opacity 0.2s;
+}
+
+input[type="checkbox"]:hover::after {
+  opacity: 0.3; /* чуть заметнее при наведении */
+}
+
+input[type="checkbox"]:checked {
+  background-color: #001f14;
+  box-shadow: 0 0 8px #00ff88, inset 0 0 4px #00ff88;
+}
+
+input[type="checkbox"]:checked::after {
+  opacity: 1; /* Ярко выраженная галка при выборе */
+}
+  /* Расположение чекбокса справа */
+  .day {
+    flex-wrap: nowrap;
+  }
+  /* Чтобы чекбокс был справа */
+  .desc {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .desc-text {
+    flex-grow: 1;
+    padding-right: 15px;
+  }
+  /* Скроллбар для больших списков */
+  .content {
+    max-height: 200px;
+    overflow-y: auto;
+  }
+  
+  h1 a {
+  color: #00ff88;
+  text-decoration: none;
+  font-weight: bold;
+  transition: color 0.3s, text-shadow 0.3s;
+  }
+  h1 a:hover {
+  color: #33ffaa;
+  text-shadow: 0 0 8px #00ff88;
+  }
+  
+  @media screen and (max-width: 600px) {
+  .day {
+  display: flex;
+  flex-direction: column;
+  background-color: #1b1f24;
+  padding: 12px;
+  border-radius: 12px;
+  border: 1px solid #00ff88;
+}
+
+/* Другие базовые стили... */
+
+
+  }
+  
+  
+/* Мобильная адаптация */
+@media screen and (max-width: 600px) {
+  .day {
+  
+    font-size: 0.95em;
+    padding: 10px;
+  }
+  .desc {
+  display: block;
+    font-size: 0.95em;
+    padding: 10px;
+            text-align: center;
+  }
+  .desc-text {
+    font-size: 0.95em;
+            display: block;
+  }
+  .section-header {
+    font-size: 1em;
+    padding: 8px;
+  }
+  
+  input[type="checkbox"] {
+  top: 9px;
+  }
+  
+}
+  
+input[type="checkbox"] {
+  flex-shrink: 0;
+}
+
+/* Обертка с прокруткой */
+.content {
+  max-height: 200px;
+  overflow-y: auto;
+  scrollbar-width: thin;          /* для Firefox */
+  scrollbar-color: #00ff88 transparent;
+}
+
+/* Для Webkit-браузеров (Chrome, Safari, Edge) */
+.content::-webkit-scrollbar {
+  width: 8px;
+  background: transparent;
+}
+
+.content::-webkit-scrollbar-thumb {
+  background: #00ff88cc;
+  border-radius: 10px;
+  box-shadow:
+    0 0 8px #00ff88,
+    inset 0 0 8px #00ff88;
+  transition: background-color 0.3s;
+}
+
+.content::-webkit-scrollbar-thumb:hover {
+  background: #33ffaa;
+  box-shadow:
+    0 0 12px #33ffaa,
+    inset 0 0 12px #33ffaa;
+}
+
+/* Скроллбар трек (фон) */
+.content::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+//////мерцание на фоне
+body, html {
+    margin: 0; padding: 0;
+    width: 100%; height: 100%;
+    background: #0b0f23;
+    overflow: hidden;
+  }
+  #buddhaSymbolsCanvas {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100vw; height: 100vh;
+    pointer-events: none;
+    z-index: -1;
+  }
+</style>
+</head>
+<body>
+
+<canvas id="buddhaSymbolsCanvas"></canvas>
+<style>@keyframes appearDisappearSmoke {
+  0% {
+    opacity: 0;
+    filter: blur(6px);
+    transform: scale(1.1);
+  }
+  20% {
+    opacity: 0.5;
+    filter: blur(3px);
+    transform: scale(1.05);
+  }
+  40% {
+    opacity: 1;
+    filter: blur(0px);
+    transform: scale(1);
+  }
+  60% {
+    opacity: 1;
+    filter: blur(0px);
+    transform: scale(1);
+  }
+  80% {
+    opacity: 0.5;
+    filter: blur(3px);
+    transform: scale(1.05);
+  }
+  100% {
+    opacity: 0;
+    filter: blur(6px);
+    transform: scale(1.1);
+  }
+}
+
+.smoke-fade-cycle {
+  display: inline-block;
+  animation: appearDisappearSmoke 6s infinite ease-in-out;
+}
+</style>
+  <center><h1>Пасьянс Медичи.<br><a href="./index.html">Бди</a><a class="smoke-fade-cycle" href="./index.html">лка</a></h1>
+  <h2>Куратор средств</h2></center>
+  <div id="description">
+    Здесь продвинутые события поднимут тебя на орбиту изобилия<br>словно ты пилот космического корабля,<br>уверенно держащий курс к богатству!<br><br>
+Каждый новый день — это выбор:<br>направить энергию в благотворительность (🎁Подарок)<br>или побаловать себя (🛒Заказ),<br>и оба пути ведут к движению и росту.<br><br>
+<img src="./modules/images/extreme-surfer.jpg" alt="Extreme Surfer" style="width: 100%;      /* подстраивается под ширину контейнера */
+  height: auto;     /* сохраняет пропорции */
+  max-width: 600px; /* опционально: ограничение максимальной ширины */
+  display: block;   /* убирает лишние отступы вокруг изображения */
+  margin: 0 auto;   /* центрирует изображение при необходимости */"><br>
+Будь мудрым навигатором своих событий,<br>словно свежий ветер перемен,<br>что каждый день несёт свет и силы в наш мир!
+  </div>
+  
+  <div class="section-container">
+  <div class="section-header collapsed" id="currentHeader" style="cursor:pointer;">
+    Сегодняшние и будущие рекомендации
+    <span class="arrow">▼</span>
+  </div>
+  <div class="content" id="recommendations"></div>
+</div>
+
+  <div class="section-container">
+    <div class="section-header collapsed" id="doneHeader">
+      Выполненные рекомендации <span class="arrow">▼</span>
+    </div>
+    <div class="content" id="doneList"></div>
+  </div>
+
+  <div class="section-container">
+    <div class="section-header collapsed" id="pastHeader">
+      Прошедшие дни <span class="arrow">▼</span>
+    </div>
+    <div class="content" id="pastDays"></div>
+  </div>
+
+<div><center>Подсказки о влияним месяцев и гильдиях дней недели <a href="./crossroad.html" target="_blank">здесь</a></center></div>
+<script>
+  // Данные и логика из предыдущего варианта, только адаптировано под новый HTML + добавлена логика открытия/закрытия секций
+
+  let movingLineProgress = 0; // прогресс между текущей и следующей монетой (0..1)
+let currentLineIndex = 0;   // индекс монеты, с которой линия стартует
+const lineSpeed = 0.005;    // скорость движения линии (чем меньше — тем медленнее)
+  const STORAGE_KEY = "doneRecsFuturama";
+
+  const weekdayKeywords = {
+    0: "разведка",
+    1: "исследование",
+    2: "автоматизация",
+    3: "автономность",
+    4: "политика",
+    5: "культура",
+    6: "торговля"
+  };
+
+const combinedRecommendations = {
+  "празднование_исследование": {
+    type: "expense",
+    text: "Ищите новые идеи для праздников — пусть каждый момент сияет!"
+  },
+  "празднование_автоматизация": {
+    type: "income",
+    text: "Настройте процессы подготовки — радость приходит легко."
+  },
+  "празднование_автономность": {
+    type: "expense",
+    text: "Создайте мобильные решения для событий — свобода действий вдохновляет."
+  },
+  "празднование_политика": {
+    type: "income",
+    text: "Развивайте партнёрства — праздники становятся ярче вместе."
+  },
+  "празднование_культура": {
+    type: "expense",
+    text: "Вкладывайтесь в музыку и традиции — атмосфера завораживает."
+  },
+  "празднование_торговля": {
+    type: "income",
+    text: "Организуйте активность и обмен — всё идёт как по плану."
+  },
+  "празднование_разведка": {
+    type: "income",
+    text: "Следите за новыми тенденциями — каждый момент оживает."
+  },
+
+  "расположение_исследование": {
+    type: "expense",
+    text: "Создавайте уют и гармонию в доме — пространство вдохновляет."
+  },
+  "расположение_автоматизация": {
+    type: "income",
+    text: "Автоматизируйте процессы дома — жизнь становится легче."
+  },
+  "расположение_автономность": {
+    type: "expense",
+    text: "Инвестируйте в независимые системы — комфорт под контролем."
+  },
+  "расположение_политика": {
+    type: "income",
+    text: "Планируйте интерьер с учётом всех потребностей — всё работает плавно."
+  },
+  "расположение_культура": {
+    type: "expense",
+    text: "Добавляйте элементы искусства и традиций — дом оживает."
+  },
+  "расположение_торговля": {
+    type: "income",
+    text: "Создавайте среду для обмена и активности — всё течёт гармонично."
+  },
+  "расположение_разведка": {
+    type: "income",
+    text: "Изучайте новые стили и бренды — вдохновение в каждом уголке."
+  },
+
+  "позиционирование_исследование": {
+    type: "expense",
+    text: "Анализируйте рынок и тренды — точное позиционирование укрепляет основу."
+  },
+  "позиционирование_автоматизация": {
+    type: "income",
+    text: "Автоматизируйте процессы — всё движется с минимальными усилиями."
+  },
+  "позиционирование_автономность": {
+    type: "expense",
+    text: "Создавайте независимые инструменты — контроль и уверенность."
+  },
+  "позиционирование_политика": {
+    type: "income",
+    text: "Следите за трендами и связями — всё движется в вашу пользу."
+  },
+  "позиционирование_культура": {
+    type: "expense",
+    text: "Вкладывайтесь в командную культуру — энергия передаётся всей системе."
+  },
+  "позиционирование_торговля": {
+    type: "income",
+    text: "Организуйте торговлю услугами — процессы работают сами."
+  },
+  "позиционирование_разведка": {
+    type: "income",
+    text: "Исследуйте новые рынки и возможности — перспектива открыта."
+  },
+
+  "максировка_исследование": {
+    type: "expense",
+    text: "Учитесь и развивайтесь — фундамент для будущего роста."
+  },
+  "максировка_автоматизация": {
+    type: "income",
+    text: "Автоматизация процессов — результат приходит быстрее."
+  },
+  "максировка_автономность": {
+    type: "expense",
+    text: "Создавайте независимые системы — свобода действий вдохновляет."
+  },
+  "максировка_политика": {
+    type: "income",
+    text: "Используйте связи и влияние — возможности раскрываются сами."
+  },
+  "максировка_культура": {
+    type: "expense",
+    text: "Поддерживайте командную культуру — энергия возвращается."
+  },
+  "максировка_торговля": {
+    type: "income",
+    text: "Расширяйте операции — всё движется как по плану."
+  },
+  "максировка_разведка": {
+    type: "income",
+    text: "Следите за рынком — новые перспективы ждут."
+  },
+
+  "блаженство_исследование": {
+    type: "expense",
+    text: "Вкладывайтесь в комфорт и здоровье — энергия на максимум."
+  },
+  "блаженство_автоматизация": {
+    type: "income",
+    text: "Автоматизируйте восстановление и отдых — день наполняется силой."
+  },
+  "блаженство_автономность": {
+    type: "expense",
+    text: "Создавайте автономные системы контроля — спокойствие и уверенность."
+  },
+  "блаженство_политика": {
+    type: "income",
+    text: "Следите за корпоративной гармонией — всё движется в плюс."
+  },
+  "блаженство_культура": {
+    type: "expense",
+    text: "Вкладывайтесь в традиции и искусство — атмосфера заряжает."
+  },
+  "блаженство_торговля": {
+    type: "income",
+    text: "Организуйте активность вокруг релакса — жизнь течёт легко."
+  },
+  "блаженство_разведка": {
+    type: "income",
+    text: "Следите за новыми технологиями здоровья — энергия всегда с вами."
+  },
+
+  "озарение_исследование": {
+    type: "expense",
+    text: "Ищите новые идеи и проекты — светлые моменты вдохновляют."
+  },
+  "озарение_автоматизация": {
+    type: "income",
+    text: "Автоматизируйте креатив — результат приходит плавно."
+  },
+  "озарение_автономность": {
+    type: "expense",
+    text: "Создавайте автономные творческие решения — контроль и свобода."
+  },
+  "озарение_политика": {
+    type: "income",
+    text: "Следите за индустриальными изменениями — движения быстрые и точные."
+  },
+  "озарение_культура": {
+    type: "expense",
+    text: "Вкладывайтесь в инновации и культурные проекты — атмосфера вдохновляет."
+  },
+  "озарение_торговля": {
+    type: "income",
+    text: "Продавайте инновации — процессы работают гармонично."
+  },
+  "озарение_разведка": {
+    type: "income",
+    text: "Исследуйте новые творческие рынки — возможности раскрываются."
+  },
+
+  "посредственность_исследование": {
+    type: "expense",
+    text: "Контролируйте траты — каждое действие важно."
+  },
+  "посредственность_автоматизация": {
+    type: "income",
+    text: "Автоматизируйте рутину — время используется эффективно."
+  },
+  "посредственность_автономность": {
+    type: "expense",
+    text: "Фокус на базовых нуждах — стабильно и надёжно."
+  },
+  "посредственность_политика": {
+    type: "income",
+    text: "Оптимизируйте процессы — простота ведёт к результату."
+  },
+  "посредственность_культура": {
+    type: "expense",
+    text: "Минимизируйте лишнее — пространство работает на вас."
+  },
+  "посредственность_торговля": {
+    type: "income",
+    text: "Фокус на стандартных операциях — стабильность и предсказуемость."
+  },
+  "посредственность_разведка": {
+    type: "income",
+    text: "Следите за тенденциями — маленькие открытия ведут к результату."
+  },
+
+  "рациональность_исследование": {
+    type: "expense",
+    text: "Планируйте действия — разум управляет ресурсами."
+  },
+  "рациональность_автоматизация": {
+    type: "income",
+    text: "Автоматизация учёта — эффективность и порядок."
+  },
+  "рациональность_автономность": {
+    type: "expense",
+    text: "Избегайте импульсов — стратегия важнее сиюминутного."
+  },
+  "рациональность_политика": {
+    type: "income",
+    text: "Используйте данные — решения точные и выгодные."
+  },
+  "рациональность_культура": {
+    type: "expense",
+    text: "Поддерживайте культуру — устойчивое развитие системы."
+  },
+  "рациональность_торговля": {
+    type: "income",
+    text: "Торгуйте разумно — результат приходит стабильно."
+  },
+  "рациональность_разведка": {
+    type: "income",
+    text: "Следите за новыми идеями — каждый шаг осмыслен."
+  },
+
+  "чистка_исследование": {
+    type: "expense",
+    text: "Избавляйтесь от лишнего — пространство оживает."
+  },
+  "чистка_автоматизация": {
+    type: "income",
+    text: "Автоматизируйте процессы — порядок и свобода действий."
+  },
+  "чистка_автономность": {
+    type: "expense",
+    text: "Оставляйте только необходимое — ясность и простота."
+  },
+  "чистка_политика": {
+    type: "income",
+    text: "Используйте возможности — каждый шаг приводит к результату."
+  },
+  "чистка_культура": {
+    type: "expense",
+    text: "Минимизируйте лишние элементы — внимание к важному."
+  },
+  "чистка_торговля": {
+    type: "income",
+    text: "Фокус на эффективных операциях — всё движется гладко."
+  },
+  "чистка_разведка": {
+    type: "income",
+    text: "Следите за рынком — выявляйте лучшее и действуйте."
+  },
+
+  "уединение_исследование": {
+    type: "expense",
+    text: "Создайте личное пространство — спокойствие вдохновляет."
+  },
+  "уединение_автоматизация": {
+    type: "income",
+    text: "Автоматизация личных проектов — эффективность и тишина."
+  },
+  "уединение_автономность": {
+    type: "expense",
+    text: "Оборудование для уединённой работы — контроль и комфорт."
+  },
+  "уединение_политика": {
+    type: "income",
+    text: "Закрытые процессы — максимальная результативность."
+  },
+  "уединение_культура": {
+    type: "expense",
+    text: "Культурные проекты для внутреннего развития — фокус на важном."
+  },
+  "уединение_торговля": {
+    type: "income",
+    text: "Активность нишевых проектов — свобода и эффективность."
+  },
+  "уединение_разведка": {
+    type: "income",
+    text: "Исследуйте узкие ниши — новые перспективы открыты."
+  },
+
+  "прагматичность_исследование": {
+    type: "expense",
+    text: "Тратьте на практичное — каждый шаг продуман."
+  },
+  "прагматичность_автоматизация": {
+    type: "income",
+    text: "Автоматизация процессов повышает отдачу."
+  },
+  "прагматичность_автономность": {
+    type: "expense",
+    text: "Инвестируйте в оборудование — польза максимальна."
+  },
+  "прагматичность_политика": {
+    type: "income",
+    text: "Используйте стратегию — эффективность растёт."
+  },
+  "прагматичность_культура": {
+    type: "expense",
+    text: "Поддерживайте культуру эффективности — команда сильнее."
+  },
+  "прагматичность_торговля": {
+    type: "income",
+    text: "Торгуйте надёжно — результат стабильный."
+  },
+  "прагматичность_разведка": {
+    type: "income",
+    text: "Следите за рынком — возможности всегда рядом."
+  },
+
+  "привязанность_исследование": {
+    type: "expense",
+    text: "Вкладывайтесь в отношения — взаимность укрепляет."
+  },
+  "привязанность_автоматизация": {
+    type: "income",
+    text: "Автоматизация коммуникаций — близкие ценят внимание."
+  },
+  "привязанность_автономность": {
+    type: "expense",
+    text: "Забота о родных — вложение в гармонию."
+  },
+  "привязанность_политика": {
+    type: "income",
+    text: "Используйте связи — всё становится легче."
+  },
+  "привязанность_культура": {
+    type: "expense",
+    text: "Поддерживайте традиции — атмосфера крепнет."
+  },
+  "привязанность_торговля": {
+    type: "income",
+    text: "Организуйте активности — взаимодействие идёт гладко."
+  },
+  "привязанность_разведка": {
+    type: "income",
+    text: "Изучайте возможности — связь укрепляется."
+  },
+
+  "выгода_исследование": {
+    type: "expense",
+    text: "Ищите выгодные решения — каждый шаг осмыслен."
+  },
+  "выгода_автоматизация": {
+    type: "income",
+    text: "Автоматизация поиска — всё движется эффективно."
+  },
+  "выгода_автономность": {
+    type: "expense",
+    text: "Выбирайте оптимальные варианты — ресурсы используются мудро."
+  },
+  "выгода_политика": {
+    type: "income",
+    text: "Следите за трендами — выгода приходит легко."
+  },
+  "выгода_культура": {
+    type: "expense",
+    text: "Инвестируйте в культурные активности — результат заметен."
+  },
+  "выгода_торговля": {
+    type: "income",
+    text: "Эффективная торговля — всё работает плавно."
+  },
+  "выгода_разведка": {
+    type: "income",
+    text: "Следите за рынком — возможности открываются сами."
+  }
+};
+
+
+  // Для всех дней, если нет рекомендации - по умолчанию предупреждение
+  function getRec(monthKey, weekdayKey) {
+    const key = monthKey + "_" + weekdayKey;
+    return combinedRecommendations[key] || {
+      type: "expense",
+      text: "Осторожно с деньгами! Ищи новые возможности и не сливай всё на пустяки."
+    };
+  }
+
+  let done = JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
+
+  function saveDone() {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(done));
+  }
+
+  function isDone(key) {
+    return done.includes(key);
+  }
+
+  function toggleDone(key) {
+    if (isDone(key)) {
+      done = done.filter(k => k !== key);
+    } else {
+      done.unshift(key);  // Добавляем в начало массива
+    if (done.length > 20) {
+      done = done.slice(0, 20); // Оставляем только первые 20 элементов
+    }
+    }
+    saveDone();
+  }
+
+  function formatDate(date) {
+    return date.toLocaleDateString('ru-RU', { day: '2-digit', month: '2-digit', year: '2-digit' });
+  }
+
+  function getMonthKeyword(date) {
+
+  const monthKeywords = {
+    0: "привязанность",
+    1: "выгода",
+    2: date => (date.getDate() < 8 ? "празднование" : "расположение"),
+    3: "позиционирование",
+    4: "максировка",
+    5: "блаженство",
+    6: "озарение",
+    7: "посредственность",
+    8: "рациональность",
+    9: "чистка",
+    10: "уединение",
+    11: "прагматичность"
+  };
+  
+    const m = date.getMonth();
+    const kw = monthKeywords[m];
+    if (typeof kw === 'function') return kw(date);
+    return kw;
+  }
+
+  function getWeekdayKeyword(date) {
+    return weekdayKeywords[date.getDay()];
+  }
+
+  function createDayElement(date) {
+  
+
+  const today = new Date();
+  today.setHours(0,0,0,0);
+  const startDate = new Date(today);
+  startDate.setDate(today.getDate() - 7);
+  const endDate = new Date(today);
+  endDate.setDate(today.getDate() + 40);
+  
+  
+    const monthKey = getMonthKeyword(date);
+    const weekdayKey = getWeekdayKeyword(date);
+    const recKey = formatDate(date) + "_" + monthKey + "_" + weekdayKey;
+    const rec = getRec(monthKey, weekdayKey);
+
+    const dayDiv = document.createElement("div");
+    dayDiv.className = "day";
+    if(date < today) dayDiv.classList.add("past");
+
+    // Дата
+    const dateDiv = document.createElement("div");
+    dateDiv.className = "date";
+    dateDiv.textContent = formatDate(date);
+
+    // Описание + чекбокс справа
+    const descDiv = document.createElement("div");
+    descDiv.className = "desc";
+
+    const textSpan = document.createElement("span");
+    textSpan.className = "desc-text";
+    textSpan.textContent = rec.text;
+
+    const typeSpan = document.createElement("span");
+    typeSpan.className = rec.type;
+    typeSpan.textContent = rec.type === "income" ? "🛒 " : "🎁 ";
+
+    const typeSpan2 = document.createElement("span");
+    typeSpan2.className = rec.type;
+    typeSpan2.textContent = rec.type === "income" ? "Заказ" : "Подарок";
+
+    const checkbox = document.createElement("input");
+    checkbox.type = "checkbox";
+    checkbox.checked = isDone(recKey);
+    checkbox.title = "Отметить выполненным";
+    checkbox.addEventListener("change", () => {
+      toggleDone(recKey);
+      renderAll(true);
+    });
+
+    descDiv.appendChild(textSpan);
+    descDiv.appendChild(typeSpan);
+    descDiv.appendChild(typeSpan2);
+    descDiv.appendChild(checkbox);
+
+    dayDiv.appendChild(dateDiv);
+    dayDiv.appendChild(descDiv);
+
+    dayDiv.recKey = recKey;
+    dayDiv.rec = rec;
+
+    return dayDiv;
+  }
+
+  function renderCurrentDays() {
+
+  const today = new Date();
+  today.setHours(0,0,0,0);
+  const startDate = new Date(today);
+  startDate.setDate(today.getDate() - 7);
+  const endDate = new Date(today);
+  endDate.setDate(today.getDate() + 40);
+  
+    const container = document.getElementById("recommendations");
+    container.innerHTML = "";
+    for(let d = new Date(today); d <= endDate; d.setDate(d.getDate()+1)) {
+      const monthKey = getMonthKeyword(d);
+      const weekdayKey = getWeekdayKeyword(d);
+      const recKey = formatDate(d) + "_" + monthKey + "_" + weekdayKey;
+      if (!isDone(recKey)) {
+        container.appendChild(createDayElement(new Date(d)));
+      }
+    }
+  }
+  
+
+  function renderPastDays() {
+
+  const today = new Date();
+  today.setHours(0,0,0,0);
+  const startDate = new Date(today);
+  startDate.setDate(today.getDate() - 7);
+  const endDate = new Date(today);
+  endDate.setDate(today.getDate() + 40);
+  
+    const container = document.getElementById("pastDays");
+    container.innerHTML = "";
+    for(let d = new Date(startDate); d < today; d.setDate(d.getDate()+1)) {
+      const monthKey = getMonthKeyword(d);
+      const weekdayKey = getWeekdayKeyword(d);
+      const recKey = formatDate(d) + "_" + monthKey + "_" + weekdayKey;
+      if (!isDone(recKey)) {
+        container.appendChild(createDayElement(new Date(d)));
+      }
+    }
+  }
+
+  function renderDoneList(force=false) {
+    const container = document.getElementById("doneList");
+    container.innerHTML = "";
+	
+    // Все выполненные рекомендации
+    done.forEach(key => {
+      // Парсим ключ
+      const parts = key.split("_");
+      if(parts.length < 3) return;
+      const dateStr = parts[0];
+      const monthKey = parts.slice(1, parts.length-1).join("_") || parts[1];
+      const weekdayKey = parts[parts.length-1];
+      const rec = getRec(monthKey, weekdayKey);
+      const dayDiv = document.createElement("div");
+      dayDiv.className = "day";
+
+      const dateDiv = document.createElement("div");
+      dateDiv.className = "date";
+      dateDiv.textContent = dateStr;
+
+      const descDiv = document.createElement("div");
+      descDiv.className = "desc";
+
+      const textSpan = document.createElement("span");
+      textSpan.className = "desc-text";
+      textSpan.textContent = rec.text;
+	  
+	  
+
+    const typeSpan = document.createElement("span");
+    typeSpan.className = rec.type;
+    typeSpan.textContent = rec.type === "income" ? "🛒 " : "🎁 ";
+
+    const typeSpan2 = document.createElement("span");
+    typeSpan2.className = rec.type;
+    typeSpan2.textContent = rec.type === "income" ? "Заказ" : "Подарок";
+
+      const checkbox = document.createElement("input");
+      checkbox.type = "checkbox";
+      checkbox.checked = true;
+      checkbox.title = "Отметить невыполненным";
+      checkbox.addEventListener("change", () => {
+        toggleDone(key);
+        renderAll(true);
+      });
+
+      descDiv.appendChild(textSpan);
+      descDiv.appendChild(typeSpan);
+      descDiv.appendChild(typeSpan2);
+      descDiv.appendChild(checkbox);
+
+      dayDiv.appendChild(dateDiv);
+      dayDiv.appendChild(descDiv);
+
+      container.appendChild(dayDiv);
+    });
+
+	startCoinsAnimation(done.length,force);
+  }
+
+  // Тогглеры секций с анимацией и стрелками
+  function setupToggle(sectionHeaderId, contentId) {
+    const header = document.getElementById(sectionHeaderId);
+    const content = document.getElementById(contentId);
+    const arrow = header.querySelector("span.arrow");
+    header.addEventListener("click", () => {
+      const isOpen = content.classList.contains("open");
+      if (isOpen) {
+        content.classList.remove("open");
+        header.classList.add("collapsed");
+        arrow.textContent = "▼";
+      } else {
+        content.classList.add("open");
+        header.classList.remove("collapsed");
+        arrow.textContent = "▲";
+      }
+    });
+  }
+
+  function renderAll(force=false) {
+    renderCurrentDays();
+    renderPastDays();
+    renderDoneList(force);
+  }
+
+  // Инициализация
+  renderAll();
+  setupToggle("pastHeader", "pastDays");
+  setupToggle("doneHeader", "doneList");
+  setupToggle("currentHeader", "recommendations");
+  
+
+  /////////////////////////////////////////////////
+  /////////////////////////////////////////////////
+  /////////////////////////////////////////////////
+  function startCoinsAnimation(symbolCount, force = false) {
+    const canvasId = 'buddhaSymbolsCanvas';
+  const STORAGE_KEY = 'buddhist_symbols_coords';
+  let canvas = document.getElementById(canvasId);
+
+  if (!canvas) {
+    canvas = document.createElement('canvas');
+    canvas.id = canvasId;
+    canvas.style.position = 'fixed';
+    canvas.style.top = '0';
+    canvas.style.left = '0';
+    canvas.style.width = '100vw';
+    canvas.style.height = '100vh';
+    canvas.style.pointerEvents = 'none';
+    canvas.style.zIndex = '-1';
+    document.body.appendChild(canvas);
+  }
+
+  const ctx = canvas.getContext('2d');
+  let width, height;
+  const symbols = [];
+  let currentLineIndex = 0;
+  let movingLineProgress = 0;
+  const lineSpeed = 0.006;
+
+  const buddhistSymbols = [
+    "☸", "ॐ", "✿", "☯", "☀", "࿓", "✧", "✦", "❂", "☁",
+    "⚛", "🕉", "❀", "❁", "♒", "⚙", "✺", "☼", "☪", "✡"
+  ];
+
+  function resize() {
+    width = window.innerWidth;
+    height = window.innerHeight;
+    canvas.width = width * devicePixelRatio;
+    canvas.height = height * devicePixelRatio;
+    ctx.setTransform(devicePixelRatio, 0, 0, devicePixelRatio, 0, 0);
+  }
+
+  function saveSymbolsToStorage(symbolsArray) {
+    const minimal = symbolsArray.map(s => ({
+      x: s.x, y: s.y, size: s.size, opacity: s.opacity,
+      char: s.char, flickerSpeed: s.flickerSpeed, flickerPhase: s.flickerPhase
+    }));
+    localStorage.setItem(STORAGE_KEY, JSON.stringify({ count: symbolsArray.length, data: minimal }));
+  }
+
+  function loadSymbolsFromStorage() {
+    try {
+      const saved = JSON.parse(localStorage.getItem(STORAGE_KEY));
+      if (saved && saved.count === symbolCount && Array.isArray(saved.data)) {
+        return saved.data;
+      }
+    } catch (e) {
+      return null;
+    }
+    return null;
+  }
+
+  function createSymbols(count, force) {
+    const saved = !force && loadSymbolsFromStorage();
+
+    if (saved) {
+      for (const s of saved) {
+        symbols.push({ ...s });
+      }
+    } else {
+      symbols.length = 0;
+      for (let i = 0; i < count; i++) {
+        symbols.push({
+          x: Math.random() * width,
+          y: Math.random() * height,
+          size: 24 + Math.random() * 28,
+          opacity: 0.15 + Math.random() * 0.3,
+          char: buddhistSymbols[i % buddhistSymbols.length],
+          flickerSpeed: 0.002 + Math.random() * 0.003,
+          flickerPhase: Math.random() * Math.PI * 2
+        });
+      }
+      saveSymbolsToStorage(symbols);
+    }
+  }
+
+  function drawSymbol(x, y, size, opacity, char) {
+    ctx.font = `${size}px serif`;
+    ctx.fillStyle = `rgba(255, 200, 80, ${opacity})`;
+    ctx.shadowColor = `rgba(255, 180, 100, ${opacity})`;
+    ctx.shadowBlur = 6;
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.fillText(char, x, y);
+    ctx.shadowBlur = 0;
+  }
+
+  function drawLine(x1, y1, x2, y2, opacity) {
+    ctx.strokeStyle = `rgba(255, 180, 80, ${opacity})`;
+    ctx.lineWidth = 1;
+    ctx.beginPath();
+    ctx.moveTo(x1, y1);
+    ctx.lineTo(x2, y2);
+    ctx.stroke();
+  }
+
+  function animate(time = 0) {
+    ctx.clearRect(0, 0, width, height);
+    const maxDist = 200;
+
+    for (let i = 0; i < symbols.length; i++) {
+      for (let j = i + 1; j < symbols.length; j++) {
+        const dx = symbols[i].x - symbols[j].x;
+        const dy = symbols[i].y - symbols[j].y;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+        if (dist < maxDist) {
+          const lineOpacity = (1 - dist / maxDist) * 0.5;
+          drawLine(symbols[i].x, symbols[i].y, symbols[j].x, symbols[j].y, lineOpacity);
+        }
+      }
+    }
+
+    if (symbols.length > 1) {
+      const nextIndex = (currentLineIndex + 1) % symbols.length;
+      const start = symbols[currentLineIndex];
+      const end = symbols[nextIndex];
+      const x = start.x + (end.x - start.x) * movingLineProgress;
+      const y = start.y + (end.y - start.y) * movingLineProgress;
+      drawLine(start.x, start.y, x, y, 0.8);
+
+      movingLineProgress += lineSpeed;
+      if (movingLineProgress >= 1) {
+        movingLineProgress = 0;
+        currentLineIndex = nextIndex;
+      }
+    }
+
+    for (const s of symbols) {
+      const flicker = 0.6 + 0.5 * Math.sin(time * s.flickerSpeed + s.flickerPhase);
+      drawSymbol(s.x, s.y, s.size, s.opacity * flicker, s.char);
+    }
+
+    requestAnimationFrame(animate);
+  }
+
+  function start() {
+    resize();
+    createSymbols(symbolCount, force);
+    animate();
+  }
+
+  window.addEventListener('resize', resize);
+  start();
+}
+
+</script>
+<!-- Yandex.Metrika counter -->
+<script type="text/javascript">
+    (function(m,e,t,r,i,k,a){
+        m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+        m[i].l=1*new Date();
+        for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+        k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+    })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=106046314', 'ym');
+
+    ym(106046314, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", accurateTrackBounce:true, trackLinks:true});
+</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/106046314" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+<!-- /Yandex.Metrika counter -->
+</body>
+</html>

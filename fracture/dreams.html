@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Грань реальности</title>
+  <link rel="icon" type="image/x-icon" href="./modules/images/note2.png" />
+  <style>
+    body {
+      background: #0b0c10;
+      color: #c5c6c7;
+      
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 1rem;
+    }
+    .container {
+      max-width: 700px;
+      background: #1f2833;
+      padding: 1.5rem;
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(102,252,241,0.25);
+    }
+    h1 {
+      color: #66fcf1;
+      margin-top: 0;
+    }
+    select, button {
+      font-size: 1rem;
+      padding: 0.5rem 1rem;
+      margin-top: 1rem;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    select {
+      width: 100%;
+      background: #c5c6c7;
+      color: #0b0c10;
+    }
+    button {
+      background: #45a29e;
+      color: #0b0c10;
+    }
+    button:hover {
+      background: #57cfcf;
+    }
+    .result {
+      margin-top: 1rem;
+      font-weight: bold;
+      color: #a0e7e5;
+    }
+    .awakening {
+      margin-top: 1rem;
+      font-style: italic;
+      color: #89e8e8;
+    }
+    .fracture-link {
+      color: #ff3c3c;
+      font-weight: bold;
+      text-decoration: none;
+    }
+    #web-overlay {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      pointer-events: none;
+      z-index: 0;
+    }
+	
+.awakening {
+  color: #89e8e8dd;
+  font-style: italic;
+  text-shadow:
+    0 0 8px #89e8e8aa;
+}
+
+/* Анимация плавного пульсирования контейнера */
+@keyframes gentlePulse {
+  0%, 100% {
+    box-shadow: 0 0 40px 5px rgba(102, 252, 241, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 60px 10px rgba(102, 252, 241, 0.5);
+  }
+}
+
+.button_a {
+  font-size: 3rem;
+  background: rgba(69, 162, 158, 0.8);
+  border: none;
+  border-radius: 8px;
+  color: #0b0c10dd;
+  cursor: pointer;
+  box-shadow:
+    0 0 8px rgba(69, 162, 158, 0.6);
+  transition: background 0.3s ease, box-shadow 0.3s ease;
+}
+#web-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+}
+		.fracture-link {
+  display: inline-block;
+  color: #ff3c3c;
+  font-weight: bold;
+  text-decoration: none;
+  
+  font-size: 1.2em;
+  letter-spacing: 1px;
+  position: relative;
+  animation: glitch 1s infinite;
+}
+
+@keyframes glitch {
+  0% {
+    text-shadow: 2px 0 red, -2px 0 blue;
+    transform: translate(0);
+  }
+  20% {
+    text-shadow: -2px 0 red, 2px 0 blue;
+    transform: translate(-1px, 1px);
+  }
+  40% {
+    text-shadow: 2px 2px red, -2px -2px blue;
+    transform: translate(1px, -1px);
+  }
+  60% {
+    text-shadow: -2px -2px red, 2px 2px blue;
+    transform: translate(0.5px, 0.5px);
+  }
+  80% {
+    text-shadow: 0 0 red, 0 0 blue;
+    transform: translate(-0.5px, -0.5px);
+  }
+  100% {
+    text-shadow: 2px 0 red, -2px 0 blue;
+    transform: translate(0);
+  }
+}
+  </style>
+</head>
+<body>
+<div id="web-overlay"></div>
+  <div class="container">
+    <h1>Тетрадь Смерти: <a class="fracture-link" href="./index.html">Перелом</a></h1>
+    <h2>Грань реальности</h2>
+	Это не просто сон — это игра на реакцию!<br><br>
+	<img src="./modules/images/gran.png" style="width:100%">
+	<br><br>
+    <div id="dream"></div>
+    <select id="choice">
+      <option disabled selected>Выбери узел сна</option>
+      <option>1-й узел. Запретная память</option>
+      <option>2-й узел. Пороговые лица</option>
+      <option>3-й узел. Обратная сторона</option>
+      <option>4-й узел. Шепот предков</option>
+      <option>5-й узел. Вхождение в роль</option>
+      <option>6-й узел. Белая пустота</option>
+      <option>7-й узел. Зеркало тела</option>
+      <option>8-й узел. Механизм времени</option>
+      <option>9-й узел. Допрос чувствами</option>
+      <option>10-й узел. Мир без законов</option>
+    </select>
+	<div class="awakening" id="awakening" style="margin-top: 1rem; font-style: italic;"></div>
+    <button onclick="checkAnswer()">Осознать узел</button> <a target="_blank" href="./dreamscape.html" style="color:white">Открыть подсказки</a>
+    <div class="result" id="result"></div>
+  </div>
+
+  <script>
+
+  const dreamsByNode = {
+    "1-й узел. Запретная память": {
+      dreams: [
+        "Я {teams1_pol} {teams1_level} Женя. Я нашёл ящик в подвале. Он был знаком. Внутри — дневник. Моим почерком. Там было про него. Про то, кого мы потеряли. Я не помнил, как писал это.",
+        "Я {teams2_pol} {teams2_level} Саша. Комната в старом доме. Заколоченная дверь. Я открыла - там все занесено паутиной."
+      ],
+      awakening: "Перебори себя, ознакомься"
+    },
+    "2-й узел. Пороговые лица": {
+      dreams: [
+        "Я {teams2_pol} {teams2_level} Катя. Я пришла в дом. Там были люди, улыбающиеся, дружелюбные. Они говорили: 'Ты вернулась, наконец'. Я кивала, но в груди было пусто. Я их не знала. А они — знали всё обо мне.",
+        "Я {teams1_pol} {teams1_level} Влад. В комнате за столом сидели мои 'родители'. Только это были не они. Лица похожие, но чужие. Они ласково говорили, что я должен забыть. Что теперь всё будет по-другому."
+      ],
+      awakening: "Выгони их"
+    },
+    "3-й узел. Обратная сторона": {
+      dreams: [
+        "Я {teams1_pol} {teams1_level} Рома. Я открыл дверь — и увидел того, кто сидел за столом, ел, улыбался. Только он был… неправильным. Лицо как моё, но кожа серая, глаза пустые. Он обернулся. И сказал: 'Теперь моя очередь'.",
+        "Я {teams2_pol} {teams2_level} Настя. Я увидела странное существо возле своего дома. Оно двигалось иначе. Я наклоняюсь — оно смеётся. Я зажмурилась — и оно шагнуло вперёд."
+      ],
+      awakening: "Да, это ты"
+    },
+    "4-й узел. Шепот предков": {
+      dreams: [
+        "Я {teams1_pol} {teams1_level} Тарас. Я стою на кургане. Ветер поёт старые песни. Из земли поднимаются силуэты. Один говорит: 'Мы — твои. Ты наш голос'. Я не знаю их. Но знаю, что всё, чем я стал — от них.",
+        "Я {teams2_pol} {teams2_level} Алиса. В деревне я нашла старый амулет. От него исходили слова, которые я понимала. Я знала, что они говорили не мне — а сквозь меня."
+      ],
+      awakening: "Это устарело, не надо засматриваться"
+    },
+    "5-й узел. Вхождение в роль": {
+      dreams: [
+        "Я {teams1_pol} {teams1_level} Миша. На мне была мантия. Люди склонялись. Я поднял руку — молчание. Я какой то важный.",
+        "Я {teams2_pol} {teams2_level} Лара. В битве я повела армию. Я знала тактики, приёмы, названия мест. Наконец то ощущение, что я - настоящая."
+      ],
+      awakening: "Ты фальшивишь"
+    },
+    "6-й узел. Белая пустота": {
+      dreams: [
+        "Я {teams1_pol} {teams1_level} Ник. Я был голым. Как же стыдно, в публичном месте, где же забыл одеться...",
+        "Я {teams2_pol} {teams2_level} Вика. Я стояла в комнате без стен. Она была вся из света. Не яркого. Мягкого. Я шагнула — и поняла, что перестала быть. Не умерла. Просто исчезла как форма. Осталась как тень."
+      ],
+      awakening: "Не пугайся, реши проблему на месте"
+    },
+	"7-й узел. Зеркало тела": {
+      dreams: [
+        "Я {teams1_pol} {teams1_level} Эрик. Я очнулся в своей квартире, но не мог контролировать ни руку, ни взгляд. Я будто наблюдал, как кто-то в моём теле пьёт кофе, включает свет, отвечает на звонок. Я хотел закричать — но рот не слушался. Тело жило своей жизнью.",
+        "Я {teams2_pol} {teams2_level} Дина. Моя сестра смотрела на меня с удивлением: 'Ты ведёшь себя странно'. Я хотела ответить, но ни одна мышца не двигалась. Я просто сидела, кивала, делала то, чего не понимала. Я была пассажиром в своём же теле.",
+        "Я {teams1_pol} {teams1_level} Павел, стоял перед зеркалом в костюме, которого у меня никогда не было. Я улыбался. Внутри я орал: это не я. Но тело только поправляло галстук и шло дальше."
+      ],
+      awakening: "Посмотри на что то одно"
+    },
+    "8-й узел. Механизм времени": {
+      dreams: [
+        "Я {teams2_pol} {teams2_level} Даша. Я открыла глаза — и снова была в том же коридоре. Серый свет, капающий кран, будильник. Я точно помнила, что уже жила этот день. Пять раз. Может, больше. Всё начиналось одинаково. И всё заканчивалось ничем.",
+        "Я {teams1_pol} {teams1_level} Тимур. Я захожу в квартиру, ставлю пакет на стол, слышу звонок — и всё начинается заново. Я даже начал записывать события в блокнот. Но страница всегда пустая утром. Я застрял."
+      ],
+      awakening: "Сделай то, что от тебя не ожидают"
+    },
+    "9-й узел. Допрос чувствами": {
+      dreams: [
+        "Я {teams1_pol} {teams1_level} Андрей. Я стою в зале ожидания. Пусто. Вдруг из дальнего коридора несётся тварь — чернильная, без лица. Я хочу убежать, но ноги цепенеют. Сердце в горле. Я знаю, она не хочет убить — она хочет заставить вспомнить.",
+        "Я {teams2_pol} {teams2_level} Ира. Я на сцене, свет бьёт в глаза. Из темноты задают вопросы. Один за другим. Я не знаю ответов, но каждое молчание — как удар. Я чувствую: если совру, меня не станет."
+      ],
+      awakening: "Это не нужно"
+    },
+    "10-й узел. Мир без законов": {
+      dreams: [
+        "Я {teams1_pol} {teams1_level} Лёша. Я шёл по потолку. Мама мыла пол — внизу. Она даже не удивилась. Время шло назад. Я щёлкнул пальцами — и мы поменялись местами. Мне стало спокойно. Всё это — нормально. Так надо.",
+        "Я {teams1_pol} {teams1_level} Арсен. Я поднял камень — и он стал окном. За ним — я, спящий. Я протянул руку, и из воздуха вырезалась лестница. Я спустился в воспоминание, которое не моё."
+      ],
+      awakening: "Найди адекватные детали"
+    }
+  };
+
+  let dreamLevel = 1;
+  let currentDream = null;
+
+  function loadDream() {
+  
+  var dreamNodes = [];
+
+  for (let key in dreamsByNode) {
+    dreamsByNode[key].dreams.forEach(description => {
+	var teams1_level = '';
+	var teams2_level = '';
+	var teams1_pol = 'твой';
+	var teams2_pol = 'твоя';
+	
+	if(dreamLevel>=4){
+	var teams1_level = 'близкий';
+	var teams2_level = 'близкая';
+	}
+	else if(dreamLevel>=3){
+	var teams1_level = 'сотрудник';
+	var teams2_level = 'сотрудница';
+	}
+	else if(dreamLevel>=2){
+	var teams1_level = 'друг';
+	var teams2_level = 'подруга';
+	}
+	else{
+	var teams1_pol = 'твой';
+	var teams2_pol = 'твой';
+	var teams1_level = 'сородич';
+	var teams2_level = 'сородич';
+	}
+	
+	description = description.replace("{teams1_pol}", teams1_pol);
+	description = description.replace("{teams2_pol}", teams2_pol);
+	description = description.replace("{teams1_level}", teams1_level);
+	description = description.replace("{teams2_level}", teams2_level);
+	
+      dreamNodes.push({ description, correct: key });
+    });
+  }
+  
+    document.getElementById('result').textContent = '';
+    const index = Math.floor(Math.random() * dreamNodes.length);
+    currentDream = dreamNodes[index];
+    document.getElementById('dream').innerHTML = `<strong>Сон уровня ${dreamLevel}:</strong><br>${currentDream.description}`;
+    document.getElementById('choice').selectedIndex = 0;
+	document.getElementById('awakening').innerHTML = '';
+	
+	updateWebOverlay();
+	
+  }
+
+  function checkAnswer() {
+    const choice = document.getElementById('choice').value;
+    if (!choice) return;
+
+    const resultDiv = document.getElementById('result');
+    const correctNode = currentDream.correct;
+    const awakening = dreamsByNode[correctNode].awakening;
+
+    if (choice === correctNode) {
+      dreamLevel++;
+
+      resultDiv.innerHTML = `<p>Узел распознан. Погружаемся глубже...</p>`;
+      setTimeout(loadDream, 3000);
+    } else {
+      resultDiv.innerHTML = `<p>Неверно. Это был узел: <b style="color:red;">${correctNode}</b>. Ты проснулся! Начни сначала.</p>`;
+      dreamLevel = 1;
+      setTimeout(loadDream, 4000);
+    }
+  }
+
+  window.onload = () => {
+  loadDream();
+};
+  
+  document.getElementById('choice').addEventListener('change', function () {
+  const selected = this.value;
+  const awakeningDiv = document.getElementById('awakening');
+
+  if (dreamsByNode[selected]) {
+    awakeningDiv.innerHTML = `<strong>${dreamsByNode[selected].awakening}</strong>`;
+  } else {
+    document.getElementById('awakening').innerHTML = '';
+  }
+});
+  
+//паутины
+
+function updateWebOverlay() {
+  const container = document.querySelector('.container');
+  let svg = document.getElementById('web-overlay');
+
+  if (svg) {
+    svg.remove();
+  }
+
+  svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+  svg.setAttribute("id", "web-overlay");
+  svg.setAttribute("class", "web-overlay");
+  svg.setAttribute("width", "100%");
+  svg.setAttribute("height", "100%");
+  svg.setAttribute("style", "position:absolute; top:0; left:0; z-index:0; pointer-events:none;");
+  container.style.position = "relative";
+  container.appendChild(svg);
+
+  const svgNS = "http://www.w3.org/2000/svg";
+  const rect = container.getBoundingClientRect();
+  const pointCount = dreamLevel;
+  const points = [];
+
+  for (let i = 0; i < pointCount; i++) {
+    points.push({
+      x: Math.random() * rect.width,
+      y: Math.random() * rect.height
+    });
+  }
+
+  const mirrorRadius = 8; // половина размера картинки (16px)
+
+for (let i = 0; i < pointCount; i++) {
+  for (let j = i + 1; j < pointCount; j++) {
+    const dx = points[j].x - points[i].x;
+    const dy = points[j].y - points[i].y;
+    const dist = Math.sqrt(dx * dx + dy * dy);
+
+    // нормализованный вектор
+    const ux = dx / dist;
+    const uy = dy / dist;
+
+    // смещаем начало и конец линии на радиус зеркала
+    const x1 = points[i].x + ux * mirrorRadius;
+    const y1 = points[i].y + uy * mirrorRadius;
+    const x2 = points[j].x - ux * mirrorRadius;
+    const y2 = points[j].y - uy * mirrorRadius;
+
+    const line = document.createElementNS(svgNS, "line");
+    line.setAttribute("x1", x1);
+    line.setAttribute("y1", y1);
+    line.setAttribute("x2", x2);
+    line.setAttribute("y2", y2);
+    line.setAttribute("stroke", "rgba(255, 255, 255, 0.1)"); // голубые линии
+    line.setAttribute("stroke-width", "1");
+    line.setAttribute("filter", "url(#glow)"); // эффект свечения
+    svg.appendChild(line);
+  }
+}
+
+  // Добавим изображения зеркал на узлах
+for (const point of points) {
+  const mirror = document.createElementNS(svgNS, "image");
+  mirror.setAttributeNS(null, 'href', './modules/images/Dapino-Summer-Holiday-Compass.256.png'); // путь к изображению зеркала
+  mirror.setAttribute('x', point.x - 8); // Центрируем
+  mirror.setAttribute('y', point.y - 8);
+  mirror.setAttribute('width', '16');    // Размер зеркала
+  mirror.setAttribute('height', '16');
+  mirror.setAttribute('opacity', '0.4'); // Можно настроить прозрачность
+  svg.appendChild(mirror);
+}
+}
+
+  
+</script>
+<!-- Yandex.Metrika counter -->
+<script type="text/javascript">
+    (function(m,e,t,r,i,k,a){
+        m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+        m[i].l=1*new Date();
+        for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+        k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+    })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=106046314', 'ym');
+
+    ym(106046314, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", accurateTrackBounce:true, trackLinks:true});
+</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/106046314" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+<!-- /Yandex.Metrika counter -->
+</body>
+</html>

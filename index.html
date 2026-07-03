@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Изнанка мира</title>
+  <meta name="keywords" content="изнанка мира, эзотерика, Пасьянс медичи, тетрадь смерти, бдилка, перелом" />
+  <meta name="description" content="Здесь вы встретите как Пасьянс Медичи, так и Тетрадь Смерти." />
+  <link rel="icon" type="image/png" href="./modules/inner.png">
+  <style>
+    body {
+      min-height: 100vh;
+      margin: 0;
+      padding: 0;
+      background: radial-gradient(circle at top,#102238 0%,#070b12 45%,#030406 100%);
+      color:#8fdcc0;
+      font-family: "Courier New", monospace;
+      text-align: center;
+      overflow-x: hidden;
+      overflow-y: auto;
+    }
+
+
+@keyframes chameleon {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+	
+h1 {
+    font-size: 3.2rem;
+    margin: 40px 15px 30px 15px;
+    word-wrap: break-word;
+
+    color: #7fcfff;
+    animation: blueShimmer 6s ease-in-out infinite;
+
+    text-shadow:
+        0 1px 2px rgba(0, 40, 80, 0.4),
+        0 3px 6px rgba(0, 40, 80, 0.25),
+        0 0 12px rgba(120, 200, 255, 0.25);
+}
+
+@keyframes blueShimmer {
+    0%   { color: #9fdcff; }
+    25%  { color: #6fc8ff; }
+    50%  { color: #4bbcff; }
+    75%  { color: #6fc8ff; }
+    100% { color: #9fdcff; }
+}
+
+    .link-container {
+      max-width: 600px;
+      display: inline-block;
+      text-align: left;
+      padding: 25px 20px;
+      border:1px solid rgba(125,220,190,.25);
+      border-radius: 10px;
+      box-shadow:0 10px 40px rgba(0,0,0,.45),0 0 35px rgba(70,180,170,.12);
+      margin: 40px 10px 40px 10px;
+	  background: rgba(12, 18, 28, .89);
+    }
+
+    a {
+      display: block;
+      font-size: 1.3rem;
+      color:#8fdcc0;
+      margin: 15px 0;
+      position: relative;
+      transition: transform 0.2s, text-shadow 0.2s;
+      word-break: break-word;
+	  text-decoration: none;
+    }
+
+    a:hover {
+      transform: translateX(10px);
+      text-shadow: 0 0 10px #00ff00, 0 0 20px #00ff00, 0 0 40px #00ff00;
+    }
+
+    .paddingtop {
+      padding-top: 15px;
+    }
+
+    .description {
+      font-size: 1rem;
+      line-height: 1.4em;
+      color:#006400;
+      margin-top: 2px;
+      margin-bottom: 10px;
+	  
+	  background: linear-gradient(
+    90deg,
+    #00ffd5,
+    #66a6ff,
+    #ff4ecd,
+    #ffe066,
+    #00ffd5
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: chameleon 8s ease infinite;
+	  
+    }
+
+    canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+    }
+
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 1.7rem;
+        margin: 20px 10px;
+      }
+
+      .link-container {
+        width: 80%;
+        padding: 15px;
+      }
+
+      a {
+        font-size: 1.1rem;
+        margin: 12px 0;
+      }
+
+      .description {
+        font-size: 0.85rem;
+      }
+    }
+
+    hr {
+      border: none;
+      height: 2px;
+      margin: 30px 0;
+      background:linear-gradient(90deg,transparent,rgba(130,210,255,.35),transparent);
+      box-shadow:0 0 12px rgba(130,210,255,.15);
+    }
+
+    @font-face {
+      font-family: 'MatrixBCyrillic';
+      src: url('./modules/Balkara.ttf') format('truetype');
+      font-weight: normal;
+      font-style: normal;
+    }
+
+    body {
+      font-family: 'MatrixBCyrillic';
+    }
+	body {
+  color:#8fdcc0; /* матрический зелёный */
+}
+
+.link-container {
+  border:1px solid rgba(125,220,190,.25);
+  box-shadow:0 10px 40px rgba(0,0,0,.45),0 0 35px rgba(70,180,170,.12);
+}
+
+a {
+  color:#8fdcc0;
+}
+
+a:hover {
+  text-shadow: 0 0 10px #00ff00, 0 0 20px #00ff00, 0 0 40px #00ff00;
+}
+
+hr {
+  background:linear-gradient(90deg,transparent,rgba(130,210,255,.35),transparent);
+  box-shadow:0 0 12px rgba(130,210,255,.15);
+}
+
+
+  </style>
+</head>
+
+<body>
+  <canvas id="matrix"></canvas>
+
+    <div class="link-container">
+	<center><img src="./modules/inner.png" width="120px"><br>
+    <h2>Изнанка Мира</h2></center>
+	
+	
+	<hr>
+
+	<center>
+
+    <h1 id="matrix-seq" aria-label="000700090001000400" data-target="000700090001000400"></h1>
+    <h3 style="color:#ff3333">Иди по своей дороге с глубинным доверием<br>наполняя каждый день радостью бытия.</h3>
+	
+	</center>
+      <span class="description">
+	  
+	  
+        Ты загружаешься в мир с <b style="color:#006400;">сородичами</b> — базовая прошивка. Они дают тебе отдых, еду из микроволновки и непрошеные советы по жизни, которой сами уже ничерта не помнят. Это твоя стартовая станция. Простая, глючная, но уютная. Добро пожаловать в рододом™.<br><br>
+
+        Затем активируются <b style="color:#006400;">друзья</b>. Эти биологические аватары развлечений появляются в подростковом апгрейде. Они приносят тебе хаос, мемы, пиццу и первые экзистенциальные взломы. Их задача — показать, что Вселенная не только бессмысленна, но ещё и ржачная.<br><br>
+
+        На следующем уровне тебя встречают <b style="color:#006400;">коллеги</b>. Ты думаешь, что ты взрослый. Они дают тебе дело, графики, дедлайны и корпоративные голограммы по вторникам. Но не бойся: 87% из них тоже притворяются, что знают, что делают.<br><br>
+
+        И под конец — <b style="color:#006400;">близкие</b>. Те, кто проникает в твой багнутый внутренний API. Они дают тебе не просто отношения, а отражение: в них ты видишь себя, свои ошибки, и иногда даже свой Wi-Fi пароль.
+      </span>
+      <hr><span class="description">
+        <b>Внимание!</b> Если ты пошёл в обратном порядке, не паникуй — ты просто живёшь по сценарию «Нарушитель». Бывает. Вот <b>автоматизированные пилюли</b> для возобновления вас игроками по правилам мироустройства:
+      </span>
+
+      <a class="paddingtop" href="./vigil/" target="_blank" style="">
+<svg xmlns="http://www.w3.org/2000/svg" width="32" height="16" viewBox="0 0 256 128">
+  <rect x="0" y="16" width="256" height="96" rx="48" fill="#FF3333" stroke="#FFFFFF" stroke-width="12"/>
+  <rect x="127" y="16" width="2" height="96" fill="#FFFFFF"/>
+</svg> Программа: Бдилка</a> 
+      <span class="description"> Создавай цепочки событий Бдилкой, декламируй мантры и перекраивай реальность своим обновлённым «я»… автоматически, как велел андроид Птолемей Смит из 87-й временной воронки. Осторожно: побочные эффекты могут включать случайное появление говорящих бутербродов.</span>
+
+      <a class="paddingtop" href="./fracture/" target="_blank" style="">
+<svg xmlns="http://www.w3.org/2000/svg" width="32" height="16" viewBox="0 0 256 128">
+  <rect x="0" y="16" width="256" height="96" rx="48" fill="#006400" stroke="#FFFFFF" stroke-width="12"/>
+  <rect x="127" y="16" width="2" height="96" fill="#FFFFFF"/>
+</svg> Программа: Перелом</a>
+      <span class="description"> Перелом проверяет каждую микроскопическую фигню вашего потока материализации, убирает весь хаос и гарантирует, что вселенная будет тикать как чертовски отлаженные часы… без всяких непредсказуемых сюрпризов. Да, даже если твой квантовый кот решил устроить бунт!</span>
+
+      <a class="paddingtop" href="./circuit-coder/" target="_blank" style=""><!-- Синяя -->
+<svg xmlns="http://www.w3.org/2000/svg" width="32" height="16" viewBox="0 0 256 128">
+  <rect x="0" y="16" width="256" height="96" rx="48" fill="#1E90FF" stroke="#FFFFFF" stroke-width="12"/>
+  <rect x="127" y="16" width="2" height="96" fill="#FFFFFF"/>
+</svg> Программа: Схемокодер [Прототип]</a>
+      <span class="description"> На заре цифровой эры, когда первые байты падали на землю подобно дождю, появился Схемокодер. Подобно мастерам боевых духов, каждый начинающий кодер должен был выбрать свой путь: слабые гибли в пустынных скриптах, другие навыки застревали в проклятом Notepad 6.66, где строки ломали разум, а отступы рвали душу.
+      <br><br>
+      Но истинные программисты кода знали: каждый модуль — это скилл, каждая библиотека — кольцо силы, которое нужно обуздать. Кто смог соединить их гармонией — поднимался выше, становясь Схемокодером.</span>
+	  
+	  
+	  <a class="paddingtop" href="https://www.livemaster.ru/item/56105462-fen-shuj-i-ezoterika-ispolnitel-zhelanij-klanovyj-artefakt-iz" target="_blank" style=""><!-- Чёрная -->
+<svg xmlns="http://www.w3.org/2000/svg" width="32" height="16" viewBox="0 0 256 128">
+  <rect x="0" y="16" width="256" height="96" rx="48" fill="#000000" stroke="#FFFFFF" stroke-width="12"/>
+  <rect x="127" y="16" width="2" height="96" fill="#FFFFFF"/>
+</svg> Артефакт: Изнанка Мира</a>
+      <span class="description">Принято считать, что судьба уже начертана, однако Изнанка Мира напоминает: предначертанность существует только до момента осознания. Истинный путь рождается там, где появляется воля, намерение и готовность изменить направление. Это не место готовых решений — это пространство выбора, трансформации и внутренней работы, где человек сам становится автором своей истории и проводником между мирами.</span>
+	  
+	   <hr>
+	   
+	   <span class="description">Все книги «Изнанки Мира» доступны на сайте</span> 
+	   
+	   <a style="display: contents;font-size: 1.0rem;" target="_blank" href="https://www.litres.ru/author/andrey-volkov-33168547/">litres (Андрей Волков)</a> 
+	   
+	   <span class="description">— там же размещены описания программ и сопутствующие материалы, в которых раскрывается их устройство, логика работы и внутренние принципы.</span><br><br>
+	   <a class="description" target="_blank" href="https://www.litres.ru/author/andrey-volkov-33168547/"><img style="width:100%" src="./modules/knigi.png"></a>
+	  
+      <hr>
+        
+	   <span class="description">За новинками и попутным ветром смысла — вступайте в наш бесплатный межгалактический клан восполнителей потерь:</span> <br><br><div style="position: relative; width: 100%; padding-top: 50%;">
+  <video controls autoplay muted loop
+style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover;">
+  <source src="./modules/7914Hz.mp4" type="video/mp4">
+  
+</video>
+</div><br><center>
+		
+<a href="./modules/7914Hz.mp3" class="mirror-link" data-message="Наша музыкальная композиция содержит заветные частоты. Готовы послушать?">
+  <svg xmlns="http://www.w3.org/2000/svg" width="60" height="22" viewBox="0 0 60 22"
+     style="vertical-align: middle; margin-right: 4px; filter: drop-shadow(0 0 3px #00ffff);">
+  <!-- Фон -->
+  <rect width="60" height="22" fill="#00ffff" opacity="0.1" rx="3"/>
+
+  <!-- Синусоида, символизирующая музыкальные герцы -->
+  <path fill="none" stroke="#00ffff" stroke-width="2"
+        d="
+        M0,11
+        C5,5 10,17 15,11
+        C20,5 25,17 30,11
+        C35,5 40,17 45,11
+        C50,5 55,17 60,11
+        "/>
+</svg> Ритм клана
+</a>
+		<!-- 🔮 ССЫЛКА -->
+<a href="https://t.me/otherside_world" class="mirror-link" data-message="⚠️ Внимание! При переходе в телеграм сработает наша защитная система Зеркальный Предел, она отсеет всех шпионов за вами, по ощущениям будет как состояние невесомости, после анализа вы перейдете в безопасную ru зону. Готовы?">
+  <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 240 240" 
+       style="vertical-align: middle; margin-right: 8px; filter: drop-shadow(0 0 6px #00ffff);">
+    <circle cx="120" cy="120" r="120" fill="#00ffff" opacity="0.2"/>
+    <path fill="#00ffff" d="M50 120l135-52c5-2 10 3 8 8l-28 118c-1 5-7 7-11 4l-32-25-20 19c-4 4-11 2-12-4l-8-40-40-22c-5-3-5-10 0-12z"/>
+  </svg> Наш телеграм
+</a>
+</center>
+
+<!-- ⚡ ОКНО ПРЕДУПРЕЖДЕНИЯ -->
+<div id="mirror-modal">
+  <div class="mirror-dialog">
+    <p id="mirror-message">...</p>
+    <div class="mirror-buttons">
+      <button id="mirror-yes">Да</button>
+      <button id="mirror-no">Нет</button>
+    </div>
+  </div>
+</div>
+
+<style>
+/* 🌌 Основной стиль ссылки */
+.mirror-link {
+  display:inline-block;
+  padding:12px 24px;
+  color:#00ffff;
+  font-family:"Courier New", monospace;
+  text-decoration:none;
+  border:1px solid rgba(0,255,255,0.6);
+  border-radius:8px;
+  background:rgba(0,0,0,0.5);
+  box-shadow:0 0 15px rgba(0,255,255,0.6), inset 0 0 10px rgba(255,255,255,0.15);
+  transition:all 0.4s ease;
+}
+.mirror-link:hover {
+  color:#fff;
+  box-shadow:0 0 25px rgba(0,255,255,0.8), inset 0 0 20px rgba(255,255,255,0.3);
+  text-shadow:0 0 10px #00ffff;
+}
+
+/* 🪞 Зеркальное модальное окно */
+#mirror-modal {
+  display:none;
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  background:rgba(0,0,0,0.8);
+  backdrop-filter: blur(6px);
+  justify-content:center;
+  align-items:center;
+  z-index:9999;
+}
+
+/* 💠 Диалог внутри */
+.mirror-dialog {
+  background:rgba(10,10,15,0.95);
+  border:1px solid rgba(0,255,255,0.6);
+  border-radius:12px;
+  padding:25px 30px;
+  max-width:400px;
+  color:#00ffff;
+  text-align:center;
+  font-family:"Courier New", monospace;
+  box-shadow:0 0 25px rgba(0,255,255,0.6), inset 0 0 15px rgba(255,255,255,0.1);
+  animation:fadeIn 0.4s ease-out;
+}
+
+.mirror-buttons {
+  margin-top:20px;
+  display:flex;
+  justify-content:space-around;
+}
+
+.mirror-buttons button {
+  background:rgba(0,0,0,0.6);
+  color:#00ffff;
+  border:1px solid rgba(0,255,255,0.6);
+  padding:8px 16px;
+  border-radius:8px;
+  font-family:"Courier New", monospace;
+  cursor:pointer;
+  transition:all 0.3s ease;
+}
+.mirror-buttons button:hover {
+  background:rgba(0,255,255,0.1);
+  color:#fff;
+  box-shadow:0 0 10px #00ffff;
+}
+
+@keyframes fadeIn {
+  from {opacity:0; transform:scale(0.9);}
+  to {opacity:1; transform:scale(1);}
+}
+</style>
+
+<script>
+document.querySelectorAll('.mirror-link').forEach(link => {
+  link.addEventListener('click', function(e) {
+    e.preventDefault();
+
+    const message = this.dataset.message || 'Вы уверены, что хотите покинуть страницу?';
+    const url = this.href;
+
+    const modal = document.getElementById('mirror-modal');
+    const msg = document.getElementById('mirror-message');
+    msg.textContent = message;
+
+    modal.style.display = 'flex';
+
+    document.getElementById('mirror-yes').onclick = function() {
+      modal.style.display = 'none';
+      window.location.href = url;
+    };
+
+    document.getElementById('mirror-no').onclick = function() {
+      modal.style.display = 'none';
+    };
+  });
+});
+</script>
+		
+		
+    </div>
+
+
+    <style>
+      #matrix-seq {}
+
+      #matrix-seq .char {}
+
+      #matrix-seq .char.revealed {}
+
+      @keyframes flicker {
+        0% {
+          opacity: 0.1;
+        }
+
+        50% {
+          opacity: 1;
+        }
+
+        100% {
+          opacity: 0.1;
+        }
+      }
+
+      #matrix-seq .char.scramble {
+        opacity: 1;
+        animation: flicker 120ms infinite;
+        transform: translateY(-4px) scale(1.02);
+      }
+    </style>
+    <style>
+      #matrix-seq.big {
+        transform: scale(2);
+      }
+
+      #matrix-seq.shrink {
+        transform: scale(1);
+      }
+
+      .char {
+        display: inline-block;
+      }
+
+      .reveal-text {
+        opacity: 0;
+        transform: scale(0.8) skewX(5deg);
+        transition: all 0.6s ease-out;
+      }
+
+      .reveal-text.active {
+        opacity: 1;
+        transform: scale(1) skewX(0deg);
+      }
+    </style>
+
+    <script>
+      (function () {
+        const container = document.getElementById('matrix-seq');
+        if (!container) return;
+
+        const target = container.dataset.target || '000700090001000400';
+        const transformText = 'otherside-world.ru';
+        const digits = target.split('');
+
+        container.innerHTML = '';
+        const charNodes = [];
+
+        digits.forEach(d => {
+          const span = document.createElement('span');
+          span.className = 'char';
+          span.textContent = d;
+          container.appendChild(span);
+          charNodes.push(span);
+        });
+
+        function animateTransform(index) {
+		  if(!charNodes[index])return false;
+		
+          const node = charNodes[index];
+          const finalChar = transformText[index] || '';
+
+          let progress = 0;
+          const interval = setInterval(() => {
+            progress++;
+            const randomChar = String.fromCharCode(97 + Math.floor(Math.random() * 26));
+            node.textContent = randomChar;
+            if (progress >= 6) {
+              clearInterval(interval);
+              node.textContent = finalChar;
+              node.style.transform = 'scale(1.4)';
+              setTimeout(() => node.style.transform = 'scale(1)', 110);
+              setTimeout(() => animateTransform(index + 1), 60);
+            }
+          }, 10);
+        }
+
+        setTimeout(() => animateTransform(0), 0);
+
+      })();
+    </script><script>const canvas = document.getElementById("matrix");
+const ctx = canvas.getContext("2d");
+
+canvas.width = innerWidth;
+canvas.height = innerHeight;
+
+class Blob {
+  constructor() {
+    this.x = Math.random() * canvas.width;
+    this.y = Math.random() * canvas.height;
+    this.points = [];
+    this.radius = 30 + Math.random() * 70;
+    this.angleOffset = Math.random() * Math.PI * 2;
+    this.speed = 0.001 + Math.random() * 0.003;
+
+    // создаем контрольные точки
+    const count = 6 + Math.floor(Math.random() * 4);
+    for (let i = 0; i < count; i++) {
+      const angle = (Math.PI * 2 / count) * i;
+      const r = this.radius * (0.8 + Math.random() * 0.4);
+      this.points.push({ angle, r, offset: Math.random() * 0.5 });
+    }
+  }
+
+  update() {
+    this.angleOffset += this.speed;
+    this.points.forEach(p => {
+      p.r = this.radius * (0.8 + 0.2 * Math.sin(this.angleOffset + p.offset * Math.PI*2));
+    });
+  }
+
+  draw(ctx) {
+    ctx.beginPath();
+    this.points.forEach((p, i) => {
+      const angle = p.angle + this.angleOffset;
+      const x = this.x + Math.cos(angle) * p.r;
+      const y = this.y + Math.sin(angle) * p.r;
+      if (i === 0) ctx.moveTo(x, y);
+      else ctx.lineTo(x, y);
+    });
+    ctx.closePath();
+
+    const gradient = ctx.createRadialGradient(this.x, this.y, this.radius*0.2, this.x, this.y, this.radius);
+    gradient.addColorStop(0, `rgba(100,200,255,0.7)`);
+    gradient.addColorStop(1, `rgba(0,20,50,0)`);
+
+    ctx.fillStyle = gradient;
+    ctx.fill();
+  }
+}
+
+class Spark {
+  constructor() {
+    this.reset();
+  }
+
+  reset() {
+    this.x = Math.random() * canvas.width;
+    this.y = Math.random() * canvas.height;
+    this.vx = (Math.random() - 0.5) * 0.6;
+    this.vy = (Math.random() - 0.5) * 0.6;
+    this.alpha = 0.1 + Math.random() * 0.3;
+    this.size = 1 + Math.random() * 2;
+  }
+
+  update() {
+    this.x += this.vx;
+    this.y += this.vy;
+    this.alpha += (Math.random() - 0.5) * 0.02;
+    if(this.alpha > 0.5) this.alpha = 0.5;
+    if(this.alpha < 0.1) this.alpha = 0.1;
+
+    if(this.x < 0 || this.x > canvas.width || this.y < 0 || this.y > canvas.height) this.reset();
+  }
+
+  draw(ctx) {
+    ctx.beginPath();
+    ctx.fillStyle = `rgba(150,220,255,${this.alpha})`;
+    ctx.arc(this.x, this.y, this.size, 0, Math.PI*2);
+    ctx.fill();
+  }
+}
+
+const blobs = [];
+for(let i=0;i<5;i++) blobs.push(new Blob());
+
+const sparks = [];
+for(let i=0;i<80;i++) sparks.push(new Spark());
+
+function draw() {
+  ctx.fillStyle = "rgba(0,0,10,0.08)";
+  ctx.fillRect(0,0,canvas.width,canvas.height);
+
+  blobs.forEach(b => {
+    b.update();
+    b.draw(ctx);
+  });
+
+  sparks.forEach(s => {
+    s.update();
+    s.draw(ctx);
+  });
+
+  requestAnimationFrame(draw);
+}
+
+draw();
+
+window.addEventListener("resize", () => {
+  canvas.width = innerWidth;
+  canvas.height = innerHeight;
+});
+
+
+</script>
+
+
+<!-- Yandex.Metrika counter -->
+<script type="text/javascript">
+    (function(m,e,t,r,i,k,a){
+        m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+        m[i].l=1*new Date();
+        for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+        k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+    })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=106046314', 'ym');
+
+    ym(106046314, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", accurateTrackBounce:true, trackLinks:true});
+</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/106046314" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+<!-- /Yandex.Metrika counter -->
+
+    <br>
+    <a target="_blank" style="display:inline;font-size:1.2rem;" href="https://github.com/it-salamandr">
+    it-salamandr © 2017 - <script>document.write(new Date().getFullYear())</script>
+</a>
+    <br><br>&nbsp;
+</body>
+
+</html>

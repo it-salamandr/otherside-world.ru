@@ -1,0 +1,755 @@
+<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Бдилка за Пасьянсом Медичи</title>
+        <meta name="keywords" content="Пасьянс Медичи, ПМ, Бдилка, Волков Андрей, желания" />
+        <meta name="description" content="Пасьянс Медичи помогает в сложных ситуациях, а Бдилка выявляет скрытые желания. Перед вами инструмент настоящей свободы в новом порядке, где ваши границы сознания станут как спасением, так и ловушкой." />
+        <link rel="icon" type="image/x-icon" href="./modules/images/favicon.png?v=2.0" />
+        <link rel="stylesheet" href="./modules/style.css?v=5.18.3" />
+        <script src="./modules/functions.js?v=6"></script>
+        <script src="./modules/scheme.js?v=5.15"></script>
+        <script src="./modules/config.js?v=5.15"></script>
+    </head>
+
+    <body>
+	<style>@media screen and (max-width: 600px) {
+  #matrix td {
+    padding: 0px;
+    font-size: 10px;
+    line-height: 1.2;
+        width: 20px;
+        height: 20px;
+  }
+
+  #matrix {
+    font-size: 10px;white-space: nowrap;
+    
+  }
+
+  #matrix td img {
+    max-width: 15px !important;
+    margin-bottom: 0px !important;
+	margin-top: 5px !important;
+  }
+
+
+}
+</style>
+        <!-- Модальное окно -->
+        <div id="matrixModal" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeModal()">&times;</span>
+                <div class="modal-header">
+                    Квадратура
+                </div>
+				<small style="
+  font-family: 'Comic Sans MS', cursive, sans-serif; 
+  color: #39ff14; 
+  background: radial-gradient(circle, #0b0c10 0%, #1f2833 100%);
+  border: 2px dashed #66fcf1; 
+  padding: 10px; 
+  display: block; 
+  line-height: 1.5em; 
+  text-shadow: 0 0 5px #45a29e, 0 0 10px #66fcf1; 
+  transform: rotate(-1deg);
+  letter-spacing: 0.03em;
+  max-width: 100%;
+  user-select: none;
+">
+  <span id="preview-text">
+    Заверши квадратуру...
+  </span>
+  <span id="full-text" style="display:none;">заполнив все клетки квадратуры без излишка — чтобы не погрузиться в стратегию на сложности «жопа», где все на суете, беспорядочно вскрываются козыри, рандомно кидаются кубики...<br><br>
+    Короче, если не хочешь зависнуть в беспорядке — <b style="color:#ff3c00; text-shadow: 0 0 8px #ff3c00;">закрой поляну в событие</b> - собери уклады по всем клеткам минимальной квадратуры. Пока ещё можешь двигаться и не стал коробкой с надписью «архив». 
+  </span>
+  <a href="#" id="toggle-link" style="
+    display: inline-block; 
+    margin-left: 5px; 
+    color: #66fcf1; 
+    text-shadow: 0 0 10px #66fcf1; 
+    font-weight: bold; 
+    cursor: pointer; 
+    user-select: none;
+    text-decoration: underline;
+  ">читать дальше</a>
+
+  <script>
+    const toggleLink = document.getElementById('toggle-link');
+    const fullText = document.getElementById('full-text');
+    const previewText = document.getElementById('preview-text');
+
+    toggleLink.addEventListener('click', (e) => {
+      e.preventDefault();
+      if (fullText.style.display === 'none') {
+        fullText.style.display = 'inline';
+        toggleLink.textContent = 'свернуть';
+        previewText.textContent = 'Заверши квадратуру';
+      } else {
+        fullText.style.display = 'none';
+        toggleLink.textContent = 'читать дальше';
+        previewText.textContent = 'Заверши квадратуру...';
+      }
+    });
+  </script>
+</small><br><br>
+                <table id="matrix"></table><br><br>
+                <button id="button5" class="open-modal-btn" onclick="freeMartix()">Освободить расклады на реализацию</button>
+                <!-- Миниатюрный листинг раскладов -->
+				<div id="cardListContainerTitle" style="display:none;">
+                    Расклады:
+                </div>
+                <div id="cardListContainer">
+                    <ul id="cardList" class="card-list"></ul>
+                </div>
+                <button id="button3" class="open-modal-btn" onclick="deleteCardGroupsCookies()">Удалить расклады</button>
+            </div>
+        </div>
+        <!-- Модальное окно -->
+        <div id="popupMantra" class="popup-overlayMantra">
+            <div class="popup-contentMantra">
+                <div class="image-backgroundMantra">
+                    <div class="text-overlayMantra">
+                    <p id="textMantra"></p>
+                    Повторяйте мантру пока не почуствуете что вы стали <text id="textMantraPovtoryate">другим</text>.<br><br>
+                    <img id="weekMantra" src="">
+                    <img id="doitMantra" src="">
+                    <br>
+                    <button class="close-btnMantra" id="buttonCloseMantra" onclick="closePopupMantra()"><b id="textCloseMantra">Я прошёл</b> ⛩️</button>
+                    <button class="close-btnMantra" id="buttonCloseMantra2" onclick="closePopupMantra();updateDayNow();" style="width:80%;">Сменить день недели</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Модальное окно -->
+    <div class="overlayPlanet" id="musicoverlayPlanet">
+        <div class="popupPlanet">
+            <span class="close-btnPlanet" onclick="closepopupPlanet()">X</span>
+            <h2>Синхронизатор</h2>
+            <p id="planetInfo"></p>
+            <img id="planetImage" class="planet-image" src="" alt="Planet Image">
+            <p>Работает авто-воспроизведение и авто-повтор. В полночь будет автоматическая переключка на медитацию нового дня.</p>
+            <audio controls id="musicPlayer" loop preload="metadata">
+                <source id="audioSource" type="audio/mpeg">
+                Ваш браузер не поддерживает воспроизведение. <a id="planetHref" href="">Скачайте медитацию</a>.
+            </audio>
+            <p>Прослушивая медитацию (используйте наушники) вы будете синхронизированы с мужским началом (на уровне выживания) для получения вариантов к текущей вашей действительности.</p>
+            <p>От бдилки вы получаете переходы женского начала (и нужно дополняться мужским началом).</p>
+        </div>
+    </div>
+        <!-- Модальное окно -->
+    <div class="overlayPlanet" id="dninedeli">
+        <div class="popupPlanet">
+            <span class="close-btnPlanet" onclick="document.getElementById('dninedeli').style.display = 'none'">X</span>
+            <h2>Дни недели</h2>
+            <style>
+.accordion {
+  width: 100%;
+  max-width: 700px;
+  margin: auto;
+  font-family: 'Orbitron', sans-serif;
+}
+
+.accordion-item {
+  border-bottom: 1px solid #444;
+  padding: 10px 0;
+}
+
+.accordion-title {
+  cursor: pointer;
+  font-weight: bold;
+  color: #66d9e8;
+  transition: color 0.3s ease;
+  text-decoration: underline;
+}
+
+.accordion-title:hover {
+  color: #a6f0ff;
+}
+
+.accordion-content {
+  display: none;
+  margin-top: 10px;
+  color: #ccc;
+  line-height: 1.5;
+}
+
+.scrollable {
+  max-height: 300px; /* или любое другое значение */
+  overflow-y: auto;
+}
+.scrollable::-webkit-scrollbar {
+  width: 8px;
+}
+
+.scrollable::-webkit-scrollbar-thumb {
+  background: #66d9e8;
+  border-radius: 4px;
+}
+
+.scrollable::-webkit-scrollbar-track {
+  background: #0b2d3f;
+}
+</style>
+
+<div class="accordion scrollable">
+  <div class="accordion-item">
+    <div class="accordion-title">Воскресенье шлёт последнее предупреждение</div>
+    <div class="accordion-content">
+      Внимание, путешественник: ты только что активировал экзистенциальную перезагрузку.
+      Это необратимо. И, согласно условиям, возврата и техподдержки не предусмотрено.
+    </div>
+  </div>
+
+  <div class="accordion-item">
+    <div class="accordion-title">Понедельник оставил след… и долговую квитанцию</div>
+    <div class="accordion-content">
+      Ты проснулся, и уже кому-то должен. Добро пожаловать в корпоративную астрореальность.
+      Кстати, тень за тобой — не твоя. Мы её арендовали у галактической налоговой.
+    </div>
+  </div>
+
+  <div class="accordion-item">
+    <div class="accordion-title">Вторник заглянул в бездну, и она написала ему</div>
+    <div class="accordion-content">
+      Ты посмотрел внутрь себя. Там Wi-Fi не ловит, но зато есть неоплаченные обещания.
+      И твой двойник, кстати, снова не платит за аренду.
+    </div>
+  </div>
+
+  <div class="accordion-item">
+    <div class="accordion-title">Среда сломалась. Всё идёт по плану</div>
+    <div class="accordion-content">
+      Системная ошибка на экзистенциальном уровне.
+      Ты думал это баг, но это фича. Или как минимум сюжетная необходимость.
+    </div>
+  </div>
+
+  <div class="accordion-item">
+    <div class="accordion-title">Четверг горит. Не туши, смотри</div>
+    <div class="accordion-content">
+      В голове пожар, в душе рассрочка, в глазах огонь.
+      Прозрение включилось автоматически — попробуйте выключить в настройках мультивселенной.
+    </div>
+  </div>
+
+  <div class="accordion-item">
+    <div class="accordion-title">Пятница светится. Ты не должен светиться</div>
+    <div class="accordion-content">
+      Сияние — побочный эффект перехода на тёмную энергию.
+      Пасьянс недоволен. Он уже отправил за тобой вселенского аудитора.
+    </div>
+  </div>
+
+  <div class="accordion-item">
+    <div class="accordion-title">Суббота пришла. Возвращайся в себя, если найдёшь вход</div>
+    <div class="accordion-content">
+      Ты застрял в временной петле между "пофиг" и "а может, всё-таки".
+      Поздравляем! Ты официально — системный глюк Медичи.
+    </div>
+  </div>
+  <div class="accordion-item">
+    <div>Потренироваться с днями недели на развитие денежного потока можно <a href="./money.html">здесь</a>.<br><br>Восполнить спокойствие через медитации дней недели по планетам <a href="./eHealth.html">здесь</a>.<br><br>Подсказки о влиянии месяцев и гильдиях дней недели  <a href="./crossroad.html">здесь</a>
+	<br><br> Пример бдилки за пасьянсом медичи выглядит <a href="./modules/video/praktika_bdilka_za_pasyansom_medichi.mp4" target="_blank">так</a>.</div>
+  </div>
+</div>
+
+        </div>
+    </div>
+	
+	
+	
+        <!-- Модальное окно -->
+    <div class="overlayPlanet" id="instukciya">
+        <div class="popupPlanet">
+            <span class="close-btnPlanet" onclick="document.getElementById('instukciya').style.display = 'none'">X</span>
+            <h2>Инструкции</h2>
+            
+			<div class="accordion scrollable">
+			
+			<div class="accordion-item">
+    <div>Методичка приложения для Бдилки:</div>
+  </div>
+
+  <div class="accordion-item">
+    <div class="accordion-title">1. Выбор пола</div>
+    <div class="accordion-content">
+      Выберите свой пол.
+    </div>
+  </div>
+  <div class="accordion-item">
+    <div class="accordion-title">2. Последняя карта</div>
+    <div class="accordion-content">
+      Если вы впервые работаете с Бдилкой или начали с чистого листа (удалили несобранные в квадратуру уклады) - выставляйте 8.
+    </div>
+  </div>
+  <div class="accordion-item">
+    <div class="accordion-title">3. Мечтаю чтобы</div>
+    <div class="accordion-content">
+      Напишите свою мечту.
+    </div>
+  </div>
+  <div class="accordion-item">
+    <div class="accordion-title">4. Выбор сферы влияния и направления влияния</div>
+    <div class="accordion-content">
+      Пробегитесь по названиям и по наитию чекните "уязвимое место" - где ощущается что положение хуже всего.
+    </div>
+  </div>
+  <div class="accordion-item">
+    <div class="accordion-title">5. Выбор типа необходимости</div>
+    <div class="accordion-content">
+      Если создаете для себя и хотите плодов - то выбирайте нужду, если вторгаетесь к кому то чтобы что то доказать - внедрение.
+    </div>
+  </div>
+  <div class="accordion-item">
+    <div class="accordion-title">6. Мечтаю для</div>
+    <div class="accordion-content">
+      Напишите результат ваших плодов/доказывания.
+    </div>
+  </div>
+  <div class="accordion-item">
+    <div class="accordion-title">7. Если расклад не создается</div>
+    <div class="accordion-content">
+      Если вышла ошибка "сходство с последней картой предыдущего уклада" - меняйте направление влияния на рядом стоящее. Для "стратегии + расположение" выбор внедрения невозможен.
+    </div>
+  </div>
+			
+<div class="accordion-item">
+    <div>Стадия чтения мантр:</div>
+  </div>
+
+
+  <div class="accordion-item">
+    <div class="accordion-title">1. Чтение мантр</div>
+    <div class="accordion-content">
+      Читайте мантры пока не ощутили что уже нужно "переходить" к следующей карте - подключили нужных для дела неизвестных для вас людей и вы собрали себя в нового целостного человека. Со временем работы с Бдилкой ощущение "перехода" будет четче, как и сила "врагов" из под которых вы себя перемещаете в новый порядок.
+    </div>
+  </div>
+  <div class="accordion-item">
+    <div class="accordion-title">2. Выбор характеристики уклада</div>
+    <div class="accordion-content">
+      Подберите итоговую характеристику вклада мечты.
+    </div>
+  </div>
+  <div class="accordion-item">
+    <div class="accordion-title">3. Желательно повторить ввод мечты</div>
+    <div class="accordion-content">
+      Повторите ввод мечты еще три раза на другие сферы влияния и направления влияния, которые ближе подходят по уязвимостям у всех 4-х стихий для защиты от квантовых технологий, которые могут сбить в дальнейшем ваш переход.
+    </div>
+  </div>
+
+<div class="accordion-item">
+    <div>Вверху программы есть иконка "волчка" - клик по которой покажет текущие уклады и остаточные клетки квадратуры, которые можно свернуть в событие (нужно стремиться быстро сворачивать).<br><br>Книга про Бдилку <a style="color:#0f0;" target="_blank" href="https://www.litres.ru/book/andrey-volkov-33168547/pasyans-medichi-bdilka-71113513/">здесь</a>.<br><br>Так же рассказывайте и ищите новые подходы в <!-- 🔮 ССЫЛКА -->
+<a href="https://t.me/otherside-world" class="mirror-link" data-message="⚠️ Внимание! При переходе в телеграм сработает наша защитная система Зеркальный Предел, она отсеет всех шпионов за вами, по ощущениям будет как состояние невесомости, после анализа вы перейдете в безопасную ru зону. Готовы?">Нашем телеграме</a>.
+
+<!-- ⚡ ОКНО ПРЕДУПРЕЖДЕНИЯ -->
+<div id="mirror-modal">
+  <div class="mirror-dialog">
+    <p id="mirror-message">...</p>
+    <div class="mirror-buttons">
+      <button id="mirror-yes">Да</button>
+      <button id="mirror-no">Нет</button>
+    </div>
+  </div>
+</div>
+
+<style>
+/* 🌌 Основной стиль ссылки */
+.mirror-link {
+  color:#0f0;
+}
+.mirror-link:hover {
+  color:#fff;
+  box-shadow:0 0 25px rgba(0,255,255,0.8), inset 0 0 20px rgba(255,255,255,0.3);
+  text-shadow:0 0 10px #00ffff;
+}
+
+/* 🪞 Зеркальное модальное окно */
+#mirror-modal {
+  display:none;
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  background:rgba(0,0,0,0.8);
+  backdrop-filter: blur(6px);
+  justify-content:center;
+  align-items:center;
+  z-index:9999;
+}
+
+/* 💠 Диалог внутри */
+.mirror-dialog {
+  background:rgba(10,10,15,0.95);
+  border:1px solid rgba(0,255,255,0.6);
+  border-radius:12px;
+  padding:25px 30px;
+  max-width:400px;
+  color:#00ffff;
+  text-align:center;
+  font-family:"Courier New", monospace;
+  box-shadow:0 0 25px rgba(0,255,255,0.6), inset 0 0 15px rgba(255,255,255,0.1);
+  animation:fadeIn 0.4s ease-out;
+}
+
+.mirror-buttons {
+  margin-top:20px;
+  display:flex;
+  justify-content:space-around;
+}
+
+.mirror-buttons button {
+  background:rgba(0,0,0,0.6);
+  color:#00ffff;
+  border:1px solid rgba(0,255,255,0.6);
+  padding:8px 16px;
+  border-radius:8px;
+  font-family:"Courier New", monospace;
+  cursor:pointer;
+  transition:all 0.3s ease;
+}
+.mirror-buttons button:hover {
+  background:rgba(0,255,255,0.1);
+  color:#fff;
+  box-shadow:0 0 10px #00ffff;
+}
+
+@keyframes fadeIn {
+  from {opacity:0; transform:scale(0.9);}
+  to {opacity:1; transform:scale(1);}
+}
+</style>
+
+<script>
+document.querySelectorAll('.mirror-link').forEach(link => {
+  link.addEventListener('click', function(e) {
+    e.preventDefault();
+
+    const message = this.dataset.message || 'Вы уверены, что хотите покинуть страницу?';
+    const url = this.href;
+
+    const modal = document.getElementById('mirror-modal');
+    const msg = document.getElementById('mirror-message');
+    msg.textContent = message;
+
+    modal.style.display = 'flex';
+
+    document.getElementById('mirror-yes').onclick = function() {
+      modal.style.display = 'none';
+      window.location.href = url;
+    };
+
+    document.getElementById('mirror-no').onclick = function() {
+      modal.style.display = 'none';
+    };
+  });
+});
+</script> </div>
+  </div>
+  
+</div>
+
+
+        </div>
+    </div>
+	
+	
+
+<script>
+document.querySelectorAll('.accordion-title').forEach(title => {
+  title.addEventListener('click', () => {
+    document.querySelectorAll('.accordion-content').forEach(content => {
+      if (content !== title.nextElementSibling) {
+        content.style.display = 'none';
+      }
+    });
+    const content = title.nextElementSibling;
+    content.style.display = (content.style.display === 'block') ? 'none' : 'block';
+  });
+});
+</script>
+	
+        <!-- Рабочее окно -->
+        <div class="container">
+            <div id="overlay"><b>Cпасибо!</b></div>
+			<style>@keyframes appearDisappearSmoke {
+  0% {
+    opacity: 0;
+    filter: blur(6px);
+    transform: scale(1.1);
+  }
+  20% {
+    opacity: 0.5;
+    filter: blur(3px);
+    transform: scale(1.05);
+  }
+  40% {
+    opacity: 1;
+    filter: blur(0px);
+    transform: scale(1);
+  }
+  60% {
+    opacity: 1;
+    filter: blur(0px);
+    transform: scale(1);
+  }
+  80% {
+    opacity: 0.5;
+    filter: blur(3px);
+    transform: scale(1.05);
+  }
+  100% {
+    opacity: 0;
+    filter: blur(6px);
+    transform: scale(1.1);
+  }
+}
+
+.smoke-fade-cycle {
+  display: inline-block;
+  animation: appearDisappearSmoke 6s infinite ease-in-out;
+}
+</style>
+<style>
+  @media (max-width: 768px) {
+    #adaptiveTitle span {
+      display: block;
+    }
+    #adaptiveTitle {
+      padding-top: 20px;
+    }
+	#img_level {
+	margin-left: 0 !important;
+	}
+	.part2{
+	padding-right: 0 !important;
+	}
+	.part2 a{
+	padding-left: 15px !important;
+	padding-right: 15px !important;
+	padding-top: 4px !important;
+	padding-bottom: 4px !important;
+	}
+  }
+</style>
+            <h1 id="adaptiveTitle" style="text-align:center;">
+  <span class="part1">ПМ</span>
+  <span class="part2" style="padding-right:15px;"><a title="Показать расклады" onclick="openModal()" id="star" href="#" class="sparkling-label" style=" background-color:white;padding:9px;border-radius:6px;text-decoration: none;">
+      <img id="img_level" src="./modules/images/favicon.png?v=2.0" style="width:45px;margin-left:15px;margin-bottom:0px;">
+    </a></span>
+  <span class="part3">Бди<b class="smoke-fade-cycle">лка</b></span>
+</h1>
+
+            <div id="selectForm">
+                <select id="gender" onchange="clear_input_error(this,true);" data-selected="Ваш пол">
+                    <option value="">[ Выберите пол ]</option>
+                    <option value="male">Мужской</option>
+                    <option value="female">Женский</option>
+                </select>
+
+                <select id="startCard" onchange="clear_input_error(this,true);" data-selected="Последняя карта">
+                    <option value="">[ Последняя карта ]</option>
+                    <option value="Т">Т</option>
+                    <option value="К">К</option>
+                    <option value="Д">Д</option>
+                    <option value="В">В</option>
+                    <option value="10">10</option>
+                    <option value="9">9</option>
+                    <option value="8">8</option>
+                    <option value="7">7</option>
+                    <option value="6">6</option>
+                    <option value="5">5</option>
+                    <option value="4">4</option>
+                    <option value="3">3</option>
+                    <option value="2">2</option>
+                </select>
+
+                <div class="inline-form">
+                    <label for="wish">Мечтаю чтобы</label>
+                    <input type="text" id="wish" placeholder="[ ваше пожелание ]" oninput="trackInput(this);" />
+                </div>
+				
+				
+
+ 
+  <div id="symvolOptions2" style="padding-top:10px;font-size: 0.9em; color: #ccc;"> Выберите готовую формулировку "чтобы":
+  <a href="#"
+   style="text-decoration: none; border-bottom: 1px dotted;"
+   id="monthLink"
+   title=""
+   onclick="insertSymvol2(this, '', 'Продолжите мечту в формате утверждения, как будто уже все произошло!'); return false;">
+   У всех был <span id="monthWord">социализирующий</span> уклад что ...
+</a> [для абсолютирования слов и придавая им максимальное значение используйте слово "самоличность" - например "самоличный я", "стала самолично осознавать"]
+
+<script>
+  const schemeMonthAdj = [
+    'наитийный',      // январь
+    'солидный',       // февраль
+    'партнёрский',    // март
+    'заносчивый',     // апрель
+    'деятельный',     // май
+    'укрепляющий',    // июнь
+    'заигрывающий',   // июль
+    'надёжный',       // август
+    'стильный',       // сентябрь
+    'смелый',         // октябрь
+    'опекающий',      // ноябрь
+    'признанный'      // декабрь
+  ];
+
+  const now = new Date();
+
+  // Получаем последний день текущего месяца
+  const lastDayOfMonth = new Date(now.getFullYear(), now.getMonth() + 1, 0);
+  const daysLeft = lastDayOfMonth.getDate() - now.getDate();
+
+  // Если осталось 3 дня или меньше, используем следующий месяц
+  let monthIndex = now.getMonth();
+  if (daysLeft <= 3) {
+    monthIndex = (monthIndex + 1) % 12; // переходим на следующий месяц, с учётом декабря
+  }
+
+  const word = schemeMonthAdj[monthIndex];
+
+  document.getElementById('monthWord').innerText = word;
+  document.getElementById('monthLink').title = `У всех был ${word} уклад что`;
+  document.getElementById('monthLink').setAttribute('onclick',
+    `insertSymvol2(this, 'У всех был ${word} уклад что', 'Продолжите мечту в формате утверждения, как будто уже все произошло!'); return false;`
+  );
+</script>
+</div>
+  <div id="symvolDescription2" style="margin-top: 5px; font-size: 0.9em; color: #8b00ff;"></div>
+
+
+<script>
+function insertSymvol2(el, text, description) {
+  const input = document.getElementById("wish");
+  input.value = text + ' ';
+  input.focus();
+
+  // Выделить выбранный элемент
+  const links = document.querySelectorAll("#symvolOptions2 a");
+  links.forEach(link => {
+    link.style.fontWeight = "normal";
+  });
+  el.style.fontWeight = "bold";
+
+  // Показать описание
+  document.getElementById("symvolDescription2").textContent = description;
+}
+</script>
+                <select id="sphere" onchange="clear_input_error(this,true);updateDirections()" data-selected="Сфера влияния">
+                    <option value="">[ Определите сферу влияния ]</option>
+                    <option value="стратегия">Стратегия</option>
+                    <option value="восхищение">Восхищение</option>
+                    <option value="вдохновение">Вдохновение</option>
+                    <option value="прорицание">Прорицание</option>
+                </select>
+
+                <select id="direction" onchange="clear_input_error(this,true);" data-selected="Направление влияния" disabled>
+                    <option value="">[ Определите направление влияния ]</option>
+                </select>
+
+                <select id="needType" onchange="clear_input_error(this,true);" data-selected="Тип необходимости">
+                    <option value="">[ Определите тип необходимости ]</option>
+                    <option value="з-р-п">Нужда</option>
+                    <option value="п-р-з">Внедрение</option>
+                </select>
+				
+                <div class="inline-form">
+                    <label for="symvol_text">Мечтаю для</label>
+                    <input type="text" id="symvol_text" placeholder="[ опишите для чего ]" oninput="trackInput(this);" />
+                </div>
+				
+
+  
+  <div id="symvolOptions" style="padding-top:10px;font-size: 0.9em; color: #ccc;"> Выберите готовую формулировку "для чего":
+  <a href="#"  style="text-decoration: none; border-bottom: 1px dotted;"
+     title="К нему(ей) все притягиваются. Он(а) — дает то, что не могут дать другие."
+     onclick="insertSymvol(this, 'Призвания', 'К нему(ей) все притягиваются. Он(а) — дает то, что не могут дать другие.'); return false;">
+     ⚀&nbsp;Призвания</a>,
+  <a href="#"  style="text-decoration: none; border-bottom: 1px dotted;"
+     title="Он(а) среди Учителей. Примет того кого встретит. Не спорит. Преклонится перед Знанием."
+     onclick="insertSymvol(this, 'Уважения', 'Он(а) среди Учителей. Примет того кого встретит. Не спорит. Преклонится перед Знанием.'); return false;">
+     ⚁&nbsp;Уважения</a>,
+  <a href="#"  style="text-decoration: none; border-bottom: 1px dotted;"
+     title="Он(а) несёт смысл. Не позволяет быть себе искажённым(ой). Под защитой, даже если один(а)."
+     onclick="insertSymvol(this, 'Отстаивания', 'Он(а) несёт смысл. Не позволяет быть себе искажённым(ой). Под защитой, даже если один(а).'); return false;">
+     ⚂&nbsp;Отстаивания</a>,
+  <a href="#"  style="text-decoration: none; border-bottom: 1px dotted;"
+     title="Он(а) уводит. Позволяет выйти из любой сцены. Незаметный(а). Без следов."
+     onclick="insertSymvol(this, 'Выкручивания', 'Он(а) уводит. Позволяет выйти из любой сцены. Незаметный(а). Без следов.'); return false;">
+     ⚃&nbsp;Выкручивания</a>,
+  <a href="#"  style="text-decoration: none; border-bottom: 1px dotted;"
+     title="Он(а) не рассуждает. Делает, что требуется. Поток важнее его(ё)."
+     onclick="insertSymvol(this, 'Послушания', 'Он(а) не рассуждает. Делает, что требуется. Поток важнее его(ё).'); return false;">
+     ⚄&nbsp;Послушания</a>,
+  <a href="#"  style="text-decoration: none; border-bottom: 1px dotted;"
+     title="Он(а) сброшен(а). Он(а) сломан(а). Только очищение даст новый маршрут."
+     onclick="insertSymvol(this, 'Очищения', 'Он(а) сброшен(а). Он(а) сломан(а). Только очищение даст новый маршрут.'); return false;">
+     ⚅&nbsp;Очищения</a>.
+</div>
+  <div id="symvolDescription" style="margin-top: 5px; font-size: 0.9em; color: #8b00ff;"></div>
+
+
+
+<script>
+function insertSymvol(el, text, description) {
+  const input = document.getElementById("symvol_text");
+  input.value = text + ' ';
+  input.focus();
+
+  // Выделить выбранный элемент
+  const links = document.querySelectorAll("#symvolOptions a");
+  links.forEach(link => {
+    link.style.fontWeight = "normal";
+  });
+  el.style.fontWeight = "bold";
+
+  // Показать описание
+  document.getElementById("symvolDescription").textContent = description + ' Допишите кто он(а) (например: "моей половинки"). [Если вклад в порядок, то допишите "явления"].';
+}
+</script>
+				
+            </div>
+
+            <div id="result">
+                Загрузка...
+            </div>
+
+            <select id="uklad" onchange="clear_input_error(this,true,false,true,false);" data-selected="Характеристика уклада">
+                <option value="">[ Выберите характеристику уклада ]</option>
+            </select>
+
+            <button id="button" onclick="getCard()">Получить расклад</button>
+            <button id="button2" class="open-modal-btn" onclick="updateDayNow()" style="display:none;">Обновить месяц или день недели</button>
+            <button id="buttonClose" onclick="Website2APK.exitApp()">Закрыть программу</button>
+            <button id="buttonAndroid" onclick="window.location = 'https://otherside-world.ru/modules/bdilka_za_pm_v2.apk';">Приложение на телефон (android)</button>
+            <br />
+            <br />
+            <p>
+                <center>
+                    <a class="" href="#"  onclick="document.getElementById('dninedeli').style.display = 'flex';return false;">Дни недели</a>
+                    <span class="separator">|</span>
+                    <a class="a_info2" href="#"  onclick="document.getElementById('instukciya').style.display = 'flex';return false;">Инструкции</a>
+                </center>
+            </p>
+        </div>
+		
+		<!-- Yandex.Metrika counter -->
+<script type="text/javascript">
+    (function(m,e,t,r,i,k,a){
+        m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+        m[i].l=1*new Date();
+        for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+        k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+    })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=106046314', 'ym');
+
+    ym(106046314, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", accurateTrackBounce:true, trackLinks:true});
+</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/106046314" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+<!-- /Yandex.Metrika counter -->
+    </body>
+</html>

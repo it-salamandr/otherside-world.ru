@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Инфотерапия — 7 Планет Медитации</title>
+<link rel="icon" type="image/x-icon" href="./modules/images/favicon.png?v=2.0" />
+<script src="./modules/howler.min.js"></script>
+<style>
+    :root {
+      --bg: linear-gradient(to bottom right, #e7f5f3, #ffffff);
+      --accent: #3cbfae;
+      --highlight: #5ad1ff;
+      --card-bg: rgba(255, 255, 255, 0.95);
+      --text-dark: #244b4b;
+      --shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    }
+
+    body {
+      width: 90%;
+      padding: 0 1.5rem;
+      margin: 0;
+      font-family: "Segoe UI", "Inter", system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text-dark);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+      text-align: center;
+    }
+
+    header {
+      margin-top: 2rem;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--accent);
+    }
+
+    .subtitle {
+      font-size: 1rem;
+      color: #5d7b7b;
+      margin-top: 0.3rem;
+    }
+
+    .current {
+      margin-top: 1rem;
+      font-size: 1.1rem;
+      color: #2c6464;
+      background: #dcf5f1;
+      border-radius: 9999px;
+      padding: 0.4rem 1rem;
+      display: inline-block;
+      box-shadow: var(--shadow);
+    }
+
+    .current strong {
+      color: var(--accent);
+    }
+
+    .start-button {
+      margin-top: 1.5rem;
+      background: var(--accent);
+      color: white;
+      border: none;
+      border-radius: 9999px;
+      padding: 0.7rem 1.4rem;
+      font-weight: 600;
+      font-size: 0.95rem;
+      cursor: pointer;
+      transition: background 0.3s, transform 0.2s;
+      box-shadow: var(--shadow);
+    }
+
+    .start-button:hover {
+      background: var(--highlight);
+      transform: scale(1.05);
+    }
+
+    .meditations {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+      width: 90%;
+      max-width: 1000px;
+      margin-top: 2rem;
+      padding-bottom: 3rem;
+      box-sizing: border-box;
+    }
+
+    .card {
+      background: var(--card-bg);
+      border-radius: 3rem;
+      padding: 1.5rem;
+      box-shadow: var(--shadow);
+      transition: transform 0.4s, box-shadow 0.3s;
+	   cursor: pointer;
+    }
+
+    .card.active {
+      transform: scale(1.05);
+      box-shadow: 0 8px 24px rgba(0, 180, 150, 0.2);
+      border: 1px solid #b9ede6;
+    }
+
+    .planet {
+      font-size: 2rem;
+    }
+
+    .day-label {
+      font-size: 0.9rem;
+      color: #7aa6a6;
+      margin-bottom: 0.3rem;
+    }
+
+    h2 {
+      margin: 0.3rem 0;
+      color: var(--accent);
+      font-weight: 600;
+    }
+
+    p {
+      font-size: 0.95rem;
+      color: #456060;
+      margin: 0.5rem 0 1rem;
+    }
+
+    /* стиль ссылок */
+    a {
+      color: var(--highlight);
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s ease, text-shadow 0.3s ease;
+    }
+
+    a:hover {
+      text-shadow: 0 0 6px rgba(92, 223, 255, 0.6);
+    }
+
+    footer {
+      margin-top: 2rem;
+      padding: 1rem 1.5rem;
+      background: #f6fefc;
+      width: 100%;
+      text-align: center;
+      color: #6a8d8d;
+      font-size: 0.9rem;
+      border-top: 1px solid #d8efec;
+    }
+
+    footer strong {
+      color: var(--accent);
+    }
+	
+	card {
+  background: var(--card-bg);
+  border-radius: 1rem;
+  padding: 1.5rem;
+  box-shadow: var(--shadow);
+  cursor: pointer;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.card.active {
+  transform: scale(1.05);
+  box-shadow: 0 8px 24px #7aa6a6;
+  border: 1px solid #7aa6a6;
+}
+
+.day-label { font-size: 0.9rem; color: #7aa6a6; margin-bottom: 0.3rem; }
+h2 { margin: 0.3rem 0; color: var(--accent); font-weight: 600; }
+p { font-size: 0.95rem; color: #456060; margin: 0.5rem 0 1rem; }
+
+.audio-player {
+  margin-top: 1rem;
+  display: inline-grid;
+  align-items: center;
+  gap: 0.5rem;
+  text-align:center;
+}
+
+.play-btn {
+  background: var(--accent);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  font-size: 18px;
+}
+
+footer {
+  margin-top: 2rem;
+  padding: 1rem 1.5rem;
+  background: #f6fefc;
+  width: 100%;
+  text-align: center;
+  color: #6a8d8d;
+  font-size: 0.9rem;
+  border-top: 1px solid #d8efec;
+}
+
+footer strong { color: var(--accent); }
+
+header { margin-top: 2rem; text-align: center; }
+h1 { font-size: 2rem; font-weight: 700; color: var(--accent); }
+.subtitle { font-size: 1rem; color: #5d7b7b; margin-top: 0.3rem; }
+.current { margin-top: 1rem; font-size: 1.1rem; color: #2c6464; background: #dcf5f1; border-radius: 9999px; padding: 0.4rem 1rem; display: inline-block; box-shadow: var(--shadow); }
+.current strong { color: var(--accent); }
+
+.meditations {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  width: 90%;
+  max-width: 1000px;
+  margin-top: 2rem;
+  padding-bottom: 3rem;
+}
+
+@keyframes appearDisappearSmoke { 0% { opacity: 0; filter: blur(6px); transform: scale(1.1); } 20% { opacity: 0.5; filter: blur(3px); transform: scale(1.05); } 40% { opacity: 1; filter: blur(0px); transform: scale(1); } 60% { opacity: 1; filter: blur(0px); transform: scale(1); } 80% { opacity: 0.5; filter: blur(3px); transform: scale(1.05); } 100% { opacity: 0; filter: blur(6px); transform: scale(1.1); } } .smoke-fade-cycle { display: inline-block; animation: appearDisappearSmoke 6s infinite ease-in-out; } /* --- стиль ссылок --- */ a { color: var(--highlight); text-decoration: none; font-weight: 500; transition: color 0.3s ease, text-shadow 0.3s ease; } a:hover { text-shadow: 0 0 6px rgba(92, 223, 255, 0.6); } 
+  </style>
+</head>
+<body>
+<header>
+    <center>
+      <h1>Пасьянс Медичи.<br><a href="./index.html">Бди</a><a class="smoke-fade-cycle" href="./index.html">лка</a></h1>
+      <h3>🏥 Инфотерапия</h3>
+      <div class="subtitle">7 Планет • 7 Путей к Гармонии</div>
+      <p>
+        Добро пожаловать в пространство,<br>где энергия планет помогает исцелить тело, разум и душу. <br>
+        Каждая медитация настраивает вас на гармонию с космосом,<br>раскрывая внутренний потенциал восстановления.  
+        <br><br>
+        Можно выходить на уровень <strong>"погашения беседы ума"</strong> —<br>получая уникальные советы<br> по текущим проблемам вашего законсервированного ума.  
+        <br><br>
+        <img style="max-width: 100%; width: 100%; height: auto; display: block; margin: 0 auto; max-width: 400px;" src="./modules/images/scale_1200 (2).jpg">
+        <br><br>
+        Также можно использовать планеты как партнёра желая планете что то, <br>и получая тоже желание в ответ, но в многократном объёме вариантов. <br><br>
+        Например, если вы менеджер и у вас не идут продажи,<br> желайте планете текущего дня успешных сделок - <br>чтобы откликнулось тем же, только уровнем желания с планету.
+      </p>
+      <div class="current">&nbsp;<br><text id="currentPlanet" style="margin-top:5px;"></text>
+  <br>
+  <span id="trackName" style="font-size: 0.85rem;
+  color: #9ba9a9;
+  margin-top: 0.3rem;">Используйте 🎧 и маску для сна.</span><br>
+	  
+	  <div class="audio-player">
+    
+  <button id="playBtn">▶</button>
+  <div class="volume-control">
+    🔊
+    <input id="volumeSlider" type="range" min="0" max="1" step="0.01" value="0.4" class="volume-slider">
+  </div>
+</div>
+	  </div>
+    </center>
+  </header>
+
+<div class="meditations" id="meditations"></div>
+
+<footer>
+  © 2025 <strong>Инфотерапия</strong> • Все права на чужие знания защищены
+</footer>
+
+<script>
+const meditations = [
+  { day: 0, week: "Воскресенье", name: "Солнце", file: "./modules/meditation/sun.mp3", desc: "Обогащение отзывчивостью, гильдия разведки" },
+  { day: 1, week: "Понедельник", name: "Венера", file: "./modules/meditation/venus.mp3", desc: "Обогащение изяществом, гильдия исследования" },
+  { day: 2, week: "Вторник", name: "Марс", file: "./modules/meditation/mars.mp3", desc: "Обогащение паханством, гильдия автоматизации" },
+  { day: 3, week: "Среда", name: "Луна", file: "./modules/meditation/moon.mp3", desc: "Обогащение эстетикой, гильдия автономности" },
+  { day: 4, week: "Четверг", name: "Сатурн", file: "./modules/meditation/saturn.mp3", desc: "Обогащение педантичностью, гильдия политики" },
+  { day: 5, week: "Пятница", name: "Юпитер", file: "./modules/meditation/jupiter.mp3", desc: "Обогащение фанатизмом, гильдия культуры" },
+  { day: 6, week: "Суббота", name: "Меркурий", file: "./modules/meditation/mercury.mp3", desc: "Обогащение лаконичностью, гильдия торговли" },
+];
+
+const container = document.getElementById("meditations");
+const currentPlanetDisplay = document.getElementById("currentPlanet");
+const trackName = document.getElementById("trackName");
+const playBtn = document.getElementById("playBtn");
+const volumeSlider = document.getElementById("volumeSlider");
+
+let current = meditations[new Date().getDay()];
+let sound = null;
+let isPlaying = false;
+let volume = parseFloat(volumeSlider.value);
+
+// Генерация карточек
+meditations.forEach((m) => {
+  const div = document.createElement("div");
+  div.className = "card";
+  div.innerHTML = `<div class="day-label">${m.week}</div><h2>${m.name}</h2><p>${m.desc}</p>`;
+  container.appendChild(div);
+
+  div.addEventListener("click", () => {
+    if (current.name !== m.name) {
+      current = m;
+    }
+      playTrack(true);
+  });
+});
+
+function playTrack(playnow=false) {
+  if (sound) sound.stop();
+
+  sound = new Howl({
+    src: [current.file],
+    html5: true,
+    volume: volume
+  });
+
+  // ручной автоповтор для мобильных
+  sound.on('end', () => {
+    if (isPlaying) sound.play();
+  });
+
+  if(playnow==true){
+  isPlaying = true;
+  playBtn.textContent = "⏸";
+  sound.play();
+  }
+  else{
+  isPlaying = false;
+  playBtn.textContent = "▶";
+  }
+  updateUI();
+}
+
+function updateUI() {
+  //trackName.textContent = ` ${current.name} — ${current.desc}`;
+  currentPlanetDisplay.innerHTML = `<strong>🌿${current.week}</strong> — день планеты <strong>${current.name}</strong>🌿`;
+  document.querySelectorAll(".card").forEach(c => {
+    c.classList.toggle("active", c.querySelector("h2").textContent === current.name);
+  });
+}
+
+playBtn.addEventListener("click", () => {
+  if (!sound) {
+    playTrack();
+  } else {
+    if (isPlaying) {
+      sound.pause();
+      isPlaying = false;
+      playBtn.textContent = "▶";
+    } else {
+      sound.play();
+      isPlaying = true;
+      playBtn.textContent = "⏸";
+    }
+  }
+});
+
+// Управление громкостью
+volumeSlider.addEventListener("input", (e) => {
+  volume = parseFloat(e.target.value);
+  if (sound) sound.volume(volume);
+});
+
+let speechEnabled = false;
+
+function enableSpeech() {
+  if (speechEnabled) return;
+  speechEnabled = true;
+
+  // "тихий" вызов — нужен Safari, чтобы активировать Speech API
+  const test = new SpeechSynthesisUtterance("Добро пожаловать на Инфотерапию!");
+  test.volume = 0.5;
+  test.lang = "ru-RU";
+  speechSynthesis.speak(test);
+}
+
+// 🔹 На ПК — при клике
+playBtn.addEventListener("click", enableSpeech, { once: true });
+
+function speak(text) {
+  if (!speechEnabled) return; // ждём первого касания на мобиле
+  const utter = new SpeechSynthesisUtterance(text);
+  utter.lang = "ru-RU";
+  utter.rate = 1;
+  utter.pitch = 1;
+  utter.volume = 0.5;
+  speechSynthesis.cancel();
+  speechSynthesis.speak(utter);
+}
+
+// Автосмена по дню недели
+setInterval(() => {
+  const todayMeditation = meditations[new Date().getDay()];
+  if (todayMeditation.name !== current.name && isPlaying == true) {
+    current = todayMeditation;
+    playTrack(true);
+    // Говорим, какая планета сегодня
+    speak(`Сегодня день планеты ${current.name}. ${current.desc}.`);
+	
+  }
+}, 10000);
+
+// Инициализация сразу при загрузке
+playTrack();
+</script>
+<!-- Yandex.Metrika counter -->
+<script type="text/javascript">
+    (function(m,e,t,r,i,k,a){
+        m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+        m[i].l=1*new Date();
+        for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+        k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+    })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=106046314', 'ym');
+
+    ym(106046314, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", accurateTrackBounce:true, trackLinks:true});
+</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/106046314" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+<!-- /Yandex.Metrika counter -->
+</body>
+</html>

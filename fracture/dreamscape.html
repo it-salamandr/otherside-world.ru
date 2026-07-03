@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Узлы сна</title>
+    <link rel="icon" type="image/x-icon" href="./modules/images/note2.png" />
+    <style>
+        body {
+    position: relative;
+    color: #c5c6c7cc;
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 20px;
+    overflow-x: hidden;
+
+    background-image: url('./modules/images/e2cb93aafaffa99486ab9040155c9f39-1100x0.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+/* затемняющий слой */
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.65); /* регулируй затемнение */
+    z-index: 0;
+}
+
+/* весь контент поверх overlay */
+body > * {
+    position: relative;
+    z-index: 1;
+}
+
+        .dream-item {
+            display: flex;
+            flex-direction: row;
+            margin-bottom: 40px;
+            align-items: flex-start;
+            border: 1px solid #40E0D0;
+            border-radius: 10px;
+            padding: 10px;
+            background: rgba(64, 224, 208, 0.1);
+            flex-wrap: wrap;
+        }
+
+        .dream-image {
+            flex: 1 1 10px;
+            max-width: 400px;
+            padding-right: 20px;
+        }
+
+        .dream-image img {
+            width: 100%;
+            height: auto;
+            border-radius: 5px;
+        }
+        .dream-image canvas {
+            width: 100%;
+            height: auto;
+            border-radius: 5px;
+            border: 1px solid #40E0D0;
+            height: 225px;
+        }
+
+        .dream-text {
+            flex: 2 1 10px;
+            line-height: 1.6;
+        }
+
+        hr {
+            border: 0;
+            height: 1px;
+            background: #40E0D0;
+            margin: 20px 0;
+        }
+
+        .fracture-link {
+            display: inline-block;
+            color: #ff3c3c;
+            font-weight: bold;
+            text-decoration: none;
+            font-family: 'Courier New', monospace;
+            font-size: 1.2em;
+            letter-spacing: 1px;
+            position: relative;
+            animation: glitch 1s infinite;
+        }
+
+        h1 {
+            color: #66fcf1;
+            text-shadow:
+                0 0 10px #66fcf1cc,
+                0 0 20px #66fcf1bb,
+                0 0 30px #66fcf1aa;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+        }
+
+        @keyframes glitch {
+            0% {
+                text-shadow: 2px 0 red, -2px 0 blue;
+                transform: translate(0);
+            }
+            20% {
+                text-shadow: -2px 0 red, 2px 0 blue;
+                transform: translate(-1px, 1px);
+            }
+            40% {
+                text-shadow: 2px 2px red, -2px -2px blue;
+                transform: translate(1px, -1px);
+            }
+            60% {
+                text-shadow: -2px -2px red, 2px 2px blue;
+                transform: translate(0.5px, 0.5px);
+            }
+            80% {
+                text-shadow: 0 0 red, 0 0 blue;
+                transform: translate(-0.5px, -0.5px);
+            }
+            100% {
+                text-shadow: 2px 0 red, -2px 0 blue;
+                transform: translate(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .dream-item {
+                flex-direction: column;
+            }
+
+            .dream-image {
+                padding-right: 0;
+                margin-bottom: 10px;
+            max-width: 100%;
+            width: 100%;
+            }
+
+            h1 {
+                font-size: 1.5em;
+            }
+        .dream-image canvas {
+            height: auto;
+        }
+
+            .fracture-link {
+                font-size: 1em;
+            }
+
+            body {
+                padding: 10px;
+            }
+			.megabr{
+			display:none;
+			}
+        }
+		
+		canvas {
+  width: 100%;
+  height: 300px;
+  display: block;
+  background: radial-gradient(circle at center, 
+              rgba(255, 80, 0, 1) 0%, 
+              rgba(255, 140, 50, 0.8) 50%, 
+              rgba(100, 0, 0, 0) 100%);
+  animation: flickerInfrared 3s infinite ease-in-out;
+}
+
+/* Анимация плавного мерцания (яркости) */
+@keyframes flickerInfrared {
+  0%, 100% {
+    filter: brightness(1);
+  }
+  50% {
+    filter: brightness(1.3);
+  }
+}
+		
+    </style>
+</head>
+<body>
+
+    <center>
+        <h1>Тетрадь Смерти: <a class="fracture-link" href="./index.html">Перелом</a></h1>
+        <h2>Узлы сна</h2>
+        На этой странице описаны ВСЕ варианты узлов сна! Кто управляет узлами - тот управляет ВСЕМ!<br><br>
+        И если неожиданно начался звонок... это звонит узел! Хочет всего лишь поговорить, не бойтесь.
+    </center><br>
+<style>.dream-image2 img {
+  border-radius: 5px;
+  border: 3px solid yellow; /* Жёлтая рамка */
+  box-shadow: 0 0 10px yellow; /* Необязательное свечение */
+}
+</style>
+    <ul class="dream-image2" style="list-style-type: none; padding: 0;">
+        <li class="dream-item">
+            <div class="dream-image">
+                <img src="https://otherside-world.ru/fracture/modules/images/uzly_snov/1.jpg" alt="Forbidden Memory" id="sourceImg1" style="display:none;" crossorigin="anonymous">
+ <canvas id="canvas1"></canvas>
+            </div>
+            <div class="dream-text">
+                <b style="color:#40E0D0;">1-й узел: ЗАПРЕТНАЯ ПАМЯТЬ</b><br><br class="megabr">
+                <b style="color:#0f0;">Атмосфера:</b> перед тобой спертый воздух, пыль в солнечном луче, напряжённая тишина. Всё внутри давно смирилось с тем, что ты не вернёшься.<br>
+                <b style="color:#60a85f;">Структура:</b> закрытая дверь. Комната в глубине сна. Может быть шкаф, старая кладовая, потайной ящик. Ты случайно его заметил.<br>
+                <b style="color:#a6cccc;">Логика:</b> ты сам запер туда то, что не хотел вспоминать — слова, поступки, лица.<br>
+                <b style="color:blue;">Признак:</b> ты подходишь к двери и не хочешь её трогать. А если откроешь: не хочешь входить.<br>
+                <b style="color:#ebe480;">Уязвимость узла для перезагрузки (или захват если на узле возможен Перелом):</b> впрыскни беспокойство.<br>
+                <b style="color:red;">Приобретаемая способность:</b> доступность чего угодно за просто так.<br>
+                <b style="color:white;">Особенность:</b> на узле происходит новый лунный год, где узел по совокупности кармы каждому человеку решает как жить - хорошо или плохо.
+            </div>
+        </li><hr>
+
+        <li class="dream-item">
+            <div class="dream-image">
+                <img src="https://otherside-world.ru/fracture/modules/images/uzly_snov/2.jpg" alt="Threshold Faces" id="sourceImg2" style="display:none;" crossorigin="anonymous">
+ <canvas id="canvas2"></canvas>
+ 
+            </div>
+            <div class="dream-text">
+                <b style="color:#40E0D0;">2-й узел: ПОРОГОВЫЕ ЛИЦА</b><br><br class="megabr"><br class="megabr">
+                <b style="color:#0f0;">Атмосфера:</b> вежливая ловушка. Всё кажется "правильным": мягкие голоса, разумные аргументы, знакомые лица. Но внутри — нарастающий холод.<br>
+                <b style="color:#60a85f;">Структура:</b> ты среди тех, кто будто бы рад видеть тебя. Они уверяют, что ты всегда был с ними. Что ты — один из них. Что всё нормально.<br>
+                <b style="color:#a6cccc;">Логика:</b> это демагогия. Они не грубят, не угрожают — они убеждают, ласково и настойчиво, будто под кожу проникают. Они не доказывают — они уже решили за тебя.<br>
+                <b style="color:blue;">Признак:</b> в тебе растёт дискомфорт. Их слова гладкие, но ты чувствуешь, что за ними — ложь. Они хотят, чтобы ты забыл, кто ты, и стал кем-то удобным.<br>
+                <b style="color:#ebe480;">Уязвимость узла для перезагрузки (или захват если на узле возможен Перелом):</b> впрыскни недопонимание.<br>
+                <b style="color:red;">Приобретаемая способность:</b> удерживать весь спектр событий в поле твоего выбора.
+            </div>
+        </li><hr>
+
+        <li class="dream-item">
+            <div class="dream-image">
+                <img src="https://otherside-world.ru/fracture/modules/images/uzly_snov/3.jpg" alt="Reverse Side" id="sourceImg3" style="display:none;" crossorigin="anonymous">
+ <canvas id="canvas3"></canvas>
+            </div>
+            <div class="dream-text">
+                <b style="color:#40E0D0;">3-й узел: ОБРАТНАЯ СТОРОНА</b><br><br class="megabr"><br class="megabr">
+                <b style="color:#0f0;">Атмосфера:</b> тревожная встреча. Кто-то похож на тебя, но искажён.<br>
+                <b style="color:#60a85f;">Структура:</b> ты видишь двойника. Иногда — он действует против тебя. Иногда - противен.<br>
+                <b style="color:#a6cccc;">Логика:</b> тень показывает, чего ты боишься в себе.<br>
+                <b style="color:blue;">Признак:</b> он появляется там, где ты не хочешь быть.<br>
+                <b style="color:#ebe480;">Уязвимость узла для перезагрузки (или захват если на узле возможен Перелом):</b> впрыскни опровержение.<br>
+                <b style="color:red;">Приобретаемая способность:</b> сделать любого своим союзником.
+            </div>
+        </li><hr>
+
+        <li class="dream-item">
+            <div class="dream-image">
+                <img src="https://otherside-world.ru/fracture/modules/images/uzly_snov/4.jpg" alt="Whisper of Ancestors" id="sourceImg4" style="display:none;" crossorigin="anonymous">
+ <canvas id="canvas4"></canvas>
+            </div>
+            <div class="dream-text">
+                <b style="color:#40E0D0;">4-й узел: ШЕПОТ ПРЕДКОВ</b><br><br class="megabr"><br class="megabr">
+                <b style="color:#0f0;">Атмосфера:</b> монивестуеще, по древнему, сакрально.<br>
+                <b style="color:#60a85f;">Структура:</b> ты видешь грандиозное — всё из далекого прошлого, которое живет и полно силы.<br>
+                <b style="color:#a6cccc;">Логика:</b> оно зовет тебя.<br>
+                <b style="color:blue;">Признак:</b> ты восхищаешься увиденным.<br>
+                <b style="color:#ebe480;">Уязвимость узла для перезагрузки (или захват если на узле возможен Перелом):</b> впрыскни раздражение.<br>
+                <b style="color:red;">Приобретаемая способность:</b> трамплин в любое место.
+            </div>
+        </li><hr>
+
+        <li class="dream-item">
+            <div class="dream-image">
+                <img src="https://otherside-world.ru/fracture/modules/images/uzly_snov/5.jpg" alt="Entering the Role" id="sourceImg5" style="display:none;" crossorigin="anonymous">
+ <canvas id="canvas5"></canvas>
+            </div>
+            <div class="dream-text">
+                <b style="color:#40E0D0;">5-й узел: ВХОЖДЕНИЕ В РОЛЬ</b><br><br class="megabr"><br class="megabr">
+                <b style="color:#0f0;">Атмосфера:</b> символично, почти все мифическое.<br>
+                <b style="color:#60a85f;">Структура:</b> ты становишься кем-то — воином, магом, судьёй, божеством.<br>
+                <b style="color:#a6cccc;">Логика:</b> сновидение предлагает форму, через которую хочет испытать тебя.<br>
+                <b style="color:blue;">Признак:</b> ты говоришь от имени того, кем не являешься. Ты действуешь уверенно, зная то, чему не учился.<br>
+                <b style="color:#ebe480;">Уязвимость узла для перезагрузки (или захват если на узле возможен Перелом):</b> впрыскни безграничность.<br>
+                <b style="color:red;">Приобретаемая способность:</b> властвовать над кем угодно.
+            </div>
+        </li><hr>
+
+        <li class="dream-item">
+            <div class="dream-image">
+                <img src="https://otherside-world.ru/fracture/modules/images/uzly_snov/6.jpg" alt="White Void" id="sourceImg6" style="display:none;" crossorigin="anonymous">
+ <canvas id="canvas6"></canvas>
+            </div>
+            <div class="dream-text">
+                <b style="color:#40E0D0;">6-й узел: БЕЛАЯ ПУСТОТА</b><br><br class="megabr"><br class="megabr">
+                <b style="color:#0f0;">Атмосфера:</b> мир живёт, но без тебя. Люди что-то делают, разговаривают, строят планы — ты рядом, но не внутри.<br>
+                <b style="color:#60a85f;">Структура:</b> события происходят, но ты не вписан в них. Всё как будто идёт по сценарию, где ты свободен на любые реплики.<br>
+                <b style="color:#a6cccc;">Логика:</b> всё завершилось — для тебя.<br>
+                <b style="color:blue;">Признак:</b> тебя как будто вычеркнули. Всё есть — но не для тебя.<br>
+                <b style="color:#ebe480;">Уязвимость узла для перезагрузки (или захват если на узле возможен Перелом):</b> впрыскни пренебрежение.<br>
+                <b style="color:red;">Приобретаемая способность:</b> освобождение от любых страданий.
+            </div>
+        </li><hr>
+
+        <li class="dream-item">
+            <div class="dream-image">
+                <img src="https://otherside-world.ru/fracture/modules/images/uzly_snov/7.jpg" alt="Mirror of Body" id="sourceImg7" style="display:none;" crossorigin="anonymous">
+ <canvas id="canvas7"></canvas>
+            </div>
+            <div class="dream-text">
+                <b style="color:#40E0D0;">7-й узел: ЗЕРКАЛО ТЕЛА</b><br><br class="megabr"><br class="megabr">
+                <b style="color:#0f0;">Атмосфера:</b> ты внутри сна — но не управляешь. Все движения автоматичны. Всё — как будто не твое.<br>
+                <b style="color:#60a85f;">Структура:</b> тело движется само, ты не принимаешь решений.<br>
+                <b style="color:#a6cccc;">Логика:</b> иллюзия контроля. Ты — внутри, но без воли. Всё за тебя делает “сценарий”.<br>
+                <b style="color:blue;">Признак:</b> момент, когда ты пытаешься сказать или сделать — и ничего не происходит.<br>
+                <b style="color:#ebe480;">Уязвимость узла для перезагрузки (или захват если на узле возможен Перелом):</b> впрыскни неизбежность.<br>
+                <b style="color:red;">Приобретаемая способность:</b> все скилы опекунства над кем угодно.
+            </div>
+        </li><hr>
+
+        <li class="dream-item">
+            <div class="dream-image">
+                <img src="https://otherside-world.ru/fracture/modules/images/uzly_snov/8.jpg" alt="Time Mechanism" id="sourceImg8" style="display:none;" crossorigin="anonymous">
+ <canvas id="canvas8"></canvas>
+            </div>
+            <div class="dream-text">
+                <b style="color:#40E0D0;">8-й узел: МЕХАНИЗМ ВРЕМЕНИ</b><br><br class="megabr"><br class="megabr">
+                <b style="color:#0f0;">Атмосфера:</b> ты снова в том же месте. Повтор. День сурка. Всё предсказуемо — и бесконечно.<br>
+                <b style="color:#60a85f;">Структура:</b> события идут по кругу. Те же действия, те же локации, те же слова.<br>
+                <b style="color:#a6cccc;">Логика:</b> сон закольцован. Он не отпустит, пока ты не осознаешь, что это уже было.<br>
+                <b style="color:blue;">Признак:</b> невозможность “уйти” или “завершить”.<br>
+                <b style="color:#ebe480;">Уязвимость узла для перезагрузки (или захват если на узле возможен Перелом):</b> впрыскни правду.<br>
+                <b style="color:red;">Приобретаемая способность:</b> трансформация своего тела.
+            </div>
+        </li><hr>
+
+        <li class="dream-item">
+            <div class="dream-image">
+                <img src="https://otherside-world.ru/fracture/modules/images/uzly_snov/9.jpg" alt="Interrogation by Senses" id="sourceImg9" style="display:none;" crossorigin="anonymous">
+ <canvas id="canvas9"></canvas>
+            </div>
+            <div class="dream-text">
+                <b style="color:#40E0D0;">9-й узел: ДОПРОС ЧУВСТВАМИ</b><br><br class="megabr"><br class="megabr">
+                <b style="color:#0f0;">Атмосфера:</b> напряжение растёт, будто гром перед ударом.<br>
+                <b style="color:#60a85f;">Структура:</b> страх возникает мгновенно. Что то несется на тебя, сердце сжимается, ты хочешь увернуться, закричать.<br>
+                <b style="color:#a6cccc;">Логика:</b> сон создаёт образ погони, вторжения, агрессии. Он ставит тебя в центр опасного события, заставляя сказать правду.<br>
+                <b style="color:blue;">Признак:</b> тело сжимается, инстинкты кричат — «спасайся».<br>
+                <b style="color:#ebe480;">Уязвимость узла для перезагрузки (или захват если на узле возможен Перелом):</b> впрыскни неуверенность.<br>
+                <b style="color:red;">Приобретаемая способность:</b> получение любых знаний накопленных человечеством за все время.
+            </div>
+        </li><hr>
+
+        <li class="dream-item">
+            <div class="dream-image">
+                <img src="https://otherside-world.ru/fracture/modules/images/uzly_snov/10.jpg" alt="World Without Laws" id="sourceImg10" style="display:none;" crossorigin="anonymous">
+ <canvas id="canvas10"></canvas>
+            </div>
+            <div class="dream-text">
+                <b style="color:#40E0D0;">10-й узел: МИР БЕЗ ЗАКОНОВ</b><br><br class="megabr"><br class="megabr">
+                <b style="color:#0f0;">Атмосфера:</b> абсурд, сломанные законы, но всё — логично по-своему.<br>
+                <b style="color:#60a85f;">Структура:</b> здесь гравитация другая, время не линейно, мораль условна, путь нереален.<br>
+                <b style="color:#a6cccc;">Логика:</b> мир сна не нарушен — просто это другой порядок, который ты можешь переписать.<br>
+                <b style="color:blue;">Признак:</b> ты чувствуешь, что можешь управлять “внутренними” правилами.<br>
+                <b style="color:#ebe480;">Уязвимость узла для перезагрузки (или захват если на узле возможен Перелом):</b> впрыскни безразличие.<br>
+                <b style="color:red;">Приобретаемая способность:</b> делать невозможное.
+            </div>
+        </li>
+    </ul>
+	
+  <script>
+    function infraredReveal({
+      canvasId,
+      imgId,
+      pointsPerFrame = 60000,
+      colorFunc = function(r, g, b) {
+        const luminance = 0.299 * r + 0.587 * g + 0.114 * b;
+        return {
+          r: Math.min(255, luminance * 1.8),
+          g: Math.min(80, luminance * 0.1),
+          b: Math.min(180, 255 - luminance)
+        };
+      }
+    }) {
+      const canvas = document.getElementById(canvasId);
+      const ctx = canvas.getContext('2d');
+      const img = document.getElementById(imgId);
+
+      function lerp(a, b, t) {
+        return a + (b - a) * t;
+      }
+
+      function runAnimation() {
+        const width = img.width;
+        const height = img.height;
+
+        canvas.width = width;
+        canvas.height = height;
+
+        ctx.drawImage(img, 0, 0, width, height);
+        const imageData = ctx.getImageData(0, 0, width, height);
+        const pixels = imageData.data;
+
+        ctx.clearRect(0, 0, width, height);
+
+        const revealed = new Uint8Array(pixels.length / 4).fill(0);
+
+        let phase = 'reveal';
+        let transitionT = 0;
+
+        function animate() {
+          if (phase === 'reveal') {
+            let done = true;
+
+            for (let i = 0; i < pointsPerFrame; i++) {
+              const index = Math.floor(Math.random() * revealed.length);
+              if (revealed[index]) continue;
+
+              done = false;
+
+              const x = index % width;
+              const y = Math.floor(index / width);
+
+              const r = pixels[index * 4];
+              const g = pixels[index * 4 + 1];
+              const b = pixels[index * 4 + 2];
+              const a = pixels[index * 4 + 3];
+
+              if (a > 30) {
+                const c = colorFunc(r, g, b);
+                ctx.fillStyle = `rgb(${c.r}, ${c.g}, ${c.b})`;
+                ctx.fillRect(x, y, 1, 1);
+              }
+
+              revealed[index] = 1;
+            }
+
+            if (done) {
+              phase = 'transition';
+              transitionT = 0;
+            }
+
+            requestAnimationFrame(animate);
+
+          } else if (phase === 'transition') {
+            transitionT += 0.02;
+            if (transitionT > 1) transitionT = 1;
+
+            const imgData = ctx.createImageData(width, height);
+            const data = imgData.data;
+
+            for (let i = 0; i < revealed.length; i++) {
+              const r = pixels[i * 4];
+              const g = pixels[i * 4 + 1];
+              const b = pixels[i * 4 + 2];
+              const a = pixels[i * 4 + 3];
+
+              const cInfrared = colorFunc(r, g, b);
+
+              data[i * 4] = lerp(cInfrared.r, r, transitionT);
+              data[i * 4 + 1] = lerp(cInfrared.g, g, transitionT);
+              data[i * 4 + 2] = lerp(cInfrared.b, b, transitionT);
+              data[i * 4 + 3] = a;
+            }
+
+            ctx.putImageData(imgData, 0, 0);
+
+            if (transitionT < 1) {
+              requestAnimationFrame(animate);
+            }
+          }
+        }
+
+        animate();
+      }
+
+      function setupObserver() {
+        const observer = new IntersectionObserver((entries, observer) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              runAnimation();
+              observer.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.1 });
+
+        observer.observe(canvas);
+      }
+
+      if (img.complete && img.naturalHeight !== 0) {
+        setupObserver();
+      } else {
+        img.onload = setupObserver;
+      }
+    }
+	
+	// Массив объектов с элементами и параметрами
+const elementsWithParams = [
+  { selector: '#canvas1', params: ['canvas1', 'sourceImg1'] },
+  { selector: '#canvas2', params: ['canvas2', 'sourceImg2'] },
+  { selector: '#canvas3', params: ['canvas3', 'sourceImg3'] },
+  { selector: '#canvas4', params: ['canvas4', 'sourceImg4'] },
+  { selector: '#canvas5', params: ['canvas5', 'sourceImg5'] },
+  { selector: '#canvas6', params: ['canvas6', 'sourceImg6'] },
+  { selector: '#canvas7', params: ['canvas7', 'sourceImg7'] },
+  { selector: '#canvas8', params: ['canvas8', 'sourceImg8'] },
+  { selector: '#canvas9', params: ['canvas9', 'sourceImg9'] },
+  { selector: '#canvas10', params: ['canvas10', 'sourceImg10'] },
+];
+
+// Создаем наблюдатель
+const observer = new IntersectionObserver((entries, observer) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      // Получаем параметры, сохранённые в data-атрибутах элемента
+      const param1 = entry.target.getAttribute('data-param1');
+      const param2 = entry.target.getAttribute('data-param2');
+
+      // Вызываем функцию с параметрами
+	  infraredReveal({ canvasId: param1, imgId: param2 });
+
+      // Если нужен один раз, отписываемся
+      observer.unobserve(entry.target);
+    }
+  });
+}, {
+  threshold: 0.1
+});
+
+// Навешиваем наблюдатель на каждый элемент и передаём параметры через data-атрибуты
+elementsWithParams.forEach(item => {
+  const el = document.querySelector(item.selector);
+  if (el) {
+    el.setAttribute('data-param1', item.params[0]);
+    el.setAttribute('data-param2', item.params[1]);
+    observer.observe(el);
+  }
+});
+
+  
+  </script>
+  <!-- Yandex.Metrika counter -->
+<script type="text/javascript">
+    (function(m,e,t,r,i,k,a){
+        m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+        m[i].l=1*new Date();
+        for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+        k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+    })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=106046314', 'ym');
+
+    ym(106046314, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", accurateTrackBounce:true, trackLinks:true});
+</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/106046314" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+<!-- /Yandex.Metrika counter -->
+</body>
+</html>

@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Схемокодер Боевого Континента 2 - Прототип</title>
+        <meta name="keywords" content="Квантовое мышление, Пакетный код, Схемокодер" />
+        <meta name="description" content="Разработка кода одним пакетом." />
+        <link rel="icon" href="./modules/favicon.png?v=1.5" type="image/x-icon" />
+        <link rel="stylesheet" href="./modules/style.css?v=1.16.4" />
+        <script src="./modules/functions.js?v=1.13"></script>
+        <script src="./modules/config.js?v=1.3"></script>
+    </head>
+    <body>
+        <div>
+            <div class="button-group">
+                <h2>
+                    БК-2&nbsp;{
+                    <b id="placeholder"><img src="./modules/favicon.png?v=1.5" style="max-width:28px;margin-bottom:-8px;"></b>
+                    <span id="dynamic-content"></span>
+                    }&nbsp;Схемокодер (прототип)
+                </h2>
+            </div>
+            <div>
+			
+			<!-- Вставьте этот фрагмент в нужное место вашей страницы -->
+<style>
+  .collapsible-wrapper {
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    margin: 0.5rem 0;
+  }
+
+  .collapsible-toggle {
+    cursor: pointer;
+    color: #0366d6;
+    text-decoration: none;
+    background: none;
+    border: none;
+    padding: 0;
+    font: inherit;
+  }
+
+  .collapsible-toggle:focus {
+    outline: 2px solid rgba(3,102,214,0.3);
+    outline-offset: 2px;
+  }
+
+  .collapsible-content {
+    overflow: hidden;
+    transition: max-height 0.28s ease, opacity 0.28s ease;
+    max-height: 0;
+    opacity: 0;
+  }
+
+  .collapsible-content.open {
+    /* достаточно большой max-height для большинства блоков — при необходимости увеличьте */
+    max-height: 1200px;
+    opacity: 1;
+  }
+
+  /* Немного внутреннего отступа для читаемости */
+  .collapsible-inner {
+    padding: 0.6rem 0 0.4rem 0;
+  }
+</style>
+
+<div class="collapsible-wrapper">
+  <!-- ссылка-активатор. role="button" + aria-expanded для доступности -->
+  <a href="#" id="introToggle" class="collapsible-toggle" role="button" aria-expanded="false" aria-controls="introContent">
+    [вводная]
+  </a>
+
+  <div id="introContent" class="collapsible-content" aria-hidden="true">
+    <div class="collapsible-inner">
+      <p>
+        Это прототип версии программы «Схемокодер» на примере базового составления схемы html+js,
+        созданного по мотивам книги
+        <a href="https://www.litres.ru/book/andrey-volkov-33168547/zapretnaya-zona-shemokoderov-72731461/" target="_blank" rel="noopener noreferrer">
+          Запретная зона Схемокодеров
+        </a>.
+      </p>
+
+      <p>
+        В её основе лежит возможность собирать визуальные схемы (блоков, контейнеров и связей) и на их основе формировать HTML-страницу:
+        элементы добавляются, удаляются, редактируются; контейнеры получают статус модульных, поддерживаются команды
+        «перейти к элементу N», «подключить модульный контейнер N».
+      </p>
+
+      <p>
+        Проект полностью в тестовом режиме: выбор возможностей ограничен, например, пока можно только задавать стили и текстовые атрибуты.
+      </p>
+	  <p>Цель программы — дать пользователю возможность «программировать» через визуальные схемы, упорядочивать структуру элементов, видеть зависимости и видеть, как по итогу генерируется код в виде массива.</p>
+    </div>
+  </div>
+</div>
+
+<script>
+  (function () {
+    var toggle = document.getElementById('introToggle');
+    var content = document.getElementById('introContent');
+
+    function openContent() {
+      content.classList.add('open');
+      content.setAttribute('aria-hidden', 'false');
+      toggle.setAttribute('aria-expanded', 'true');
+    }
+
+    function closeContent() {
+      content.classList.remove('open');
+      content.setAttribute('aria-hidden', 'true');
+      toggle.setAttribute('aria-expanded', 'false');
+    }
+
+    // Переключатель по клику
+    toggle.addEventListener('click', function (e) {
+      e.preventDefault();
+      if (content.classList.contains('open')) closeContent();
+      else openContent();
+    });
+
+    // Открыть/закрыть по клавише Enter/Space при фокусе на ссылке
+    toggle.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        toggle.click();
+      }
+    });
+  })();
+</script>
+
+Выбирайте сверху тип схемы (кнопки: Контейнер, Атрибут, Рефлекс, Функционал) и вводите ниже для неё данные (пример на <a target="_blank" href="https://www.youtube.com/@circuit-coder">ютубе</a>):
+            </div>
+            <input type="text" id="itemName" autocomplete="off" placeholder="Команда" />
+            <select id="parentId">
+                <option value="">Корень программы</option>
+            </select>
+            <button id="addItem" style="display: inline;" onclick="addItem()">Добавить элемент</button>
+            <button id="updateItem" style="display: none;" onclick="updateItem()">Сохранить элемент</button>
+            <button id="deleteItem" style="display: none;" onclick="deleteItem()">Удалить элемент</button>
+            <button id="closeupdateItem" style="display: none;" onclick="builder.unselectItem()">Отменить изменение</button>
+        </div>
+        <hr />
+        <div id="nested-list">Собираться схема будет здесь.</div>
+        <hr />
+        <button id="runButton" onclick="runSequence()">Тестовый запуск</button><br />
+        Тестовый запуск пока включает в себя:<br />
+        1. последовательный авто-проход по элементам (игнор контейнеров на 1-м уровне).<br />
+        2. для рефлекса понимает команду "продолжить с другого элемента": <mark>перейти на {id: N}</mark><br />
+        3. контейнеры в корне программы "игнорируются авто-проходом" и им присваивается статус модульный: <mark>TAG_NAME модульный</mark><br />
+        4. для рефлекса понимает команду "заинклудить модульный контейнер": <mark>подключить {id: N}</mark><br />
+        p.s. значение N заменять на число, например: подключить {id: 23}<br />
+        p.s. максимум вложенных инклудов (для тестового запуска): 2.<br />
+        p.s. максимум зациклиенных переходов (для сформированной страницы): 10.<br />
+        p.s. фукционал не выполняется<br />
+        p.s. в атрибуты можно пока добавлять только стили и innerText<br />
+        p.s. в планах 2-я версия триггеров, 3-я версия связей и 4-я итоговая привилегий.<br />
+		p.s. в атрибуты можно добавить рефлексы (автозапуск их не запустит, срабатает при контакте с пользователем)
+
+        <hr />
+        Ниже из собранной схемы будет формироваться html-страница, которая пока отображает любые тэги например "<mark>table</mark>", "<mark>tr</mark>", "<mark>td</mark>" (контейнеров), задает текст тэгам "<mark>innerText: TEXT</mark>" (атрибутов) и задат любой
+        стиль тэгам например "<mark>color: green</mark>", "<mark>text-shadow: 0 0 15px red</mark>" (атрибутов):
+        <iframe id="output" readonly></iframe>
+        <br />
+        <br />
+        Код сформированной страницы:
+        <textarea id="output2"></textarea>
+        <br />
+        <br />
+        <center><a target="_blank" href="https://t.me/otherside_world">телеграм разработчика</a></center>
+		<!-- Yandex.Metrika counter -->
+<script type="text/javascript">
+    (function(m,e,t,r,i,k,a){
+        m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+        m[i].l=1*new Date();
+        for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+        k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+    })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=106046314', 'ym');
+
+    ym(106046314, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", accurateTrackBounce:true, trackLinks:true});
+</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/106046314" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+<!-- /Yandex.Metrika counter -->
+    </body>
+</html>
