@@ -19,7 +19,7 @@ function updateDirections() {
         for (const direction in schemeSphereInfluence[sphere]) {
             var option = document.createElement("option");
             option.value = direction;
-            option.textContent = direction;
+            option.textContent = direction + " ("+ schemeSphereInfluence[sphere][direction] +")";
             directionSelect.appendChild(option);
         }
         
