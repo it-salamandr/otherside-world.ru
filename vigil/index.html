@@ -42,7 +42,7 @@
             <div class="modal-content">
                 <span class="close" onclick="closeModal()">&times;</span>
                 <div class="modal-header">
-                    Квадратура
+                    Скрижаль
                 </div>
 				<small style="
   font-family: 'Comic Sans MS', cursive, sans-serif; 
@@ -58,12 +58,8 @@
   max-width: 100%;
   user-select: none;
 ">
-  <span id="preview-text">
-    Заверши квадратуру...
-  </span>
-  <span id="full-text" style="display:none;">заполнив все клетки квадратуры без излишка — чтобы не погрузиться в стратегию на сложности «жопа», где все на суете, беспорядочно вскрываются козыри, рандомно кидаются кубики...<br><br>
-    Короче, если не хочешь зависнуть в беспорядке — <b style="color:#ff3c00; text-shadow: 0 0 8px #ff3c00;">закрой поляну в событие</b> - собери уклады по всем клеткам минимальной квадратуры. Пока ещё можешь двигаться и не стал коробкой с надписью «архив». 
-  </span>
+  <span id="preview-text">Заполни скрижаль...</span><span id="full-text" style="display:none;"> своими событиями на все клетки без излишка — чтобы замкнуть скрижаль на себя и полностью погрузиться в её события. <b style="color:#ff3c00; text-shadow: 0 0 8px #ff3c00;">Не оставляй системе свободных мест.</b> Используй минимальную скрижаль (5х5, 7х7, 9х9, ..), где каждая карта имеет значение: одна лишняя — и замысел под опасностью суеты, одной не хватает — и системе достаётся возможность внедрить беспорядок. Высчитывай на какую карту сделать следующий ход! Схема Переправы в подвале сайта по ссылке Инструкции.
+</span>
   <a href="#" id="toggle-link" style="
     display: inline-block; 
     margin-left: 5px; 
@@ -85,11 +81,11 @@
       if (fullText.style.display === 'none') {
         fullText.style.display = 'inline';
         toggleLink.textContent = 'свернуть';
-        previewText.textContent = 'Заверши квадратуру';
+        previewText.textContent = 'Заполни скрижаль';
       } else {
         fullText.style.display = 'none';
         toggleLink.textContent = 'читать дальше';
-        previewText.textContent = 'Заверши квадратуру...';
+        previewText.textContent = 'Заполни скрижаль...';
       }
     });
   </script>
@@ -281,7 +277,7 @@
   <div class="accordion-item">
     <div class="accordion-title">2. Последняя карта</div>
     <div class="accordion-content">
-      Если вы впервые работаете с Бдилкой или начали с чистого листа (удалили несобранные в квадратуру уклады) - выставляйте 8.
+      Если вы впервые работаете с Бдилкой или начали с чистого листа (удалили несобранные в скрижаль уклады) - выставляйте 8.
     </div>
   </div>
   <div class="accordion-item">
@@ -340,9 +336,9 @@
   </div>
 
 <div class="accordion-item">
-    <div>Вверху программы есть иконка "волчка" - клик по которой покажет текущие уклады и остаточные клетки квадратуры, которые можно свернуть в событие (нужно стремиться быстро сворачивать).<br><br>Книга про Бдилку <a style="color:#0f0;" target="_blank" href="https://www.litres.ru/book/andrey-volkov-33168547/pasyans-medichi-bdilka-71113513/">здесь</a>.<br><br>Так же рассказывайте и ищите новые подходы в <!-- 🔮 ССЫЛКА -->
+    <div>Вверху программы есть иконка "волчка" - клик по которой покажет текущие уклады и остаточные клетки скрижали, которые можно свернуть в событие (нужно стремиться быстро сворачивать).<br><br>Книга про Бдилку <a style="color:#0f0;" target="_blank" href="https://www.litres.ru/book/andrey-volkov-33168547/pasyans-medichi-bdilka-71113513/">здесь</a>.<br><br>Так же рассказывайте и ищите новые подходы в <!-- 🔮 ССЫЛКА -->
 <a href="https://t.me/otherside-world" class="mirror-link" data-message="⚠️ Внимание! При переходе в телеграм сработает наша защитная система Зеркальный Предел, она отсеет всех шпионов за вами, по ощущениям будет как состояние невесомости, после анализа вы перейдете в безопасную ru зону. Готовы?">Нашем телеграме</a>.
-<hr>Переправа: <br><img src="./modules/images/pereprava.jpg">
+<hr><b>Схема Переправы (кликабельна):</b> <br><br><a target="_blank" href="./modules/images/pereprava.png"><img style="width:200px;" src="./modules/images/pereprava.png"></a>
 <!-- ⚡ ОКНО ПРЕДУПРЕЖДЕНИЯ -->
 <div id="mirror-modal">
   <div class="mirror-dialog">
@@ -733,7 +729,9 @@ function insertSymvol(el, text, description) {
                 <center>
                     <a class="" href="#"  onclick="document.getElementById('dninedeli').style.display = 'flex';return false;">Дни недели</a>
                     <span class="separator">|</span>
-                    <a class="a_info2" href="#"  onclick="document.getElementById('instukciya').style.display = 'flex';return false;">Инструкции</a>
+                    <a class="a_info2" href="#"  onclick="document.getElementById('instukciya').style.display = 'flex';return false;">Инструкции</a> 
+                    <span class="separator">|</span>
+                    <a class="a_info2" href="https://otherside-world.ru/">Другие проекты</a>
                 </center>
             </p>
         </div>
