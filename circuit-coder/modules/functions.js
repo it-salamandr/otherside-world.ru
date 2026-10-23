@@ -577,7 +577,7 @@ function runSequence() {
             }
 
             let doit = false;
-            if (itemData.classList.contains("reflex")) {
+            if (itemData.classList.contains("function")) {
                 doit = itemData.textContent.match(/подключить \{id: (\d+)\}/);
             }
 

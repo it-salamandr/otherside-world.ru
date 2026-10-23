@@ -1,0 +1,562 @@
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#111318">
+    <title>Схемокодер — презентация возможностей</title>
+        <link rel="icon" href="./modules/favicon.png?v=1.5" type="image/x-icon" />
+
+    <style>
+        :root {
+            color-scheme: dark;
+            --bg: #111318;
+            --panel: #181b22;
+            --panel-hover: #20242d;
+            --border: #2b303b;
+            --text: #e6e9f0;
+            --muted: #8b93a5;
+            --accent: #77aaff;
+            --accent-soft: rgba(119, 170, 255, .12);
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            background:
+                radial-gradient(ellipse at 50% 0%, #202b40 0, transparent 50%),
+                var(--bg);
+            color: var(--text);
+            font-family: Inter, -apple-system, BlinkMacSystemFont,
+                "Segoe UI", Arial, sans-serif;
+            line-height: 1.6;
+        }
+
+        button,
+        video {
+            font: inherit;
+        }
+
+        .page {
+            width: min(1100px, calc(100% - 40px));
+            margin: 0 auto;
+            padding: 36px 0 70px;
+        }
+
+        .topbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+            padding-bottom: 28px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 13px;
+            font-size: 16px;
+            font-weight: 750;
+            letter-spacing: .13em;
+        }
+
+        .brand-icon {
+            display: grid;
+            place-items: center;
+            width: 38px;
+            height: 38px;
+            border: 1px solid #526b91;
+            border-radius: 11px;
+            background: linear-gradient(145deg, #293d59, #171d29);
+            color: #a9ccff;
+            font-size: 20px;
+        }
+
+        .version {
+            padding: 5px 10px;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            color: var(--muted);
+            font-size: 12px;
+            letter-spacing: .04em;
+        }
+
+        .hero {
+            padding: 66px 0 42px;
+            max-width: 760px;
+        }
+
+        .eyebrow {
+            display: flex;
+            align-items: center;
+            gap: 9px;
+            margin-bottom: 20px;
+            color: var(--accent);
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: .15em;
+            text-transform: uppercase;
+        }
+
+        .eyebrow::before {
+            content: "";
+            width: 22px;
+            height: 1px;
+            background: var(--accent);
+        }
+
+        h1 {
+            margin: 0;
+            font-size: clamp(34px, 5.5vw, 60px);
+            font-weight: 650;
+            line-height: 1.12;
+            letter-spacing: -.045em;
+        }
+
+        h1 span {
+            color: var(--accent);
+        }
+
+        .intro {
+            max-width: 620px;
+            margin: 22px 0 0;
+            color: var(--muted);
+            font-size: 16px;
+            line-height: 1.8;
+        }
+
+        .section-heading {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            margin-bottom: 17px;
+        }
+
+        .section-heading h2 {
+            margin: 0;
+            font-size: 17px;
+            font-weight: 650;
+        }
+
+        .section-count {
+            color: var(--muted);
+            font-size: 12px;
+        }
+
+        .accordion {
+            overflow: hidden;
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            background: rgba(24, 27, 34, .92);
+            box-shadow: 0 24px 80px rgba(0, 0, 0, .2);
+        }
+
+        .video-item + .video-item {
+            border-top: 1px solid var(--border);
+        }
+
+        .video-toggle {
+            display: flex;
+            align-items: center;
+            width: 100%;
+            gap: 16px;
+            padding: 22px 24px;
+            border: 0;
+            background: transparent;
+            color: var(--text);
+            text-align: left;
+            cursor: pointer;
+            transition: background .2s ease;
+        }
+
+        .video-toggle:hover {
+            background: var(--panel-hover);
+        }
+
+        .video-item.active > .video-toggle {
+            background: linear-gradient(90deg, var(--accent-soft), transparent 75%);
+        }
+
+        .video-number {
+            display: grid;
+            flex: 0 0 38px;
+            place-items: center;
+            width: 38px;
+            height: 38px;
+            border: 1px solid var(--border);
+            border-radius: 9px;
+            color: var(--muted);
+            font-family: Consolas, monospace;
+            font-size: 13px;
+        }
+
+        .video-item.active .video-number {
+            border-color: #46699e;
+            background: var(--accent-soft);
+            color: var(--accent);
+        }
+
+        .video-info {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .video-title {
+            display: block;
+            font-size: 15px;
+            font-weight: 600;
+            line-height: 1.5;
+        }
+
+        .video-meta {
+            display: block;
+            margin-top: 4px;
+            color: var(--muted);
+            font-size: 12px;
+        }
+
+        .chevron {
+    display: flex;
+    flex: 0 0 32px;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    color: var(--muted);
+    transition: background .2s ease, border-color .2s ease;
+}
+
+.chevron::before {
+    content: "";
+    width: 8px;
+    height: 8px;
+    border-right: 1.5px solid currentColor;
+    border-bottom: 1.5px solid currentColor;
+    transform: translateY(-2px) rotate(45deg);
+    transition: transform .25s ease;
+}
+
+.video-item.active .chevron {
+    color: var(--accent);
+    border-color: #46699e;
+    background: var(--accent-soft);
+}
+
+.video-item.active .chevron::before {
+    transform: translateY(2px) rotate(225deg);
+}
+
+        .video-content {
+            display: none;
+            padding: 0 24px 24px;
+        }
+
+        .video-item.active .video-content {
+            display: block;
+            animation: reveal .25s ease;
+        }
+
+        @keyframes reveal {
+            from {
+                opacity: 0;
+                transform: translateY(-5px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .video-frame {
+            overflow: hidden;
+            border: 1px solid #343b49;
+            border-radius: 10px;
+            background: #090b0f;
+        }
+
+        .video-frame video {
+            display: block;
+            width: 100%;
+            max-height: 650px;
+            aspect-ratio: 16 / 9;
+            object-fit: contain;
+            background: #090b0f;
+        }
+
+        .video-caption {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 10px;
+            padding: 14px 2px 0;
+            color: var(--muted);
+            font-size: 12px;
+        }
+
+        .video-caption span:first-child {
+            color: #aeb8ca;
+        }
+
+        .status-dot {
+            display: inline-block;
+            width: 6px;
+            height: 6px;
+            margin-right: 7px;
+            border-radius: 50%;
+            background: #7eb4ff;
+            vertical-align: middle;
+        }
+
+        .footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 34px;
+            padding-top: 22px;
+            border-top: 1px solid var(--border);
+            color: var(--muted);
+            font-size: 12px;
+        }
+
+        .footer strong {
+            color: #b7c2d5;
+            font-weight: 600;
+        }
+
+        @media (max-width: 600px) {
+            .page {
+                width: calc(100% - 28px);
+                padding-top: 20px;
+            }
+
+            .hero {
+                padding: 48px 0 32px;
+            }
+
+            .intro {
+                font-size: 14px;
+            }
+
+            .video-toggle {
+                gap: 12px;
+                padding: 17px 14px;
+            }
+
+            .video-number {
+                flex-basis: 32px;
+                width: 32px;
+                height: 32px;
+            }
+
+            .video-title {
+                font-size: 13px;
+            }
+
+            .video-meta {
+                font-size: 11px;
+            }
+
+            .video-content {
+                padding: 0 12px 16px;
+            }
+
+            .chevron {
+                flex-basis: 28px;
+                width: 28px;
+                height: 28px;
+            }
+
+            .version {
+                font-size: 10px;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                animation-duration: .01ms !important;
+                transition-duration: .01ms !important;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <main class="page">
+        <header class="topbar">
+            <div class="brand">
+                <span class="brand-icon" aria-hidden="true"><img style="width:24px;" src="./modules/favicon.png?v=1.5"></span>
+                <span>СХЕМОКОДЕР</span>
+            </div>
+            <span class="version">Презентация возможностей конструктора кода</span>
+        </header>
+
+        <section class="hero">
+            <div class="eyebrow">Новый подход к программированию</div>
+            <h1>Логика в схемах.<br><span>Код в результате.</span></h1>
+            <p class="intro">
+                Схемокодер — редактор для нового подхода к проектированию
+                программной логики. Изучите демонстрации работы с HTML,
+                стилями и объектно-ориентированным программированием в конструкторе.
+            </p>
+        </section>
+
+        <section aria-labelledby="demos-title">
+            <div class="section-heading">
+                <h2 id="demos-title">Демонстрация возможностей</h2>
+                <span class="section-count">3 видео</span>
+            </div>
+
+            <div class="accordion" id="videoAccordion">
+                <article class="video-item active">
+                    <button class="video-toggle"
+                            type="button"
+                            id="video-toggle-1"
+                            aria-expanded="true"
+                            aria-controls="video-panel-1">
+                        <span class="video-number">01</span>
+                        <span class="video-info">
+                            <span class="video-title">
+                                Квантовый html с применением стилей
+                            </span>
+                            <span class="video-meta">HTML · CSS · Схемная логика</span>
+                        </span>
+                        <span class="chevron" aria-hidden="true"></span>
+                    </button>
+
+                    <div class="video-content"
+                         id="video-panel-1"
+                         role="region"
+                         aria-labelledby="video-toggle-1">
+                        <div class="video-frame">
+                            <video controls playsinline preload="metadata">
+                                <source src="./modules/video/1.mp4" type="video/mp4">
+                                Ваш браузер не поддерживает воспроизведение видео.
+                            </video>
+                        </div>
+                        <div class="video-caption">
+                            <span><span class="status-dot"></span>Демонстрация редактора с ПК</span>
+                            <span>Схемокодер promo v.1.6</span>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="video-item">
+                    <button class="video-toggle"
+                            type="button"
+                            id="video-toggle-2"
+                            aria-expanded="false"
+                            aria-controls="video-panel-2">
+                        <span class="video-number">02</span>
+                        <span class="video-info">
+                            <span class="video-title">Квантовый ООП</span>
+                            <span class="video-meta">ООП · Архитектура · Логика</span>
+                        </span>
+                        <span class="chevron" aria-hidden="true"></span>
+                    </button>
+
+                    <div class="video-content"
+                         id="video-panel-2"
+                         role="region"
+                         aria-labelledby="video-toggle-2"
+                         hidden>
+                        <div class="video-frame">
+                            <video controls playsinline preload="none">
+                                <source src="./modules/video/2.mp4" type="video/mp4">
+                                Ваш браузер не поддерживает воспроизведение видео.
+                            </video>
+                        </div>
+                        <div class="video-caption">
+                            <span><span class="status-dot"></span>Демонстрация редактора с ПК</span>
+                            <span>Схемокодер promo v.1.7</span>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="video-item">
+                    <button class="video-toggle"
+                            type="button"
+                            id="video-toggle-3"
+                            aria-expanded="false"
+                            aria-controls="video-panel-3">
+                        <span class="video-number">03</span>
+                        <span class="video-info">
+                            <span class="video-title">Программирование ООП на мобильном</span>
+                            <span class="video-meta">Мобильная разработка · ООП</span>
+                        </span>
+                        <span class="chevron" aria-hidden="true"></span>
+                    </button>
+
+                    <div class="video-content"
+                         id="video-panel-3"
+                         role="region"
+                         aria-labelledby="video-toggle-3"
+                         hidden>
+                        <div class="video-frame">
+                            <video controls playsinline preload="none">
+                                <source src="./modules/video/3.mp4" type="video/mp4">
+                                Ваш браузер не поддерживает воспроизведение видео.
+                            </video>
+                        </div>
+                        <div class="video-caption">
+                            <span><span class="status-dot"></span>Демонстрация редактора с мобильного</span>
+                            <span>Схемокодер promo v.1.7</span>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <footer class="footer">
+            <span><a href="./index.html"><strong>СХЕМОКОДЕР</strong></a> · Среда проектирования логики кода</span>
+            <span>Презентация версий promo 1.6 , promo 1.7</span>
+        </footer>
+    </main>
+
+    <script>
+        (function () {
+            var accordion = document.getElementById('videoAccordion');
+            var items = accordion.querySelectorAll('.video-item');
+
+            accordion.addEventListener('click', function (event) {
+                var button = event.target.closest('.video-toggle');
+
+                if (!button || !accordion.contains(button)) {
+                    return;
+                }
+
+                var currentItem = button.closest('.video-item');
+                var shouldOpen = !currentItem.classList.contains('active');
+
+                items.forEach(function (item) {
+                    var toggle = item.querySelector('.video-toggle');
+                    var panel = item.querySelector('.video-content');
+                    var video = item.querySelector('video');
+                    var isCurrent = item === currentItem && shouldOpen;
+
+                    item.classList.toggle('active', isCurrent);
+                    toggle.setAttribute('aria-expanded', isCurrent ? 'true' : 'false');
+                    panel.hidden = !isCurrent;
+
+                    if (!isCurrent && video) {
+                        video.pause();
+                    }
+                });
+            });
+        })();
+    </script>
+</body>
+</html>

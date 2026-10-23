@@ -7,18 +7,21 @@
         <meta name="keywords" content="Квантовое мышление, Пакетный код, Схемокодер" />
         <meta name="description" content="Разработка кода одним пакетом." />
         <link rel="icon" href="./modules/favicon.png?v=1.5" type="image/x-icon" />
-        <link rel="stylesheet" href="./modules/style.css?v=1.16.4" />
-        <script src="./modules/functions.js?v=1.13"></script>
+        <link rel="stylesheet" href="./modules/style.css?v=2" />
+        <script src="./modules/functions.js?v=2"></script>
         <script src="./modules/config.js?v=1.3"></script>
     </head>
     <body>
+	
+
+	<center><h1>
+                    БК-2: Схемокодер (прототип)
+                </h1></center>
         <div>
             <div class="button-group">
                 <h2>
-                    БК-2&nbsp;{
                     <b id="placeholder"><img src="./modules/favicon.png?v=1.5" style="max-width:28px;margin-bottom:-8px;"></b>
                     <span id="dynamic-content"></span>
-                    }&nbsp;Схемокодер (прототип)
                 </h2>
             </div>
             <div>
@@ -90,6 +93,23 @@
         Проект полностью в тестовом режиме: выбор возможностей ограничен, например, пока можно только задавать стили и текстовые атрибуты.
       </p>
 	  <p>Цель программы — дать пользователю возможность «программировать» через визуальные схемы, упорядочивать структуру элементов, видеть зависимости и видеть, как по итогу генерируется код в виде массива.</p>
+	  
+	  <br><p>Выбирайте сверху тип схемы (кнопки: Контейнер, Атрибут, Рефлекс, Функционал) и вводите ниже для неё данные (пример в <a target="_blank" href="./presentation.html">видео-презентации</a>).</p>
+	  <hr>
+	  <p>Тестовый запуск пока включает в себя:<br>
+        1. последовательный авто-проход по элементам (игнор контейнеров на 1-м уровне).<br>
+        2. рефлекс понимает команду "продолжить с другого элемента": <mark>перейти на {id: N}</mark><br>
+        3. контейнеры в корне программы "игнорируются авто-проходом" и им присваивается статус модульный: TAG_NAME модульный<br>
+        4. функционал понимает команду "заинклудить модульный контейнер": <mark>подключить {id: N}</mark><br><br>
+        p.s. значение N заменять на число, например: подключить {id: 23}<br>
+        p.s. максимум вложенных инклудов (для тестового запуска): 2.<br>
+        p.s. максимум зациклиенных переходов (для сформированной страницы): 10.<br>
+        p.s. в атрибуты можно пока добавлять только стили и innerText<br>
+		p.s. в атрибуты можно добавить рефлексы (автозапуск их не запустит)
+
+        <hr />
+        В результате из собранной схемы будет формироваться html-страница, которая пока отображает любые тэги например <mark>div</mark>, <mark>table</mark>, <mark>tr</mark>, <mark>td</mark> (контейнеров),<br>задает текст тэгам <mark>innerText: TEXT</mark> (атрибутов)<br>и задат любой
+        стиль тэгам например <mark>color: green</mark>, <mark>text-shadow: 0 0 15px red</mark> (атрибутов).</p>
     </div>
   </div>
 </div>
@@ -128,12 +148,13 @@
   })();
 </script>
 
-Выбирайте сверху тип схемы (кнопки: Контейнер, Атрибут, Рефлекс, Функционал) и вводите ниже для неё данные (пример на <a target="_blank" href="https://www.youtube.com/@circuit-coder">ютубе</a>):
+
             </div>
             <input type="text" id="itemName" autocomplete="off" placeholder="Команда" />
             <select id="parentId">
                 <option value="">Корень программы</option>
             </select>
+			<button id="runButton" style="display: inline;" onclick="runSequence()">Тестовый запуск</button>
             <button id="addItem" style="display: inline;" onclick="addItem()">Добавить элемент</button>
             <button id="updateItem" style="display: none;" onclick="updateItem()">Сохранить элемент</button>
             <button id="deleteItem" style="display: none;" onclick="deleteItem()">Удалить элемент</button>
@@ -142,31 +163,16 @@
         <hr />
         <div id="nested-list">Собираться схема будет здесь.</div>
         <hr />
-        <button id="runButton" onclick="runSequence()">Тестовый запуск</button><br />
-        Тестовый запуск пока включает в себя:<br />
-        1. последовательный авто-проход по элементам (игнор контейнеров на 1-м уровне).<br />
-        2. для рефлекса понимает команду "продолжить с другого элемента": <mark>перейти на {id: N}</mark><br />
-        3. контейнеры в корне программы "игнорируются авто-проходом" и им присваивается статус модульный: <mark>TAG_NAME модульный</mark><br />
-        4. для рефлекса понимает команду "заинклудить модульный контейнер": <mark>подключить {id: N}</mark><br />
-        p.s. значение N заменять на число, например: подключить {id: 23}<br />
-        p.s. максимум вложенных инклудов (для тестового запуска): 2.<br />
-        p.s. максимум зациклиенных переходов (для сформированной страницы): 10.<br />
-        p.s. фукционал не выполняется<br />
-        p.s. в атрибуты можно пока добавлять только стили и innerText<br />
-        p.s. в планах 2-я версия триггеров, 3-я версия связей и 4-я итоговая привилегий.<br />
-		p.s. в атрибуты можно добавить рефлексы (автозапуск их не запустит, срабатает при контакте с пользователем)
-
+        
+        
+        <center><b>Результат сформированной страницы:</b></center>
+        <iframe style="width: min(1180px, 100%);" id="output" readonly></iframe>
         <hr />
-        Ниже из собранной схемы будет формироваться html-страница, которая пока отображает любые тэги например "<mark>table</mark>", "<mark>tr</mark>", "<mark>td</mark>" (контейнеров), задает текст тэгам "<mark>innerText: TEXT</mark>" (атрибутов) и задат любой
-        стиль тэгам например "<mark>color: green</mark>", "<mark>text-shadow: 0 0 15px red</mark>" (атрибутов):
-        <iframe id="output" readonly></iframe>
-        <br />
-        <br />
-        Код сформированной страницы:
-        <textarea id="output2"></textarea>
-        <br />
-        <br />
-        <center><a target="_blank" href="https://t.me/otherside_world">телеграм разработчика</a> | <a href="https://otherside-world.ru/">другие проекты</a></center>
+        <center><b>Код сформированной страницы:</b></center>
+        <textarea style="width: min(1180px, 100%);" id="output2"></textarea>
+        <br>
+        <br>
+        <center>promo v.2 | <a target="_blank" href="https://t.me/otherside_world">телеграм разработчика</a> | <a href="https://otherside-world.ru/">другие проекты</a></center>
 		<!-- Yandex.Metrika counter -->
 <script type="text/javascript">
     (function(m,e,t,r,i,k,a){
@@ -180,5 +186,52 @@
 </script>
 <noscript><div><img src="https://mc.yandex.ru/watch/106046314" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
 <!-- /Yandex.Metrika counter -->
+
+
+<script>
+const bg = new Image();
+bg.src = './modules/background.png';
+
+bg.onload = function () {
+    const w = bg.width;
+    const h = bg.height;
+
+    const canvas = document.createElement('canvas');
+    canvas.width = w * 2;
+    canvas.height = h * 2;
+
+    const ctx = canvas.getContext('2d');
+
+    // Верхний левый — оригинал
+    ctx.drawImage(bg, 0, 0);
+
+    // Верхний правый — отражение по горизонтали
+    ctx.save();
+    ctx.translate(w * 2, 0);
+    ctx.scale(-1, 1);
+    ctx.drawImage(bg, 0, 0);
+    ctx.restore();
+
+    // Нижний левый — отражение по вертикали
+    ctx.save();
+    ctx.translate(0, h * 2);
+    ctx.scale(1, -1);
+    ctx.drawImage(bg, 0, 0);
+    ctx.restore();
+
+    // Нижний правый — отражение по обеим осям
+    ctx.save();
+    ctx.translate(w * 2, h * 2);
+    ctx.scale(-1, -1);
+    ctx.drawImage(bg, 0, 0);
+    ctx.restore();
+
+    document.body.style.backgroundImage =
+        'url("' + canvas.toDataURL() + '")';
+
+    document.body.style.backgroundRepeat = 'repeat';
+    document.body.style.backgroundColor = '#2e2e2e';
+};
+</script>
     </body>
 </html>

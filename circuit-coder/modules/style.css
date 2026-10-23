@@ -1,153 +1,940 @@
-body {
-    background: url(../modules/fon2.png) repeat #2e2e2e;
-    //backdrop-filter: blur(5px);
-    color: #b8b8b8;
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 20px;
-    box-sizing: border-box;
-}
-ul {
-    list-style-type: none;
-    padding: 0;
-}
-#output {
-    margin-top: 10px;
-    background-color: #2e2e2e;
-    box-sizing: border-box;
-    width: 100%;
-    height: 500px;
-}
-#output2 {
-    background-color: #2e2e2e;
-    box-sizing: border-box;
-    width: 100%;
-    height: 300px;
-}
-li {
-    cursor: pointer;
-    margin: 10px;
-    border-radius: 5px;
-    transition: background-color 0.3s;
-}
-select,
-input,
-button {
-    margin: 5px 0;
-    padding: 10px;
-    border: none;
-    border-radius: 5px;
-    box-sizing: border-box;
-    width: 100%;
-    max-width: 100%;
-}
-button {
-    background-color: #121313;
-    color: #ffffff;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
-.teg {
-    border-radius: 6px;
-    cursor: pointer;
-    padding: 3px;
-    color: #39ff14;
-    transition: background-color 0.3s;
-    box-shadow: inset 0px 0px 81px 17px rgba(57, 255, 20, 0.5), 0px 0px 20px 4px rgba(57, 255, 20, 0.5);
-}
-.atribut {
-    border-radius: 6px;
-    cursor: pointer;
-    padding: 3px;
-    color: #bc13fe;
-    transition: background-color 0.3s;
-    box-shadow: inset 0px 0px 81px 17px rgba(188, 19, 254, 0.5), 0px 0px 20px 4px rgba(188, 19, 254, 0.5);
-}
-.reflex {
-    border-radius: 6px;
-    cursor: pointer;
-    padding: 3px;
-    color: #5555ff;
-    transition: background-color 0.3s;
-    box-shadow: inset 0px 0px 81px 17px rgba(85, 85, 255, 0.5), 0px 0px 20px 4px rgba(85, 85, 255, 0.5);
-}
-.function {
-    border-radius: 6px;
-    cursor: pointer;
-    padding: 3px;
-    color: #FF5F1F;
-    transition: background-color 0.3s;
-    box-shadow: inset 0px 0px 81px 17px rgba(255, 95, 31, 0.5), 0px 0px 20px 4px rgba(255, 95, 31, 0.5);
-}
-.button-group {
-    flex-wrap: wrap;
-    gap: 10px;
-    margin-bottom: 20px;
-    text-align: center;
-}
-.button-group input[type="radio"] {
-    display: none;
+
+:root {
+    color-scheme: dark;
+
+    --bg: #11141a;
+    --panel: #191e27;
+    --panel-raised: #202733;
+    --panel-hover: #283243;
+    --input-bg: #121720;
+
+    --border: #303b4b;
+    --border-active: #5376a6;
+
+    --text: #dce4ef;
+    --text-secondary: #a1aec1;
+    --text-muted: #75849a;
+
+    --accent: #8ab8ff;
+    --accent-bg: rgba(105, 157, 231, .12);
+
+    --green: #8ed8ae;
+    --purple: #c4a5ff;
+    --blue: #86bdff;
+    --orange: #ffba85;
+    --yellow: #ffe09a;
+
+    --radius: 8px;
+    --transition: .18s ease;
 }
 
-.button-group label {
-    color: #ffffff;
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
 }
-.button-group label {
-    padding: 10px 20px;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s, box-shadow 0.3s;
-    background-color: darkslategray;
+
+html {
+    min-height: 100%;
+    background: var(--bg);
+    scrollbar-color: #3c495c var(--bg);
+    scrollbar-width: thin;
 }
-.button-group input[type="radio"]:checked + label {
-    box-shadow: 0px 0px 10px 2px rgba(255, 255, 255, 0.5);
+
+body {
+    position: relative;
+    min-height: 100vh;
+    margin: 0;
+    padding: 24px;
+    background-color: var(--bg);
+    color: var(--text);
+    font-family: Inter, "Segoe UI", Arial, sans-serif;
+    font-size: 14px;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
 }
-#teg:checked + label {
-    background-color: #39ff14;
+
+/* Нейтральный фон редактора */
+
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background-repeat: repeat;
+    background-size: auto;
 }
-#atribut:checked + label {
-    background-color: #bc13fe;
+
+/* Основная рабочая область */
+
+body > div {
+    width: min(1180px, 100%);
+    margin: 0 auto;
 }
-#reflex:checked + label {
-    background-color: #5555ff;
-}
-#function:checked + label {
-    background-color: #FF5F1F;
-}
-a {
-    color: gray;
-}
-b {
-    color: white;
-}
-.highlight {
-    background-color: #cfff04;
-}
-.highlight2 {
-    text-shadow: 0 0 15px #ffffff, 0 0 20px #ffffff, 0 0 35px #ffffff;
-}
+
+/* Верхняя панель */
 
 .button-group {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
+    gap: 10px;
+    margin: 0 0 22px;
+    padding: 15px 19px;
+    border: 1px solid var(--border);
+    border-radius: 11px;
+    background: linear-gradient(110deg, #202a39, #191e27 65%);
 }
 
 .button-group h2 {
-    display: inline-block;
+    display: flex;
     align-items: center;
+    flex-wrap: wrap;
+    gap: 7px;
     margin: 0;
+    color: #e8eef8;
+    font-size: 16px;
+    font-weight: 600;
+    letter-spacing: -.025em;
 }
 
-#dynamic-content label {
+#placeholder {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 30px;
+    min-height: 30px;
+    overflow: hidden;
+    border: 1px solid #3b4c63;
+    border-radius: 7px;
+    background: #121925;
+}
+
+#placeholder img {
+    display: block;
+    max-width: 28px;
+    max-height: 28px;
+    margin: 0 !important;
+}
+
+#dynamic-content {
+    color: var(--accent);
+}
+
+/* Вводная информация */
+
+.collapsible-wrapper {
+    margin: 0 0 22px;
+    padding: 14px 17px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    background: rgba(25, 30, 39, .92);
+}
+
+.collapsible-toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--accent);
+    font-size: 13px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: color var(--transition);
+}
+
+.collapsible-toggle::before {
+    content: "+";
+    display: inline-grid;
+    place-items: center;
+    width: 22px;
+    height: 22px;
+    border: 1px solid var(--border);
+    border-radius: 5px;
+    background: var(--panel-raised);
+    color: var(--text-secondary);
+    font-size: 17px;
+    font-weight: 400;
+    line-height: 1;
+}
+
+.collapsible-toggle[aria-expanded="true"]::before {
+    content: "−";
+    color: var(--accent);
+    border-color: var(--border-active);
+    background: var(--accent-bg);
+}
+
+.collapsible-toggle:hover {
+    color: #c1dcff;
+}
+
+.collapsible-toggle:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 4px;
+}
+
+.collapsible-content {
+    overflow: hidden;
+    max-height: 0;
+    opacity: 0;
+    transition: max-height .28s ease, opacity .2s ease;
+}
+
+.collapsible-content.open {
+    max-height: 2000px;
+    opacity: 1;
+}
+
+.collapsible-inner {
+    padding: 13px 0 2px;
+    color: var(--text-secondary);
+}
+
+.collapsible-inner p {
+    margin: 0 0 12px;
+}
+
+.collapsible-inner p:last-child {
+    margin-bottom: 0;
+}
+
+/* Текст инструкции */
+
+body > div > div:not(.button-group):not(.collapsible-wrapper) {
+    color: var(--text-secondary);
+}
+
+body a {
+    color: var(--accent);
+    text-decoration: none;
+    text-underline-offset: 3px;
+    transition: color var(--transition);
+}
+
+body a:hover {
+    color: #c0dcff;
+    text-decoration: underline;
+}
+
+body b {
+    color: #f0f4fb;
+    font-weight: 600;
+}
+
+/* Поля редактора */
+
+input,
+select,
+textarea,
+button {
+    max-width: 100%;
+    min-width: 0;
+    margin: 5px 0;
+    padding: 10px 12px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    box-sizing: border-box;
+    font: inherit;
+}
+
+input,
+select,
+textarea {
+    background: var(--input-bg);
+    color: var(--text);
+    outline: none;
+    transition: border-color var(--transition),
+                box-shadow var(--transition),
+                background var(--transition);
+}
+
+input[type="text"],
+select {
+    width: 100%;
+}
+
+input:hover,
+select:hover,
+textarea:hover {
+    border-color: #46556b;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+    border-color: var(--border-active);
+    background: #151c27;
+    box-shadow: 0 0 0 3px rgba(105, 157, 231, .09);
+}
+
+input::placeholder,
+textarea::placeholder {
+    color: #69788e;
+}
+
+select {
+    cursor: pointer;
+}
+
+textarea {
+    display: block;
+    width: 100%;
+    min-height: 220px;
+    resize: vertical;
+    font-family: Consolas, "Courier New", monospace;
+    font-size: 13px;
+    line-height: 1.7;
+    tab-size: 4;
+}
+
+/* Кнопки действий */
+
+button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 9px 15px;
+    background: var(--panel-raised);
+    color: var(--text);
+    border-color: #3a4658;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 550;
+    transition: background var(--transition),
+                border-color var(--transition),
+                color var(--transition),
+                box-shadow var(--transition);
+}
+
+button:hover {
+    background: var(--panel-hover);
+    border-color: #536985;
+    color: #fff;
+}
+
+button:active {
+    background: #19212d;
+}
+
+button:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+}
+
+/* Главная команда запуска */
+
+#runButton {
+    min-height: 42px;
+    margin: 10px 0 16px;
+    padding: 10px 20px;
+    background: #263b57;
+    border-color: #4d719e;
+    color: #dceaff;
+    font-weight: 600;
+}
+
+#runButton:hover {
+    background: #304b6e;
+    border-color: #79a7e4;
+    box-shadow: 0 0 0 3px rgba(105, 157, 231, .08);
+}
+
+/* Удаление элемента */
+
+#deleteItem {
+    background: #302329;
+    border-color: #64404b;
+    color: #ffb8c1;
+}
+
+#deleteItem:hover {
+    background: #482b35;
+    border-color: #925364;
+}
+
+/* Сохранение изменений */
+
+#updateItem {
+    background: #20372e;
+    border-color: #426c57;
+    color: #b3e8c9;
+}
+
+#updateItem:hover {
+    background: #294a3a;
+    border-color: #609b7a;
+}
+
+/* Список и дерево схемы */
+
+#nested-list {
+    min-height: 100px;
+    margin: 20px 0;
+    padding: 17px;
+    overflow-wrap: anywhere;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    background: rgba(18, 23, 32, .96);
+    color: var(--text-secondary);
+}
+
+ul {
+    margin: 0;
+    padding-left: 22px;
+    list-style: none;
+}
+
+li {
+    position: relative;
+    margin: 5px 0;
+    padding: 8px 11px;
+    border: 1px solid transparent;
+    border-radius: 6px;
+    color: var(--text);
+    cursor: pointer;
+    transition: background var(--transition),
+                border-color var(--transition);
+}
+
+li:hover {
+    background: #202a38;
+    border-color: #36475d;
+}
+
+/* Разделители */
+
+hr {
+    height: 1px;
+    margin: 24px 0;
+    border: 0;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        #364152 10%,
+        #364152 90%,
+        transparent
+    );
+}
+
+/* Подсветка типов элементов */
+
+.teg,
+.atribut,
+.reflex,
+.function {
     display: inline-block;
-    margin: 10px;
-    margin-top: 3px;
+    padding: 2px 6px;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    font-family: Consolas, "Courier New", monospace;
+    font-size: .94em;
+    cursor: pointer;
+    transition: background var(--transition),
+                border-color var(--transition);
 }
 
-.section_item_id{
-	background-color: #b8b8b8;padding: 2px 5px;border-radius: 3px;
+.teg {
+    color: var(--green);
+    background: rgba(142, 216, 174, .09);
+    border-color: rgba(142, 216, 174, .2);
 }
-.section_item_svg{
-	cursor: pointer;width: 16px;height: 16px;
+
+.teg:hover {
+    background: rgba(142, 216, 174, .16);
+    border-color: rgba(142, 216, 174, .4);
+}
+
+.atribut {
+    color: var(--purple);
+    background: rgba(196, 165, 255, .09);
+    border-color: rgba(196, 165, 255, .2);
+}
+
+.atribut:hover {
+    background: rgba(196, 165, 255, .16);
+    border-color: rgba(196, 165, 255, .4);
+}
+
+.reflex {
+    color: var(--blue);
+    background: rgba(134, 189, 255, .09);
+    border-color: rgba(134, 189, 255, .2);
+}
+
+.reflex:hover {
+    background: rgba(134, 189, 255, .16);
+    border-color: rgba(134, 189, 255, .4);
+}
+
+.function {
+    color: var(--orange);
+    background: rgba(255, 186, 133, .09);
+    border-color: rgba(255, 186, 133, .2);
+}
+
+.function:hover {
+    background: rgba(255, 186, 133, .16);
+    border-color: rgba(255, 186, 133, .4);
+}
+
+/* Примеры команд и предупреждений */
+
+mark {
+    padding: 2px 5px;
+    border: 1px solid rgba(255, 224, 154, .17);
+    border-radius: 4px;
+    background: rgba(255, 224, 154, .09);
+    color: var(--yellow);
+    font-family: Consolas, "Courier New", monospace;
+    font-size: .94em;
+}
+
+/* Результат сформированной HTML-страницы */
+
+#output {
+    display: block;
+    width: 100%;
+    height: 500px;
+    margin-top: 12px;
+    border: 1px solid var(--border);
+    border-radius: 9px;
+    background: #fff;
+}
+
+/* Исходный код */
+
+#output2 {
+    display: block;
+    width: 100%;
+    height: 300px;
+    margin-top: 12px;
+    padding: 15px;
+    overflow: auto;
+    border: 1px solid var(--border);
+    border-radius: 9px;
+    background: #10151d;
+    color: #c4d5ed;
+    font-family: Consolas, "Courier New", monospace;
+    font-size: 13px;
+    line-height: 1.7;
+    tab-size: 4;
+}
+
+/* Идентификаторы элементов */
+
+.section_item_id {
+    display: inline-block;
+    padding: 2px 6px;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    background: var(--panel-raised);
+    color: var(--text-muted);
+    font-family: Consolas, "Courier New", monospace;
+    font-size: 12px;
+}
+
+.section_item_svg {
+    width: 16px;
+    height: 16px;
+    color: var(--text-muted);
+    cursor: pointer;
+    vertical-align: middle;
+    transition: color var(--transition);
+}
+
+.section_item_svg:hover {
+    color: var(--accent);
+}
+
+/* Подсветка выбранного текста */
+
+.highlight {
+padding: 2px 5px;
+border-radius: 4px;
+background: rgba(74, 190, 137, 0.12);
+color: #91d5b0;
+border: 1px solid rgba(74, 190, 137, 0.18);
+}
+
+.highlight2 {
+    color: #fff;
+    text-shadow: 0 0 10px rgba(138, 184, 255, .5);
+}
+
+/* Нижняя панель */
+
+center {
+    padding: 18px 0 4px;
+    color: var(--text-muted);
+    font-size: 12px;
+}
+
+center a {
+    margin: 0 5px;
+}
+
+/* Скроллбары */
+
+* {
+    scrollbar-width: thin;
+    scrollbar-color: #3b485a transparent;
+}
+
+::-webkit-scrollbar {
+    width: 9px;
+    height: 9px;
+}
+
+::-webkit-scrollbar-thumb {
+    border: 2px solid transparent;
+    border-radius: 8px;
+    background: #3b485a;
+    background-clip: padding-box;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background-color: #536985;
+    background-clip: padding-box;
+}
+
+/* Мобильная версия */
+
+@media (max-width: 650px) {
+    body {
+        padding: 12px;
+        font-size: 13px;
+    }
+
+    .button-group {
+        padding: 12px;
+        margin-bottom: 15px;
+    }
+
+    .button-group h2 {
+        font-size: 14px;
+        line-height: 1.8;
+    }
+
+    .collapsible-wrapper {
+        padding: 12px;
+    }
+
+    #nested-list {
+        padding: 10px;
+    }
+
+    li {
+        padding: 8px;
+    }
+
+    button {
+        padding: 10px 12px;
+    }
+
+    #output {
+        height: 400px;
+    }
+
+    #output2 {
+        height: 260px;
+        font-size: 12px;
+    }
+
+    center {
+        line-height: 2.2;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        scroll-behavior: auto !important;
+        animation-duration: .01ms !important;
+        transition-duration: .01ms !important;
+    }
+}
+
+/* Заголовок и переключатели типов схемы */
+.button-group {
+    justify-content: center;
+    gap: 10px;
+}
+
+.button-group h2 {
+    justify-content: center;
+    gap: 10px;
+}
+
+/* Если кнопки типов формируются динамически */
+.button-group label {
+    margin: 4px;
+}
+
+/* Центрирование схемы и всего содержимого ниже */
+#nested-list,
+#runButton,
+#output,
+#output2 {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#nested-list {
+    text-align: left;
+}
+
+
+/* Центрирование текстовых блоков после схемы */
+#nested-list ~ * {
+    text-align: center;
+}
+
+/* Результат и исходный код */
+#output,
+#output2 {
+    display: block;
+    width: 100%;
+    text-align: left;
+}
+
+/* Удобные отступы между переключателями */
+.button-group input[type="radio"] + label {
+    margin: 4px;
+    padding: 10px 18px;
+    white-space: nowrap;
+}
+
+/* Мобильная версия */
+@media (max-width: 650px) {
+    .button-group {
+        gap: 8px;
+    }
+
+    .button-group input[type="radio"] + label {
+        padding: 9px 12px;
+        font-size: 12px;
+    }
+}
+
+
+/* Центрирование описания тестового запуска */
+#runButton {
+    display: block;
+    margin: 20px auto;
+}
+
+
+/* Текст после кнопки тестового запуска */
+#runButton ~ p,
+#runButton ~ ol,
+#runButton ~ ul,
+#runButton ~ div,
+#runButton ~ center {
+    text-align: center;
+}
+
+/* Если пояснения записаны обычным текстом, а не тегами p */
+#runButton {
+    text-align: center;
+}
+
+/* Центрирование сформированной схемы и описания ниже */
+#nested-list {
+    text-align: left;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Заголовок кода и iframe */
+#output {
+    display: block;
+    margin: 20px auto;
+    max-width: 100%;
+}
+
+/* Поле с кодом */
+#output2 {
+    display: block;
+    margin: 20px auto;
+    width: 100%;
+    box-sizing: border-box;
+    text-align: left;
+}
+
+/* Дерево элементов */
+ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+li {
+    position: relative;
+    margin: 4px 0;
+    padding: 8px 10px;
+    border: 1px solid transparent;
+    border-radius: 7px;
+    color: var(--text);
+    cursor: pointer;
+    transition: background .15s ease, border-color .15s ease;
+}
+
+/* Родительский элемент с вложенностью */
+li:has(> ul) {
+    padding: 9px;
+    background: #171f2b;
+    border: 1px solid #2a3646;
+}
+
+/* Заголовок родительского элемента */
+li:has(> ul) > .teg {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    min-height: 24px;
+}
+
+/* Область вложенных элементов */
+li > ul {
+    margin-top: 8px;
+    padding: 5px 0 3px 12px;
+    border-left: 1px solid #3b4a5e;
+}
+
+/* Дочерние элементы */
+li > ul > li {
+    margin: 3px 0;
+    padding: 7px 10px;
+    background: #1b2532;
+    border: 1px solid #273446;
+    border-radius: 6px;
+}
+
+/* Вложенный контейнер следующего уровня */
+li > ul > li:has(> ul) {
+    background: #192330;
+    border-color: #344256;
+}
+
+/* Свободные элементы без вложенности */
+li:not(:has(> ul)) {
+    background: transparent;
+}
+
+/* Наведение */
+li:hover {
+    background: #222f40;
+    border-color: #3c5068;
+}
+
+li > ul > li:hover {
+    background: #253448;
+    border-color: #4a617c;
+}
+
+/* Идентификаторы */
+.section_item_id {
+    color: #8293aa;
+    font-size: 11px;
+}
+
+/* Типы элементов */
+.teg b {
+    color: #8db9f5;
+}
+
+.atribut b {
+    color: #b9c6d8;
+}
+
+.reflex b {
+    color: #c5a8ee;
+    font-weight: 500;
+}
+
+/* Иконки управления */
+.section_item_svg {
+    width: 14px;
+    height: 14px;
+    fill: currentColor;
+    opacity: .55;
+    vertical-align: middle;
+    transition: opacity .15s ease;
+}
+
+a.section_item_id:hover .section_item_svg {
+    opacity: 1;
+}
+
+/* Каждый уровень дерева смещается вправо */
+ul {
+    padding-left: 24px;
+}
+
+/* Корневой уровень без отступа */
+ul:not(li ul) {
+    padding-left: 0;
+}
+
+/* Родитель содержит своих потомков */
+li:has(> ul) {
+    width: fit-content;
+    min-width: 320px;
+    max-width: calc(100% - 2px);
+}
+
+/* Дочерняя ветка начинается под родительским блоком */
+li > ul {
+    padding-left: 20px;
+    margin-top: 8px;
+    width: fit-content;
+    min-width: calc(100% - 20px);
+    box-sizing: border-box;
+}
+
+/* Элементы ветки не растягиваются на всю страницу */
+li > ul > li {
+    width: fit-content;
+    min-width: 280px;
+    max-width: 100%;
+    box-sizing: border-box;
+}
+
+/* Вложенные контейнеры подстраиваются под содержимое */
+li > ul > li:has(> ul) {
+    width: fit-content;
+}
+
+/* Сохраняем растягивание блоков */
+li {
+    width: auto;
+    box-sizing: border-box;
+}
+
+/* Каждый следующий уровень получает отступ слева */
+li > ul {
+    width: 100%;
+    box-sizing: border-box;
+    margin-left: 0;
+    padding-left: 20px;
+}
+
+/* Вложенные элементы занимают ширину своей ветки */
+li > ul > li {
+    width: 100%;
+    min-width: 0;
+    max-width: none;
+    box-sizing: border-box;
+    margin-left: 0;
+}
+
+/* Родительский блок тоже занимает доступную ширину */
+li:has(> ul) {
+    width: 100%;
+    min-width: 0;
+    max-width: none;
+    box-sizing: border-box;
 }
