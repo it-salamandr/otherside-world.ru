@@ -359,7 +359,6 @@ stroke-width: 2.5;
     margin-top: 10px;
     user-select: none;
     font-size: 1rem;
-    text-align: justify;
     line-height: 1.6;
     display: block !important;
 
@@ -882,7 +881,7 @@ updateLightning();
         <li>Когда баланс соблюден, заказы принимаются в реализацию и создатель добавит дополнительный код на ваш вклад в общество.</li>
         <li>Описание про Перелом читайте в <a href="https://www.litres.ru/book/andrey-volkov-33168547/tetrad-smerti-perelom-72117967/" target="_blank" style="color:#0f0;">книге</a> и ищите в 
 		<!-- 🔮 ССЫЛКА -->
-<a href="https://t.me/otherside_world" class="mirror-link" data-message="⚠️ Внимание! При переходе в телеграм сработает наша защитная система Зеркальный Предел, она отсеет всех шпионов за вами, по ощущениям будет как состояние невесомости, после анализа вы перейдете в безопасную ru зону. Готовы?">Нашем телеграме</a>.
+<a href="https://t.me/otherside_world" class="mirror-link" data-message="Перед переходом в Telegram вас на всякий случай подстрахует система «Зеркальный Предел». Продолжим?">Нашем телеграме</a>.
 
 <!-- ⚡ ОКНО ПРЕДУПРЕЖДЕНИЯ -->
 <div id="mirror-modal">
@@ -979,7 +978,7 @@ document.querySelectorAll('.mirror-link').forEach(link => {
 
     document.getElementById('mirror-yes').onclick = function() {
       modal.style.display = 'none';
-      window.location.href = url;
+      window.open(url, '_blank');
     };
 
     document.getElementById('mirror-no').onclick = function() {

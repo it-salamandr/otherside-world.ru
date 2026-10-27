@@ -1,0 +1,1020 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark">
+  <link rel="icon" type="image/png" href="./modules/trofei.png">
+<title>Артефакт Изнаночки Мира — методичка по сборке</title>
+  <meta name="description" content="Артефакт «Изнаночка мира» раскрывает истинный порядок вещей: как ни крути, а мироздание устроено вокруг человека, а не наоборот. После активации артефакта действительность начинает перестраиваться вокруг владельца, превращая его волю, решения и намерения в рычаги, способные менять направление событий." />
+  <meta name="keywords" content="Изнаночка мира, otherside-world, Андрей Волков, осознанность, саморазвитие, трансформация, внутренний путь, Бдилка, Перелом, Схемокодер, психология, мышление, мироустройство, книги, ЛитРес, духовное развитие, личностный рост, практики, намерение, сознание" />
+<style>
+:root{--bg:#080d12;--panel:#101a22;--panel2:#14232c;--line:#2b414d;--text:#e5edf0;--muted:#9bb0ba;--mint:#8fdcc0;--gold:#e3c27a;--red:#e58d83;--blue:#91bde7;--radius:16px}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:radial-gradient(ellipse at 15% 0%,#152b36 0,transparent 42%),var(--bg);color:var(--text);font:16px/1.58 system-ui,-apple-system,"Segoe UI",sans-serif}
+a{color:var(--mint)}button,input{font:inherit}.wrap{width:min(1120px,100% - 32px);margin:auto;padding:30px 0 70px}
+.hero{padding:26px 28px;border:1px solid var(--line);border-radius:22px;background:linear-gradient(130deg,#13232d,#0d151c 70%);margin-bottom:20px}
+.eyebrow{color:var(--mint);text-transform:uppercase;letter-spacing:.15em;font-size:.75rem;font-weight:750}
+h1{font-size:clamp(2rem,5vw,3.4rem);line-height:1.08;margin:.4rem 0 1rem;letter-spacing:-.035em}h2{font-size:1.45rem;margin:0 0 12px}h3{font-size:1.05rem;margin:0 0 8px}p{margin:.45rem 0 .8rem}.lead{max-width:100%;color:#c2d1d7;font-size:1.05rem}
+.toolbar{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-top:20px}.btn{background:#1a303a;color:var(--text);border:1px solid #3c5a66;border-radius:10px;padding:9px 13px;cursor:pointer}.btn:hover{border-color:var(--mint)}.btn.primary{background:var(--mint);color:#0a1714;border-color:var(--mint);font-weight:700}
+.stats{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}.stat{border:1px solid var(--line);border-radius:10px;padding:8px 12px;color:var(--muted);font-size:.9rem}.stat strong{color:var(--text)}
+.grid{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:16px}.span-12{grid-column:span 12}.span-6{grid-column:span 6}.panel{border:1px solid var(--line);border-radius:var(--radius);background:rgba(16,26,34,.94);overflow:hidden}.panel-inner{padding:20px}
+.section-head{display:flex;gap:12px;align-items:center;justify-content:space-between;padding:18px 20px;background:#12212a;border-bottom:1px solid var(--line)}.section-head h2{margin:0}.section-head small{color:var(--muted)}
+details{border:1px solid var(--line);border-radius:14px;background:rgba(16,26,34,.9);margin:12px 0;overflow:hidden}details>summary{cursor:pointer;list-style:none;display:flex;align-items:center;gap:12px;padding:15px 18px;font-weight:700;background:#12212a}details>summary::-webkit-details-marker{display:none}details>summary::after{content:"＋";margin-left:auto;color:var(--mint);font-size:1.1rem}details[open]>summary::after{content:"−"}details .content{padding:17px 19px;border-top:1px solid var(--line)}
+.num{display:inline-grid;place-items:center;flex:0 0 30px;width:30px;height:30px;border-radius:9px;background:#203b43;color:var(--mint);font-size:.9rem}
+ul,ol{padding-left:1.3rem}li{margin:.35rem 0}.muted{color:var(--muted)}.note{border-left:3px solid var(--gold);padding:10px 13px;background:#241f16;color:#eadfc5;border-radius:0 9px 9px 0;margin:12px 0}.warning{border-left-color:var(--red);background:#281a1b;color:#f0d4d1}.tag{display:inline-block;border:1px solid #3c5963;border-radius:999px;padding:2px 9px;font-size:.78rem;color:var(--mint);white-space:nowrap}.tag.reuse{color:var(--gold);border-color:#6c5a34}.tag.buy{color:#b4d2f5;border-color:#3e5877}
+table{width:100%;border-collapse:collapse}th,td{text-align:left;vertical-align:top;padding:10px 11px;border-bottom:1px solid #293b44}th{color:var(--muted);font-size:.84rem;font-weight:650}tr:last-child td{border-bottom:0}.stone-table td:first-child{font-weight:700}.stone-table td:nth-child(2){color:var(--mint)}
+.steps{counter-reset:step;list-style:none;padding:0}.steps li{counter-increment:step;display:grid;grid-template-columns:34px 1fr;gap:10px;margin:0 0 12px}.steps li:before{content:counter(step);display:grid;place-items:center;width:30px;height:30px;background:#203b43;color:var(--mint);border-radius:9px;font-weight:750}
+.checkline{display:flex;gap:10px;align-items:flex-start;margin:9px 0}.checkline input{margin-top:6px;accent-color:var(--mint);width:17px;height:17px;flex-shrink:0}.checkline label{cursor:pointer}.checkline input:checked+label{color:#8ea49e;text-decoration:line-through}
+.progressbar{height:7px;background:#263740;border-radius:999px;overflow:hidden;margin:10px 0}.progressbar span{display:block;height:100%;width:0;background:var(--mint);transition:width .2s}
+.coin-controls{display:flex;gap:10px;flex-wrap:wrap;padding:14px 18px;border-bottom:1px solid var(--line)}.search{min-width:180px;flex:1;background:#091117;color:var(--text);border:1px solid var(--line);border-radius:10px;padding:10px 12px}.coin-month{margin:10px 14px}.coin-month>summary{padding:12px 14px}.coin-month .content{padding:0}.coin-row{display:grid;grid-template-columns:20px minmax(0,1fr) auto;gap:10px;align-items:start;padding:11px 15px;border-bottom:1px solid #23343d}.coin-row:last-child{border-bottom:0}.coin-row input{margin-top:5px;accent-color:var(--mint)}.coin-main{min-width:0}.coin-main strong{font-weight:650}.coin-sub{display:block;color:var(--muted);font-size:.86rem}.coin-row.checked .coin-main{opacity:.55;text-decoration:line-through}.empty{display:none;padding:16px;color:var(--muted)}
+.poles{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}.pole{border:1px solid var(--line);border-radius:12px;padding:12px}.swatch{width:100%;height:8px;border-radius:99px;margin-bottom:9px}.green{background:#3c9a6b}.red{background:#c74b4b}.black{background:#090b0d;border:1px solid #4b555b}.blue{background:#3568b7}
+footer{color:var(--muted);font-size:.85rem;margin-top:22px;padding:0 4px}.tiny{font-size:.85rem}.right{margin-left:auto}
+@media(max-width:760px){.wrap{width:min(100% - 20px,1120px);padding-top:10px}.hero{padding:20px 18px}.span-6{grid-column:span 12}.panel-inner{padding:15px}.poles{grid-template-columns:repeat(2,1fr)}table{font-size:.91rem}th,td{padding:8px 7px}.coin-row{grid-template-columns:18px minmax(0,1fr);gap:8px}.coin-row .tag{grid-column:2;justify-self:start}.section-head{padding:15px}.toolbar .btn{flex:1}}
+@media print{body{background:white;color:#111}.wrap{width:100%;padding:0}.hero,.panel,details{background:white;border-color:#bbb;color:#111}.muted,footer,th{color:#444}details{break-inside:avoid}details:not([open])>.content{display:block}.toolbar,.coin-controls,.progressbar{display:none}.coin-month{break-inside:avoid}.note,.warning{background:#f6f6f6;color:#111}}
+body {
+    min-height: 100vh;
+    margin: 0;
+    background: url("./modules/masterskaya.png") center center / cover no-repeat fixed;
+}.coin-main {
+  flex: 1;
+  cursor: pointer;
+}
+/* Кнопки фильтра монет */
+#showUnowned,
+#showAllCoins {
+  transition: background .2s, border-color .2s, color .2s, box-shadow .2s;
+}
+
+/* Активная кнопка */
+#showUnowned.active,
+#showAllCoins.active {
+  background: var(--mint);
+  color: #0a1714;
+  border-color: var(--mint);
+  font-weight: 700;
+  box-shadow: 0 0 10px rgba(143, 220, 192, .25);
+}
+.stone-table th:last-child,
+.stone-table td:last-child {
+    text-align: right;
+}
+.scroll-link {
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="hero">
+  <h1>Артефакт Изнаночки Мира</h1>
+  <div class="eyebrow">Практическая методичка сборки</div>
+  <p class="lead">Артефакт «Изнаночка мира» раскрывает истинный порядок вещей: как ни крути, а мироздание устроено вокруг человека, а не наоборот. После активации артефакта действительность начинает перестраиваться вокруг владельца, превращая его волю, решения и намерения в силу, способную возродить клан, открыть новые пути для его развития и изменить положение владельца в мироздании. Постепенно тот, кто прежде лишь наблюдал за происходящим, сам становится частью преобразований — точкой, вокруг которой начинает меняться привычный порядок вещей. А чтобы вся эта космологическая затея не закончилась сборкой чего-нибудь совершенно непредусмотренного, здесь собраны компоненты артефакта, соответствия камней и масел, перечень монет по месяцам и дням недели, а также последовательность сборки. Всё по порядку, без лишних загадок и с расчётом на то, что вселенная оценит проделанную работу. </p>
+  <div class="stats">
+    <div class="stat">Камней: <strong>12</strong></div>
+    <div class="stat">Масел: <strong>10</strong></div>
+    <div class="stat">Исторических монетных позиций: <strong>168</strong></div>
+    <button class="btn primary" id="openAll" style="display:none;">Развернуть разделы</button>
+    <button class="btn" id="closeAll" style="display:none;">Свернуть разделы</button>
+    <button class="btn" id="print" onclick="">Печать / сохранить PDF</button>
+    <button class="btn" id="resetChecks">Сбросить отметки</button>
+  </div>
+</header>
+
+<div class="grid">
+<section class="panel span-12">
+ <div class="section-head"><h2>1. Подготовка компонентов</h2><small>Отметки сохраняются в браузере</small></div>
+ <div class="panel-inner">
+  <div class="grid">
+   <div class="span-6">
+    <h3>Основа и оформление</h3>
+    <div class="checkline"><input type="checkbox" class="task-check" id="m1"><label for="m1">Круглая гипсовая платформа Ø25 см с бортиком 2 см</label></div>
+    <div class="checkline"><input type="checkbox" class="task-check" id="m2"><label for="m2">Небольшой контейнер 10x5 см</label></div>
+    <div class="checkline"><input type="checkbox" class="task-check" id="m11"><label for="m11">Зеркало с 30× увеличением Ø15 см</label></div>
+    <div class="checkline"><input type="checkbox" class="task-check" id="m5"><label for="m5">Клей</label></div>
+    <div class="checkline"><input type="checkbox" class="task-check" id="m7"><label for="m7">Акриловые краски: зелёный, красный, чёрный, синий, белый, жёлтый</label></div>
+    <div class="checkline"><input type="checkbox" class="task-check" id="m4"><label for="m4">Глянцевый акриловый лак</label></div>
+    <div class="checkline"><input type="checkbox" class="task-check" id="m3"><label for="m3">Две кисточки</label></div>
+    <div class="checkline"><input type="checkbox" class="task-check" id="m6"><label for="m6">Твёрдый пластилин</label></div>
+    <div class="checkline"><input type="checkbox" class="task-check" id="m18"><label for="m18">Небольшая прищепка с присоской (вертикальная)</label></div>
+	<div class="checkline"><input type="checkbox" class="task-check" id="m19"><label for="m19">Сетевой удлинитель 220В (если розетка будет находиться далеко от места установки артефакта) и/или сетевой USB-адаптер питания (если нужен для DDS-генератора)</label></div>
+
+   </div>
+   <div class="span-6">
+    <h3>Действующие элементы и окружение</h3>
+    <div class="checkline"><input type="checkbox" class="task-check" id="m8"><label for="m8">Четыре «забытых вещи Перелома» — например, четыре мешочка от разных камней</label></div>
+    <div class="checkline"><input type="checkbox" class="task-check" id="m9"><label for="m9">Кусочек палочки Пало Санто</label></div>
+    <div class="checkline"><input type="checkbox" class="task-check" id="m10"><label for="m10">Очин (часть основания) вороньего пера</label></div>
+    <div class="checkline"><input type="checkbox" class="task-check" id="m12"><label for="m12">Камни Перелома (<a href="#section-3" class="scroll-link" onclick="scrollToElement('section-3'); return false;">см. раздел 3</a>)</label></div>
+    <div class="checkline"><input type="checkbox" class="task-check" id="m13"><label for="m13">Исторические монеты на каждый день недели каждого месяца (<a href="#section-5" class="scroll-link" onclick="scrollToElement('section-5'); return false;">см. раздел 5</a>)</label></div>
+    <div class="checkline"><input type="checkbox" class="task-check" id="m14"><label for="m14">Действующие монеты 8-ми стран, с которыми предполагается взаимодействие</label></div>
+    <div class="checkline"><input type="checkbox" class="task-check" id="m15"><label for="m15">Масла для камней (<a href="#section-3" class="scroll-link" onclick="scrollToElement('section-3'); return false;">см. раздел 3</a>)</label></div>
+    <div class="checkline"><input type="checkbox" class="task-check" id="m17"><label for="m17">DDS-генератор сигналов с поддержкой синусоидального сигнала частотой 7914Гц и плоской спиральной катушкой-индуктором</label></div>
+    <div class="checkline"><input type="checkbox" class="task-check" id="m16"><label for="m16">Компас с вращающимся лимбом</label></div>
+    <div class="checkline"><input type="checkbox" class="task-check" id="m20"><label for="m20">Жёлтый меловой маркер + микрофиба</label></div>
+   </div>
+  </div>
+ </div>
+</section>
+
+<section class="panel span-12">
+ <div class="section-head"><h2>2. Последовательность сборки</h2><small>Выполнять по порядку</small></div>
+ <div class="panel-inner">
+  <div class="progressbar"><span id="taskProgress"></span></div><div class="tiny muted" id="taskProgressText">Отмечено 0 действий</div>
+  <ol class="steps">
+   <li><div><strong>Подготовить платформу.</strong><br>Платформа должна представлять собой круглую поверхность достаточного диаметра для размещения всех элементов: в центре — контейнер, по бокам от него — кусочек палочки Пало Санто и очин вороньего пера, вокруг них — камни, а вокруг камней — монеты. </div></li>
+   <li><div><strong>Подготовить контейнер.</strong><br>Поместить внутрь контейнера четыре «забытых вещи Перелома» — например четырёх мешочков от разных камней, плотно закрыть склеив места стыков, покрасить жёлтой акриловой краской, затем покрыть двумя слоями глянцевого акрилового лака.</div></li>
+   <li><div><strong>Закрепить контейнер.</strong><br>Приклеить контейнер в центре платформы.</div></li>
+   <li><div><strong>Отцентрировать зеркало на контейнере.</strong><br>Приклейте зеркало к верхней поверхности контейнера, предварительно выверив его положение так, чтобы центр зеркала точно совпадал с центром платформы.</div></li>
+   <li><div><strong>Приклеить кусочек палочки Пало Санто.</strong><br>Она задаёт восточный вектор Лунного камня. Разместить ближе к контейнеру, выберите наибольшую сторону контейнера и приклейте вровень центра выбранной стороны контейнера.</div></li>
+   <li><div><strong>Закрепить очин пера.</strong><br>На стороне контейнера, противоположной приклеенного Пало Санто, приклейте очин вороньего пера ближе к контейнеру. Он будет задавать западный сектор Снежного обсидиана.</div></li>
+   <li><div><strong>Разложить камни по кругу в лунной последовательности.</strong><br>Ориентир - у Пало Санто размещается Лунный камень. Камни размещайте по средней окружности платформы в часовой последовательности отмеченном попунктно в <a href="#section-3" class="scroll-link" onclick="scrollToElement('section-3'); return false;">3-м разделе</a>. Размерьте одинаковый отступ между центрами камней.</div></li>
+   <li><div><strong>Закрепить монеты по периферии.</strong><br>Приклейте по внешнему периметру камней исторические монеты из месячного перечня по одной из дня недели (повторы считать уже имеющимися) и действующие деньги восьми стран, с которыми предполагается взаимодействие. Определить какие страны вам подходят для кланового развития можно через инструменты Перелома и Бдилки  (<a target="_blank" href="https://otherside-world.ru/" class="scroll-link">см. инструменты коррекции симуляции</a>).</div></li>
+   <li><div><strong>Нанести масла.</strong><br>По одной капле соответствующего масла отмеченном в <a href="#section-3" class="scroll-link" onclick="scrollToElement('section-3'); return false;">3-м разделе</a> на каждый из десяти камней. Для шунгита масла нет, оставить как есть.</div></li>
+   <li><div><strong>Закрепите прищепку с присоской.</strong><br>Закрепите прищепку на корпусе платформы напротив середины камня Селенит. Прикрепите к прищепке присоску так, чтобы компас располагался на ней строго горизонтально. Отметьте на присоске линию, проходящую через центр камня Селенит, это поможет быстро определять направление статического севера у артефакта. Зафиксируйте конструкцию клеем.</div></li>
+   <li><div><strong>Соединить элементы пластилином.</strong><br>Заполнить пластилином места расположения монет, прищепки, участки вокруг камней и нижнюю часть зеркала, сформировав связующую цепь между элементами.</div></li>
+   <li><div><strong>Окрасить пластилин по зонам.</strong><br>Восток — зелёный (Лунный камень находится посередине зелёной тройки); далее по часовой стрелке: юг — красный, запад — чёрный, север — синий. Боковые поверхности и поддон окрасить белым. Прищепку только снизу покрасить, в местах контакта с платформой.</div></li>
+   <li><div><strong>Защитить окрашенные поверхности.</strong><br>Покрыть краску двумя слоями глянцевого акрилового лака. Приготовьтесь что это затянется, наносите слои очень тонко и ожидайте полного высыхания.</div></li>
+   <li><div><strong>Закрепить катушку-индуктор.</strong><br>Приклеить плоскую спиральную катушку-индуктор к нижней стороне платформы и подключить её к DDS-генератору.</div></li>
+   <li><div><strong>Сориентировать артефакт.</strong><br>Направить артефакт на особый север ориентируясь по северу лимба у компаса (<a href="#section-6" class="scroll-link" onclick="scrollToElement('section-6'); return false;">см. раздел 6</a>).</div></li>
+   <li><div><strong>Запуск генератора.</strong><br>Подключить DSS-генератор к электросети, при необходимости используя сетевой удлинитель. Включить генератор и настроить его на синусоидальный сигнал частотой <b>7914 Гц</b>. Генератор сформирует приманочную оболочку для привлечения внеземных за-разумников, которая послужит основой для выстраивания ими матриархальной системы. Отключать генератор только при необходимости проверить ориентировку по компасу.</div></li>
+   <li>
+  <div>
+    <strong>Задать режим работы.</strong><br>
+    Жёлтым меловым маркером нанесите на зеркало черти, соответствующие выбранному режиму работы артефакта (<a href="#section-7" class="scroll-link" onclick="scrollToElement('section-7'); return false;">см. раздел 7</a>). Рекомендуемое количество — до восьми чертей одновременно, нанося их поочерёдно с проработкой каждой. Подбор осуществляется интуитивно, исходя из собственных ощущений. При необходимости нанесённые черти можно стереть применяя микрофибу.
+  </div>
+</li>
+  </ol>
+ </div>
+</section>
+
+<section class="panel span-6" id="section-3">
+ <div class="section-head"><h2>3. Камни (по часовой) и масла</h2></div>
+ <div class="panel-inner">
+  <div style="overflow-x:auto">
+  <table class="stone-table">
+   <thead>
+    <tr><th>№</th><th>Камень</th><th>Цвет</th><th>Масло</th></tr>
+   </thead>
+   <tbody>
+    <tr><td>1</td><td style="color:#55e88a;font-weight:700;text-shadow:0 0 6px #aaa">Лунный камень</td><td>Зел.</td><td>Жасмин</td></tr>
+    <tr><td>2</td><td style="color:#55e88a;font-weight:700;text-shadow:0 0 6px #aaa">Соколиный глаз</td><td>Зел.</td><td>Можжевельник</td></tr>
+    <tr><td>3</td><td style="color:#ff687b;font-weight:700;text-shadow:0 0 6px #aaa">Диопсид</td><td>Красн.</td><td>Ветивер</td></tr>
+    <tr><td>4</td><td style="color:#ff687b;font-weight:700;text-shadow:0 0 6px #aaa">Аметрин</td><td>Красн.</td><td>Лотос</td></tr>
+    <tr><td>5</td><td style="color:#ff687b;font-weight:700;text-shadow:0 0 6px #aaa">Лабрадорит</td><td>Красн.</td><td>Мирра</td></tr>
+    <tr><td>6</td><td style="color:#000;font-weight:700;text-shadow:0 0 6px #aaa">Родохрозит</td><td>Чёрн.</td><td>Роза дамасская</td></tr>
+    <tr><td>7</td><td style="color:#000;font-weight:700;text-shadow:0 0 6px #aaa">Снежный обсидиан</td><td>Чёрн.</td><td>Пачули</td></tr>
+    <tr><td>8</td><td style="color:#000;font-weight:700;text-shadow:0 0 6px #aaa">Пейзажная яшма</td><td>Чёрн.</td><td>Сандаловое дерево</td></tr>
+    <tr><td>9</td><td style="color:#69b5ff;font-weight:700;text-shadow:0 0 6px #aaa">Хиастолит</td><td>Син.</td><td>Ирис</td></tr>
+    <tr><td>10</td><td style="color:#69b5ff;font-weight:700;text-shadow:0 0 6px #aaa">Селенит</td><td>Син.</td><td>Ладан</td></tr>
+    <tr><td>11</td><td style="color:#69b5ff;font-weight:700;text-shadow:0 0 6px #aaa">Шунгит</td><td>Син.</td><td>-нет-</td></tr>
+    <tr><td>12</td><td style="color:#55e88a;font-weight:700;text-shadow:0 0 6px #aaa">Шунгит</td><td>Зел.</td><td>-нет-</td></tr>
+   </tbody>
+  </table>
+  </div>
+ </div>
+</section>
+
+<section class="panel span-6" id="section-4">
+ <div class="section-head"><h2>4. Цветовые зоны</h2></div>
+ <div class="panel-inner">
+  <div class="poles">
+   <div class="pole"><div class="swatch green"></div><strong>Восток</strong><p class="tiny">Зелёный</p><p class="tiny muted">Пало Санто указывает на Лунный камень — средний в тройке.</p></div>
+   <div class="pole"><div class="swatch red"></div><strong>Юг</strong><p class="tiny">Красный</p><p class="tiny muted">Следующая тройка по часовой стрелке.</p></div>
+   <div class="pole"><div class="swatch black"></div><strong>Запад</strong><p class="tiny">Чёрный</p><p class="tiny muted">Сектор Снежного обсидиана и очина пера рядом с ним.</p></div>
+   <div class="pole"><div class="swatch blue"></div><strong>Север</strong><p class="tiny">Синий</p><p class="tiny muted">Четвёртая тройка по часовой стрелке.</p></div>
+  </div>
+  <p><strong>Белый цвет:</strong> боковая поверхность и поддон.</p>
+  <p><strong>Рекомендация:</strong> акриловую краску наноси тонкими слоями, просушивая при 20–25 °C. После полного высыхания краски нанеси 2 слоя глянцевого акрилового лака. Температура нанесения и сушки лака — такая же, как для краски. Обеспечь умеренную вентиляцию без прямого обдува поверхности. Учитывай, что лак может оставаться липким и не высыхать даже спустя неделю. Не наноси следующие слои и не эксплуатируй изделие, пока покрытие не высохнет. Днище платформы окрашивается и лакируется отдельно по той же технологии.</p>
+ </div>
+</section>
+
+<section class="panel span-12" id="coinsPanel" id="section-5">
+ <div class="section-head"><h2>5. Исторические монеты по месяцам</h2><small>12 месяцев · 14 позиций на месяц</small></div>
+ <div class="coin-controls">
+  <input class="search" type="search" id="coinSearch" placeholder="Поиск страны, монеты, года или месяца…" aria-label="Поиск монет">
+  <button class="btn" id="showUnowned">Показать неотмеченные</button>
+  <button class="btn" id="showAllCoins">Показать все</button>
+ </div>
+ <div class="panel-inner" style="padding:8px 0">
+  <p class="muted tiny" style="padding:0 18px">Соберите по одной монете на каждый месяц и день недели. Если монета отмечена как повтор и соответствующая монета уже есть в коллекции, её можно считать собранной — дополнительная покупка не требуется, а галочку можно считать поставленной. Отметки на собранных монетах сохраняются в этом браузере.</p>
+  
+   <div class="note">Внимание! Список монет ещё не полностью проверен и может корректироваться с учётом реалий российского рынка. Окончательное решение будет опубликовано в <a href="https://t.me/otherside_world">Telegram-группе</a>.</div>
+  <div id="coinMonths"></div>
+  <div id="coinEmpty" class="empty">По этому запросу ничего не найдено.</div>
+ </div>
+</section>
+
+<section class="panel span-12" id="section-6">
+ <div class="section-head"><h2>6. Позиция артефакта</h2></div>
+ <div class="panel-inner">
+  
+  <p class="muted">Для позиционирования артефакта используется компас с вращающимся лимбом: поверните лимб так, чтобы его отметка N оказалась на 129° внешней шкалы (почти на юго-востоке, с отклонением на 6°), и зафиксируйте лимб клеем. Если нужный угол трудно определить по делениям, воспользуйтесь распечатанным шаблоном на 360° с разметкой по градусам. Положите компас на присоску артефакта, совместите статичные отметки севера на корпусах артефакта и компаса и вращайте артефакт, пока отметка N на лимбе не совпадёт с северным концом магнитной стрелки.<br><br>После настройки артефакта компас не становится ненужной безделушкой: помимо ориентирования на особый север, он продолжает работать уже с хозяином, последовательно выводя его из присутствия в обитание, из обитания в нахождение, из нахождения в своё исконое местоположение — что прилично расширяет кругозор привычного восприятия. Поэтому не удивляйтесь, если окажетесь в другой ветке вероятности мироздания, где люди из вашего окружения пошли по совершенно иному пути развития, а привычный мир сложился совсем иначе, к которому теперь придётся привыкать по новому, и в том числе проверять и корректировать новую позицию артефакта.</p>
+ </div>
+</section>
+
+
+
+<!-- 7. Режимы работы -->
+
+<style>
+/* 7. Режимы работы */
+#modeTypes {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin: 20px 0;
+}
+
+#modeTypes button {
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+}
+
+.mode-type,
+.mode-chert {
+  border: 1px solid rgba(143,220,192,.2);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.mode-type-button,
+.mode-chert-button {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  width: 100%;
+  text-align: left;
+  background: transparent;
+  border: 0;
+  padding: 13px 15px;
+}
+
+.mode-type-button:hover,
+.mode-chert-button:hover,
+.mode-type-button.active,
+.mode-chert-button.active {
+  background: rgba(143,220,192,.07);
+}
+
+.mode-type-button strong {
+  color: var(--mint);
+}
+
+.mode-count {
+  color: var(--mint);
+  opacity: .7;
+  font-size: .85em;
+}
+
+.mode-arrow {
+  flex-shrink: 0;
+  color: var(--mint);
+  font-size: 1.25em;
+  transition: transform .2s ease;
+}
+
+.mode-type.open > .mode-type-button .mode-arrow,
+.mode-chert.open > .mode-chert-button .mode-arrow {
+  transform: rotate(90deg);
+}
+
+.mode-type-content,
+.mode-chert-content {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows .25s ease;
+}
+
+.mode-type.open > .mode-type-content,
+.mode-chert.open > .mode-chert-content {
+  grid-template-rows: 1fr;
+}
+
+.mode-type-content-inner,
+.mode-chert-content-inner {
+  min-height: 0;
+  overflow: hidden;
+}
+
+.mode-type-content-inner {
+  padding: 0 12px;
+}
+
+.mode-type.open > .mode-type-content > .mode-type-content-inner {
+  padding-bottom: 12px;
+}
+
+.mode-type-description {
+  margin: 12px 3px;
+}
+
+.mode-chert {
+  margin-top: 7px;
+  border-color: rgba(143,220,192,.13);
+}
+
+.mode-chert-button {
+  padding: 10px 12px;
+}
+
+.mode-chert-button strong {
+  font-weight: 500;
+}
+
+.mode-chert-animal {
+  margin-left: auto;
+  color: var(--mint);
+  opacity: .7;
+  font-size: .85em;
+  text-align: right;
+}
+
+.mode-chert-details {
+  padding: 0 12px 14px;
+}
+
+.mode-chert-details[hidden] {
+  display: none;
+}
+
+.mode-chert-details img {
+  display: block;
+  width: 100%;
+  max-width: 420px;
+  max-height: 420px;
+  object-fit: contain;
+  margin: 16px 0 14px;
+  border-radius: 9px;
+  box-shadow:
+    0 0 12px rgba(143, 220, 192, .18),
+    0 0 28px rgba(100, 170, 255, .10),
+    0 0 45px rgba(143, 220, 192, .06);
+}
+
+.mode-chert-details p {
+  margin: 8px 0;
+  line-height: 1.6;
+}
+
+.mode-energy {
+  margin-top: 20px;
+}
+
+@media (max-width: 600px) {
+  .mode-type-button {
+    padding: 12px;
+  }
+
+  .mode-chert-animal {
+    font-size: .78em;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mode-type-content,
+  .mode-chert-content,
+  .mode-arrow {
+    transition: none;
+  }
+}
+</style>
+
+<section class="panel span-12" id="section-7">
+  <div class="section-head">
+    <h2>7. Режимы работы</h2>
+  </div>
+
+  <div class="panel-inner">
+
+<p class="muted">
+  Артефакт обладает различными режимами работы, которые можно настраивать через зеркало, нанося на его поверхность специальные знаки — черти. Каждый знак задаёт определённый принцип воздействия на развитие клана, влияя на характер происходящих изменений, их направление и масштаб.
+</p>
+
+<p class="muted">
+  Система включает четыре уровня чертей, различающихся энергетическими требованиями. Младшие отвечают за отдельные аспекты развития клана, старшие определяют характер процессов, главные задают их направление, а заглавный охватывает развитие в целом. При выборе чертя необходимо соотносить её уровень с собственными возможностями и способностью обеспечить необходимую энергией работу артефакта. Оценка этих возможностей формируется практическим путём, по мере накопления опыта и участников клана. Если поддержание выбранного режима оказывается не по силам, чертя следует стереть.
+</p>
+
+    <div id="modeTypes"></div>
+
+
+  </div>
+</section>
+
+<script>
+function scrollToElement(id, offset = 20) {
+    const element = document.getElementById(id);
+    if (!element) return;
+
+    const top = element.getBoundingClientRect().top + window.pageYOffset - offset;
+
+    window.scrollTo({
+        top: top,
+        behavior: 'smooth'
+    });
+}
+(function () {
+  var cherti = [
+    {
+      type: 'Младшие',
+      description: 'Обеспечивают настройку отдельных аспектов воздействия.',
+      items: [
+        ['Предусмотрительность','Паук','Делаю, не делая'],
+        ['Продуманность','Лошадь','Это чтобы не упал'],
+        ['Слава','Золотая рыбка','Со мной будет везти'],
+        ['Осторожность','Сорока','Надо заботиться о будущем поколении'],
+        ['Обобщение','Сверчок','Как здорово, что вместе мы здесь сегодня собрались'],
+        ['Обеспеченность','Крот','Нельзя отворачиваться от семьи, даже если она отвернулась от тебя'],
+        ['Стабилизация','Скарабей','Никто не знает, что будет завтра'],
+        ['Примирение','Креветка','Один в поле не воин'],
+        ['Щедрость','Щука','Со мной всё получится'],
+        ['Укрытие','Краб','Попадут туда, где нас нет'],
+        ['Единство','Крокодил','Для кого живёшь — того и кормишь'],
+        ['Расторопность','Колорадский жук','Ложи всё по правильным местам'],
+        ['Озарение','Сокол','Это и трагедия, и комедия'],
+        ['Состоятельность','Бобёр','Жизнь хороша, когда пьёшь не спеша'],
+        ['Сноровка','Лемур','Где только не пропадала наша смышлёность'],
+        ['Пресечение','Сова','Мелочей не бывает'],
+        ['Обособленность','Скорпион','Быть там, где нас не ждут'],
+        ['Автономность','Улитка','Всё наше при себе'],
+        ['Насыщение','Муравей','Принять, чтобы дать'],
+        ['Безопасность','Оса','Мы не уступали и никогда не будем уступать'],
+        ['Меткость','Горный козёл','Глаз — алмаз'],
+        ['Корректировка','Лягушка','Вкладывай средства туда, где окупаемо'],
+        ['Сохранность','Лебедь','Будет ещё'],
+        ['Галантность','Волк','Когда человек целеустремлён, тогда и начинает чего-то добиваться'],
+        ['Симпатия','Голубь','Всё восполнимо'],
+        ['Милота','Заяц','Работать надо по касательной'],
+        ['Приличие','Орангутанг','Делитесь только с друзьями'],
+        ['Дальновидность','Ягуар','Предвкушение покажет, где твоё'],
+        ['Становление','Щегол','Опора — наше всё'],
+        ['Обновление','Снегирь','Только замена']
+      ]
+    },
+    {
+      type: 'Старшие',
+      description: 'Определяют характер и особенности воздействия.',
+      items: [
+        ['Ответственность','Моллюск','Хорошо жить не запретишь'],
+        ['Дружелюбность','Стрекоза','Попутной волны вам'],
+        ['Облегчение','Слон','Шёл-шёл, да нашёл'],
+        ['Очарование','Бабочка','Какое нам дело до других']
+      ]
+    },
+    {
+      type: 'Главные',
+      description: 'Определяют направление происходящего, задают ориентир и удерживают выбранный путь.',
+      items: [
+        ['Путеводитель','Олень','Дарить подарки — это прекрасно!'],
+        ['Предводитель','Тигр','Никого над нами']
+      ]
+    },
+    {
+      type: 'Заглавный',
+      description: 'Высший уровень работы с историей событий и причинно-следственными связями.',
+      items: [
+        ['Посредственность','Белый гриб','Хорошо тогда, когда встречают там, куда ты растёшь']
+      ]
+    }
+  ];
+
+  var root = document.getElementById('modeTypes');
+  if (!root) return;
+
+  function element(tag, className, text) {
+    var node = document.createElement(tag);
+    if (className) node.className = className;
+    if (text !== undefined) node.textContent = text;
+    return node;
+  }
+
+  function imagePath(name) {
+    return './modules/cherti/' + name
+      .replace(/ё/g, 'е')
+      .replace(/[^a-zа-я0-9]+/gi, '_')
+      .replace(/^_|_$/g, '') + '.jpg';
+  }
+
+  function closeChert(chert) {
+    chert.classList.remove('open');
+
+    var button = chert.querySelector('.mode-chert-button');
+    var details = chert.querySelector('.mode-chert-details');
+
+    button.classList.remove('active');
+    button.setAttribute('aria-expanded', 'false');
+    details.hidden = true;
+  }
+
+  function closeType(type) {
+    type.classList.remove('open');
+
+    var button = type.querySelector('.mode-type-button');
+    button.classList.remove('active');
+    button.setAttribute('aria-expanded', 'false');
+
+    type.querySelectorAll('.mode-chert.open').forEach(closeChert);
+  }
+
+  cherti.forEach(function (group) {
+    var type = element('div', 'mode-type');
+
+    var typeButton = element('button', 'mode-type-button');
+    typeButton.type = 'button';
+    typeButton.setAttribute('aria-expanded', 'false');
+
+    var heading = element('span');
+    heading.appendChild(element('strong', '', group.type));
+    heading.appendChild(
+      element('span', 'mode-count',
+        ' · ' + group.items.length + ' ' +
+        (group.items.length === 1 ? 'черть' :
+         group.items.length < 5 ? 'черти' : 'чертей'))
+    );
+
+    typeButton.appendChild(heading);
+    typeButton.appendChild(element('span', 'mode-arrow', '›'));
+
+    var typeContent = element('div', 'mode-type-content');
+    var typeInner = element('div', 'mode-type-content-inner');
+
+    typeInner.appendChild(
+      element('p', 'muted mode-type-description', group.description)
+    );
+
+    group.items.forEach(function (item) {
+      var chert = element('div', 'mode-chert');
+
+      var chertButton = element('button', 'mode-chert-button');
+      chertButton.type = 'button';
+      chertButton.setAttribute('aria-expanded', 'false');
+
+      chertButton.appendChild(element('strong', '', item[0]));
+      chertButton.appendChild(
+        element('span', 'mode-chert-animal', item[1])
+      );
+      chertButton.appendChild(element('span', 'mode-arrow', '›'));
+
+      var chertContent = element('div', 'mode-chert-content');
+      var chertInner = element('div', 'mode-chert-content-inner');
+      var details = element('div', 'mode-chert-details');
+      details.hidden = true;
+
+      var img = document.createElement('img');
+      img.src = imagePath(item[0]);
+      img.alt = 'Черть «' + item[0] + '»';
+      img.loading = 'lazy';
+
+      img.onerror = function () {
+        img.style.display = 'none';
+      };
+
+      var modeText = element('p');
+      modeText.appendChild(element('strong', '', 'Режим работы: '));
+      modeText.appendChild(
+        document.createTextNode('«' + item[2] + '»')
+      );
+
+      var animalText = element(
+        'p', 'muted', 'Наличие в природе: ' + item[1]
+      );
+
+      details.appendChild(img);
+      details.appendChild(modeText);
+      details.appendChild(animalText);
+
+      chertInner.appendChild(details);
+      chertContent.appendChild(chertInner);
+      chert.appendChild(chertButton);
+      chert.appendChild(chertContent);
+
+      chertButton.addEventListener('click', function () {
+        var shouldOpen = !chert.classList.contains('open');
+
+        type.querySelectorAll('.mode-chert.open').forEach(closeChert);
+
+        if (shouldOpen) {
+          chert.classList.add('open');
+          chertButton.classList.add('active');
+          chertButton.setAttribute('aria-expanded', 'true');
+          details.hidden = false;
+        }
+      });
+
+      typeInner.appendChild(chert);
+    });
+
+    typeContent.appendChild(typeInner);
+    type.appendChild(typeButton);
+    type.appendChild(typeContent);
+
+    typeButton.addEventListener('click', function () {
+      var shouldOpen = !type.classList.contains('open');
+
+      root.querySelectorAll('.mode-type.open').forEach(closeType);
+
+      if (shouldOpen) {
+        type.classList.add('open');
+        typeButton.classList.add('active');
+        typeButton.setAttribute('aria-expanded', 'true');
+      }
+    });
+
+    root.appendChild(type);
+  });
+})();
+</script>
+
+
+
+</div>
+<footer><center>Источник материалов: <a href="https://www.litres.ru/73084133/">«Иноагенты Бытия»</a>, <a href="https://www.litres.ru/72117967/">«Перелом Тетради Смерти»</a> и <a href="https://www.litres.ru/71113513/">«Бдилка за Пасьянсом Медичи»</a>.<br><br><a href="https://otherside-world.ru/">Другие проекты</a></center></footer>
+</div>
+<script>
+const coinData = [{"name": "Январь", "entries": ["Воскресенье: СССР — 1 копейка, 1924", "Воскресенье: Австралия — 1 пенни, 1911", "Понедельник: Германская империя — 1 пфенниг, 1874", "Понедельник: Франция — 5 сантимов, 1898", "Вторник: Италия — 1 чентезимо, 1861", "Вторник: Польша — 50 грошей, 1923", "Среда: Бельгия — 10 сантимов, 1861", "Среда: Нидерланды — 1 цент, 1877", "Четверг: Финляндия — 5 пенни, 1916", "Четверг: Швеция — 1 эре, 1934", "Пятница: Дания — 10 эре, 1874", "Пятница: Норвегия — 2 эре, 1876", "Суббота: Австрия — 10 грошен, 1959", "Суббота: Венгрия — 10 филлеров, 1894"]}, {"name": "Февраль", "entries": ["Воскресенье: Португалия — 1 рейс, 1892", "Воскресенье: Испания — 1 сентимо, 1870", "Понедельник: Османская империя — 1 куруш, 1844", "Понедельник: Греция — 1 лептон, 1869", "Вторник: Мексика — 1 сентаво, 1890", "Вторник: Аргентина — 1 сентаво, 1884", "Среда: Бразилия — 1 рейс, 1895", "Среда: Чили — 1 сентаво, 1895", "Четверг: Перу — 1 сентаво, 1880", "Четверг: Колумбия — 1 сентаво, 1863", "Пятница: Япония — 1 сен, 1870", "Пятница: Китай — 1 фэнь, 1930", "Суббота: Гондурас — 1 сентаво, 1883", "Суббота: Никарагуа — 1 сентаво, 1880"]}, {"name": "Март", "entries": ["Воскресенье: Египет — 1 миллием, 1907", "Воскресенье: Южная Африка — 1 пенни, 1923", "Понедельник: Британская Индия — 1 пайс/пайс (pice), 1835", "Понедельник: Пакистан — 1 пайс (pice), 1948", "Вторник: Ирландское Свободное государство — 1 пенни, 1928", "Вторник: Шотландия — 1 фартинг, 1797", "Среда: Новая Зеландия — 1 пенни, 1933", "Среда: Стрейтс-Сеттлментс (Сингапур) — 1 цент, 1887", "Четверг: Британская Малайя — 1 цент, 1939", "Четверг: Гонконг — 1 цент, 1863", "Пятница: Бельгийское Конго — 1 сантим, 1906", "Пятница: Родезия — 1 цент, 1964", "Суббота: Люксембург — 1 сантим, 1881", "Суббота: Швейцария — 1 раппен, 1850"]}, {"name": "Апрель", "entries": ["Воскресенье: Нидерландская Ост-Индия — 1 цент, 1860", "Воскресенье: Индонезия — 1 рупия, 1945", "Понедельник: Северный Вьетнам — 1 донг, 1946", "Понедельник: Таиланд/Сиам — 1 сатанг, 1908", "Вторник: Бирма — 1 пья, 1952", "Вторник: Камбоджа — 1 сантим, 1860", "Среда: Лаос — 1 атт, 1952", "Среда: Филиппины — 1 сентаво, 1903", "Четверг: Суринам — 1 цент, 1892", "Четверг: Британская Гвиана — 1 цент, 1891", "Пятница: Гондурас — можно не покупать, если уже есть в феврале, в субботу", "Пятница: Никарагуа — можно не покупать, если уже есть в феврале, в субботу", "Суббота: Коста-Рика — 1 сентимо, 1897", "Суббота: Сальвадор — 1 сентаво, 1892"]}, {"name": "Май", "entries": ["Воскресенье: Гватемала — 1 сентаво, 1881", "Воскресенье: Панама — 1 сентесимо, 1904", "Понедельник: Доминиканская Республика — 1 сентаво, 1897", "Понедельник: Куба — 1 сентаво, 1915", "Вторник: Багамские острова — 1 цент, 1966", "Вторник: Барбадос — 1 цент, 1966", "Среда: Ямайка — 1 пенни, 1869", "Среда: Тринидад и Тобаго — 1 цент, 1966", "Четверг: Бермуды — 1 цент, 1970", "Четверг: Гренада — 25 центов Восточно-Карибских государств, 1965", "Пятница: Сент-Люсия — 5 центов Восточно-Карибских государств, 1955", "Пятница: Сент-Винсент и Гренадины — 2 цента Восточно-Карибских государств, 1957", "Суббота: Антигуа — 2 цента Восточно-Карибских государств, 1995", "Суббота: Доминика — 10 центов Восточно-Карибских государств, 1956"]}, {"name": "Июнь", "entries": ["Воскресенье: Гаити — 1 сантим, 1881", "Воскресенье: Белиз — 1 цент Британского Гондураса, 1894", "Понедельник: Мальта — 1 миллим, 1972", "Понедельник: Мальдивы — 1 лари, 1960", "Вторник: Непал — 1 пайса, 1955", "Вторник: Цейлон (Шри-Ланка) — 1 цент, 1892", "Среда: Бутан — 1 четрум, 1974", "Среда: Тибет — 1 сре, 1910", "Четверг: Монголия — 1 мунгу, 1925", "Четверг: Китай — можно не покупать, если уже есть в феврале, в пятницу", "Пятница: Корейское королевство — 1 чон, 1902", "Пятница: Мексика — можно не покупать, если уже есть в феврале, во вторник", "Суббота: Япония — можно не покупать, если уже есть в феврале, в пятницу", "Суббота: Гондурас — можно не покупать, если уже есть в феврале, в субботу"]}, {"name": "Июль", "entries": ["Воскресенье: Гондурас — можно не покупать, если уже есть в феврале, в субботу", "Воскресенье: Мексика — можно не покупать, если уже есть в феврале, во вторник", "Понедельник: Бразилия — можно не покупать, если уже есть в феврале, в среду", "Понедельник: Аргентина — можно не покупать, если уже есть в феврале, во вторник", "Вторник: Чили — можно не покупать, если уже есть в феврале, в среду", "Вторник: Перу — можно не покупать, если уже есть в феврале, в четверг", "Среда: Колумбия — можно не покупать, если уже есть в феврале, в четверг", "Среда: Венесуэла — 1 сентаво, 1897", "Четверг: Эквадор — 1 сентаво, 1884", "Четверг: Боливия — 1 сентаво, 1893", "Пятница: Парагвай — 1 сентаво, 1870", "Пятница: Уругвай — 1 сентесимо, 1869", "Суббота: Доминиканская Республика — можно не покупать, если уже есть в мае, в понедельник", "Суббота: Куба — можно не покупать, если уже есть в мае, в понедельник"]}, {"name": "Август", "entries": ["Воскресенье: Нидерланды — можно не покупать, если уже есть в январе, в среду", "Воскресенье: Бельгия — можно не покупать, если уже есть в январе, в среду", "Понедельник: Франция — можно не покупать, если уже есть в январе, в понедельник", "Понедельник: Германская империя — можно не покупать, если уже есть в январе, в понедельник", "Вторник: Швейцария — можно не покупать, если уже есть в марте, в субботу", "Вторник: Австрия — можно не покупать, если уже есть в январе, в субботу", "Среда: Венгрия — можно не покупать, если уже есть в январе, в субботу", "Среда: Дания — можно не покупать, если уже есть в январе, в пятницу", "Четверг: Норвегия — можно не покупать, если уже есть в январе, в пятницу", "Четверг: Швеция — можно не покупать, если уже есть в январе, в четверг", "Пятница: Финляндия — можно не покупать, если уже есть в январе, в четверг", "Пятница: Италия — можно не покупать, если уже есть в январе, во вторник", "Суббота: Польша — можно не покупать, если уже есть в январе, во вторник", "Суббота: Португалия — можно не покупать, если уже есть в феврале, в воскресенье"]}, {"name": "Сентябрь", "entries": ["Воскресенье: Ирландское Свободное государство — можно не покупать, если уже есть в марте, во вторник", "Воскресенье: Шотландия — можно не покупать, если уже есть в марте, во вторник", "Понедельник: Новая Зеландия — можно не покупать, если уже есть в марте, в среду", "Понедельник: Стрейтс-Сеттлментс (Сингапур) — можно не покупать, если уже есть в марте, в среду", "Вторник: Британская Малайя — можно не покупать, если уже есть в марте, в четверг", "Вторник: Гонконг — можно не покупать, если уже есть в марте, в четверг", "Среда: Бельгийское Конго — можно не покупать, если уже есть в марте, в пятницу", "Среда: Родезия — можно не покупать, если уже есть в марте, в пятницу", "Четверг: Люксембург — можно не покупать, если уже есть в марте, в субботу", "Четверг: Швейцария — можно не покупать, если уже есть в марте, в субботу", "Пятница: Нидерландская Ост-Индия — можно не покупать, если уже есть в апреле, в воскресенье", "Пятница: Индонезия — можно не покупать, если уже есть в апреле, в воскресенье", "Суббота: Северный Вьетнам — можно не покупать, если уже есть в апреле, в понедельник", "Суббота: Таиланд/Сиам — можно не покупать, если уже есть в апреле, в понедельник"]}, {"name": "Октябрь", "entries": ["Воскресенье: Бирма — можно не покупать, если уже есть в апреле, во вторник", "Воскресенье: Камбоджа — можно не покупать, если уже есть в апреле, во вторник", "Понедельник: Лаос — можно не покупать, если уже есть в апреле, в среду", "Понедельник: Филиппины — можно не покупать, если уже есть в апреле, в среду", "Вторник: Суринам — можно не покупать, если уже есть в апреле, в четверг", "Вторник: Британская Гвиана — можно не покупать, если уже есть в апреле, в четверг", "Среда: Гондурас — можно не покупать, если уже есть в феврале, в субботу", "Среда: Никарагуа — можно не покупать, если уже есть в феврале, в субботу", "Четверг: Коста-Рика — можно не покупать, если уже есть в апреле, в субботу", "Четверг: Сальвадор — можно не покупать, если уже есть в апреле, в субботу", "Пятница: Гватемала — можно не покупать, если уже есть в мае, в воскресенье", "Пятница: Панама — можно не покупать, если уже есть в мае, в воскресенье", "Суббота: Багамские острова — можно не покупать, если уже есть в мае, во вторник", "Суббота: Барбадос — можно не покупать, если уже есть в мае, во вторник"]}, {"name": "Ноябрь", "entries": ["Воскресенье: Ямайка — можно не покупать, если уже есть в мае, в среду", "Воскресенье: Тринидад и Тобаго — можно не покупать, если уже есть в мае, в среду", "Понедельник: Бермуды — можно не покупать, если уже есть в мае, в четверг", "Понедельник: Гренада — можно не покупать, если уже есть в мае, в четверг", "Вторник: Сент-Люсия — можно не покупать, если уже есть в мае, в пятницу", "Вторник: Сент-Винсент и Гренадины — можно не покупать, если уже есть в мае, в пятницу", "Среда: Антигуа — можно не покупать, если уже есть в мае, в субботу", "Среда: Доминика — можно не покупать, если уже есть в мае, в субботу", "Четверг: Гаити — можно не покупать, если уже есть в июне, в воскресенье", "Четверг: Белиз — можно не покупать, если уже есть в июне, в воскресенье", "Пятница: Мальта — можно не покупать, если уже есть в июне, в понедельник", "Пятница: Мальдивы — можно не покупать, если уже есть в июне, в понедельник", "Суббота: Непал — можно не покупать, если уже есть в июне, во вторник", "Суббота: Цейлон (Шри-Ланка) — можно не покупать, если уже есть в июне, во вторник"]}, {"name": "Декабрь", "entries": ["Воскресенье: Бутан — можно не покупать, если уже есть в июне, в среду", "Воскресенье: Тибет — можно не покупать, если уже есть в июне, в среду", "Понедельник: Монголия — можно не покупать, если уже есть в июне, в четверг", "Понедельник: Китай — можно не покупать, если уже есть в феврале, в пятницу", "Вторник: Корейское королевство — можно не покупать, если уже есть в июне, в пятницу", "Вторник: Мексика — можно не покупать, если уже есть в феврале, во вторник", "Среда: Япония — можно не покупать, если уже есть в феврале, в пятницу", "Среда: Гондурас — можно не покупать, если уже есть в феврале, в субботу", "Четверг: Гондурас — можно не покупать, если уже есть в феврале, в субботу", "Четверг: Мексика — можно не покупать, если уже есть в феврале, во вторник", "Пятница: Бразилия — можно не покупать, если уже есть в феврале, в среду", "Пятница: Аргентина — можно не покупать, если уже есть в феврале, во вторник", "Суббота: Чили — можно не покупать, если уже есть в феврале, в среду", "Суббота: Перу — можно не покупать, если уже есть в феврале, в четверг"]}];
+const monthRoot = document.getElementById('coinMonths');
+const coinSearch = document.getElementById('coinSearch');
+let onlyUnowned = true;
+const storageKey = 'iznanochka_coin_checks_v1';
+function loadChecks(){try{return JSON.parse(localStorage.getItem(storageKey)||'{}')}catch(e){return {}}}
+function saveChecks(obj){try{localStorage.setItem(storageKey,JSON.stringify(obj))}catch(e){}}
+let checkedCoins=loadChecks();
+function escapeHtml(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+function parseCoin(line){
+ const match=line.match(/^(Воскресенье|Понедельник|Вторник|Среда|Четверг|Пятница|Суббота):\s*(.*?)\s*—\s*(.*)$/);
+ return match?{day:match[1],country:match[2],detail:match[3]}:{day:'',country:line,detail:''};
+}
+function getCoinIdentity(line) {
+  const p = parseCoin(line);
+
+  // Для повтора используем название страны,
+  // для обычной монеты — страну и описание.
+  if (/можно не покупать/i.test(p.detail)) {
+    return p.country.toLocaleLowerCase('ru').trim();
+  }
+
+  return p.country.toLocaleLowerCase('ru').trim();
+}
+
+function isCoinChecked(line, key) {
+  if (checkedCoins[key]) return true;
+
+  const identity = getCoinIdentity(line);
+
+  return coinData.some((month, mi) =>
+    month.entries.some((entry, ei) =>
+      getCoinIdentity(entry) === identity &&
+      !!checkedCoins[mi + '-' + ei]
+    )
+  );
+}
+function isOriginalChecked(line) {
+  const parsed = parseCoin(line);
+  const match = parsed.detail.match(
+    /можно не покупать, если уже есть в (.+?),\s*(?:во |в )(.+)$/i
+  );
+
+  if (!match) return false;
+
+  const targetMonth = match[1].trim().toLocaleLowerCase('ru');
+  const targetDay = match[2].trim().toLocaleLowerCase('ru');
+
+  const dayMap = {
+    'воскресенье': 'воскресенье',
+    'понедельник': 'понедельник',
+    'вторник': 'вторник',
+    'среду': 'среда',
+    'среда': 'среда',
+    'четверг': 'четверг',
+    'пятницу': 'пятница',
+    'пятница': 'пятница',
+    'субботу': 'суббота',
+    'суббота': 'суббота',
+    'понедельник': 'понедельник'
+  };
+
+  const day = dayMap[targetDay] || targetDay;
+
+  const monthIndex = coinData.findIndex(
+    m => m.name.toLocaleLowerCase('ru') === targetMonth
+  );
+
+  if (monthIndex === -1) return false;
+
+  return coinData[monthIndex].entries.some((entry, ei) => {
+    const original = parseCoin(entry);
+
+    if (original.day.toLocaleLowerCase('ru') !== day) return false;
+
+    const key = monthIndex + '-' + ei;
+
+    // Отмечена любая монета в указанном дне — считаем её имеющейся.
+    if (checkedCoins[key]) return true;
+
+    // Если сама позиция повторная, проверяем её исходную монету.
+    if (/можно не покупать/i.test(original.detail)) {
+      return isOriginalChecked(entry);
+    }
+
+    return false;
+  });
+}
+function renderCoins(){
+ const query=coinSearch.value.trim().toLocaleLowerCase('ru');
+ let totalShown=0;
+ monthRoot.innerHTML=coinData.map((month,mi)=>{
+   const rows=month.entries.map((line,ei)=>{
+     const parsed=parseCoin(line);
+     const reuse=/можно не покупать/i.test(parsed.detail);
+     const full=[month.name,parsed.day,parsed.country,parsed.detail].join(' ').toLocaleLowerCase('ru');
+     const key=mi+'-'+ei;
+     const checked = isCoinChecked(line, key);
+     const visible = (!query || full.includes(query)) && (!onlyUnowned || !checked && (!reuse || !isCoinChecked(line, key)));
+     if(visible) totalShown++;
+     return `<div class="coin-row ${checked?'checked':''}" data-visible="${visible}" style="${visible?'':'display:none'}">
+  <input type="checkbox" id="coin-${key}" aria-label="Отметить ${escapeHtml(parsed.country)}" data-coin-key="${key}" ${checked?'checked':''}>
+  <label class="coin-main" for="coin-${key}">
+    <strong>${escapeHtml(parsed.country)}</strong>
+    <span class="coin-sub">${escapeHtml(parsed.day)} · ${escapeHtml(parsed.detail)}</span>
+  </label>
+  <span class="tag ${reuse?'reuse':'buy'}">${reuse?'Повтор — проверить наличие':'В перечне на сбор'}</span>
+</div>`;
+   }).join('');
+   const visibleCount = month.entries.filter((line, ei) => {
+  const p = parseCoin(line);
+  const full = [month.name, p.day, p.country, p.detail]
+    .join(' ')
+    .toLocaleLowerCase('ru');
+
+  const key = mi + '-' + ei;
+  const checked = isCoinChecked(line, key);
+  const reuse = /можно не покупать/i.test(p.detail);
+
+  const visible = (!query || full.includes(query)) &&
+    (!onlyUnowned || (!checked && (!reuse || !isCoinChecked(line, key))));
+
+  return visible;
+}).length;
+   return `<details class="coin-month" ${query?'open':''} data-month="${mi}" style="${visibleCount?'':'display:none'}"><summary>${escapeHtml(month.name)} <span class="tag">${visibleCount} поз.</span></summary><div class="content">${rows}</div></details>`;
+ }).join('');
+ document.getElementById('coinEmpty').style.display=totalShown?'none':'block';
+ monthRoot.querySelectorAll('[data-coin-key]').forEach(box=>box.addEventListener('change',()=>{
+   checkedCoins[box.dataset.coinKey]=box.checked;
+   saveChecks(checkedCoins);
+   box.closest('.coin-row').classList.toggle('checked', box.checked);
+ }));
+}
+coinSearch.addEventListener('input', renderCoins);
+
+function updateCoinFilterButtons() {
+  document.getElementById('showUnowned')
+    .classList.toggle('active', onlyUnowned);
+
+  document.getElementById('showAllCoins')
+    .classList.toggle('active', !onlyUnowned);
+}
+
+document.getElementById('showUnowned').addEventListener('click', () => {
+  onlyUnowned = true;
+  updateCoinFilterButtons();
+  renderCoins();
+});
+
+document.getElementById('showAllCoins').addEventListener('click', () => {
+  onlyUnowned = false;
+  updateCoinFilterButtons();
+  renderCoins();
+});
+
+updateCoinFilterButtons();
+
+function expandAllModeAccordions() {
+  document.querySelectorAll('#modeTypes .mode-type').forEach(function(type) {
+    type.classList.add('open');
+
+    var typeButton = type.querySelector('.mode-type-button');
+    typeButton.classList.add('active');
+    typeButton.setAttribute('aria-expanded', 'true');
+
+    type.querySelectorAll('.mode-chert').forEach(function(chert) {
+      chert.classList.add('open');
+
+      var button = chert.querySelector('.mode-chert-button');
+      button.classList.add('active');
+      button.setAttribute('aria-expanded', 'true');
+
+      chert.querySelector('.mode-chert-details').hidden = false;
+    });
+  });
+}
+
+document.getElementById('print').addEventListener('click', async function () {
+  const btn = this;
+
+  if (btn.disabled) return;
+
+  const originalText = 'Печать / сохранить PDF';
+
+  // Прелоад кнопки
+  btn.disabled = true;
+  btn.style.opacity = '0.7';
+  btn.style.cursor = 'wait';
+
+  if (!document.getElementById('print-loader-style')) {
+    const style = document.createElement('style');
+    style.id = 'print-loader-style';
+    style.textContent = `
+      @keyframes printSpin {
+        to { transform: rotate(360deg); }
+      }
+    `;
+    document.head.appendChild(style);
+  }
+
+  function showLoading(text) {
+    btn.replaceChildren();
+
+    const spinner = document.createElement('span');
+    Object.assign(spinner.style, {
+      display: 'inline-block',
+      width: '14px',
+      height: '14px',
+      marginRight: '8px',
+      verticalAlign: '-2px',
+      border: '2px solid currentColor',
+      borderRightColor: 'transparent',
+      borderRadius: '50%',
+      animation: 'printSpin .7s linear infinite'
+    });
+
+    btn.append(spinner, document.createTextNode(text));
+  }
+
+  try {
+    showLoading('Подготовка страницы…');
+
+    // Обновить список монет
+    onlyUnowned = false;
+    coinSearch.value = '';
+    updateCoinFilterButtons();
+    renderCoins();
+
+    // Раскрыть все details
+    document.querySelectorAll('details').forEach(d => {
+      d.open = true;
+    });
+
+    // Раскрыть все типы и черти
+    expandAllModeAccordions();
+
+    // Дать браузеру отрисовать раскрытые элементы
+    await new Promise(resolve => {
+      requestAnimationFrame(() => {
+        requestAnimationFrame(resolve);
+      });
+    });
+
+    showLoading('Загрузка изображений…');
+
+    // Собрать изображения после раскрытия гармошек
+    const images = Array.from(document.images);
+
+    // Принудительно запустить загрузку, в том числе lazy
+    images.forEach(img => {
+      img.loading = 'eager';
+
+      if (img.dataset.src && !img.getAttribute('src')) {
+        img.src = img.dataset.src;
+      }
+
+      if (img.dataset.lazySrc && !img.getAttribute('src')) {
+        img.src = img.dataset.lazySrc;
+      }
+    });
+
+    // Дождаться загрузки каждого изображения
+    await Promise.all(images.map(async img => {
+      if (!img.complete) {
+        await new Promise(resolve => {
+          img.addEventListener('load', resolve, { once: true });
+          img.addEventListener('error', resolve, { once: true });
+        });
+      }
+
+      // Дождаться декодирования, если изображение загрузилось
+      if (img.naturalWidth > 0 && img.decode) {
+        await img.decode().catch(() => {});
+      }
+    }));
+
+    // Дать браузеру завершить отрисовку
+    await new Promise(resolve => {
+      requestAnimationFrame(() => {
+        requestAnimationFrame(resolve);
+      });
+    });
+
+    showLoading('Открытие печати…');
+
+    // Восстановить кнопку перед системным диалогом
+    btn.replaceChildren(document.createTextNode(originalText));
+    btn.disabled = false;
+    btn.style.opacity = '';
+    btn.style.cursor = '';
+	
+	// После печати свернуть чертей
+const collapseCherti = () => {
+  document.querySelectorAll('#modeTypes .mode-type').forEach(type => {
+    type.classList.remove('open');
+
+    const typeButton = type.querySelector('.mode-type-button');
+    typeButton.classList.remove('active');
+    typeButton.setAttribute('aria-expanded', 'false');
+
+    type.querySelectorAll('.mode-chert').forEach(chert => {
+      chert.classList.remove('open');
+
+      const button = chert.querySelector('.mode-chert-button');
+      button.classList.remove('active');
+      button.setAttribute('aria-expanded', 'false');
+
+      const details = chert.querySelector('.mode-chert-details');
+      if (details) details.hidden = true;
+    });
+  });
+};
+
+window.addEventListener('afterprint', collapseCherti, { once: true });
+
+window.addEventListener('afterprint', function () {
+    document.querySelectorAll('details').forEach(d => {
+      d.open = false;
+    });
+});
+
+
+
+    window.print();
+
+  } catch (error) {
+    console.error('Ошибка подготовки печати:', error);
+  alert('Не удалось подготовить страницу к печати. Попробуйте ещё раз.');
+  } finally {
+    btn.replaceChildren(document.createTextNode(originalText));
+    btn.disabled = false;
+    btn.style.opacity = '';
+    btn.style.cursor = '';
+  }
+});
+
+document.getElementById('openAll').addEventListener('click',()=>document.querySelectorAll('details').forEach(d=>d.open=true));
+document.getElementById('closeAll').addEventListener('click',()=>document.querySelectorAll('details').forEach(d=>d.open=false));
+document.getElementById('resetChecks').addEventListener('click',()=>{
+ if(confirm('Сбросить все отметки компонентов и исторических монет?')){
+  checkedCoins={};saveChecks(checkedCoins);
+  document.querySelectorAll('.task-check').forEach(c=>c.checked=false);
+  updateProgress();renderCoins();
+ }
+});
+function updateProgress(){
+ const boxes = [...document.querySelectorAll('.task-check')];
+ const progressBoxes = boxes.filter(b => b.id !== 'm19');
+ const done = progressBoxes.filter(b => b.checked).length;
+
+ document.getElementById('taskProgress').style.width =
+   (progressBoxes.length ? done / progressBoxes.length * 100 : 0) + '%';
+
+ document.getElementById('taskProgressText').textContent =
+   `Отмечено ${done} из ${progressBoxes.length} пунктов подготовки`;
+
+ try {
+   localStorage.setItem(
+     'iznanochka_material_checks_v1',
+     JSON.stringify(boxes.filter(b => b.checked).map(b => b.id))
+   );
+ } catch(e) {}
+}
+function restoreMaterialChecks(){
+ try{const saved=JSON.parse(localStorage.getItem('iznanochka_material_checks_v1')||'[]');saved.forEach(id=>{const el=document.getElementById(id);if(el)el.checked=true})}catch(e){}
+ document.querySelectorAll('.task-check').forEach(b=>b.addEventListener('change',updateProgress));updateProgress();
+}
+renderCoins();restoreMaterialChecks();
+</script>
+<!-- Yandex.Metrika counter -->
+<script type="text/javascript">
+    (function(m,e,t,r,i,k,a){
+        m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+        m[i].l=1*new Date();
+        for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+        k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+    })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=106046314', 'ym');
+
+    ym(106046314, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", accurateTrackBounce:true, trackLinks:true});
+</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/106046314" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+<!-- /Yandex.Metrika counter -->
+
+</body>
+</html>

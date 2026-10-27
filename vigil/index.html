@@ -337,7 +337,7 @@
 
 <div class="accordion-item">
     <div>Вверху программы есть иконка "волчка" - клик по которой покажет текущие уклады и остаточные клетки скрижали, которые можно свернуть в событие (нужно стремиться быстро сворачивать).<br><br>Книга про Бдилку <a style="color:#0f0;" target="_blank" href="https://www.litres.ru/book/andrey-volkov-33168547/pasyans-medichi-bdilka-71113513/">здесь</a>.<br><br>Так же рассказывайте и ищите новые подходы в <!-- 🔮 ССЫЛКА -->
-<a href="https://t.me/otherside-world" class="mirror-link" data-message="⚠️ Внимание! При переходе в телеграм сработает наша защитная система Зеркальный Предел, она отсеет всех шпионов за вами, по ощущениям будет как состояние невесомости, после анализа вы перейдете в безопасную ru зону. Готовы?">Нашем телеграме</a>.
+<a href="https://t.me/otherside_world" class="mirror-link" data-message="Перед переходом в Telegram вас на всякий случай подстрахует система «Зеркальный Предел». Продолжим?">Нашем телеграме</a>.
 <hr><b>Схема Переправы (кликабельна):</b> <br><br><a target="_blank" href="./modules/images/pereprava.png"><img style="width:200px;" src="./modules/images/pereprava.png"></a>
 <!-- ⚡ ОКНО ПРЕДУПРЕЖДЕНИЯ -->
 <div id="mirror-modal">
@@ -434,7 +434,7 @@ document.querySelectorAll('.mirror-link').forEach(link => {
 
     document.getElementById('mirror-yes').onclick = function() {
       modal.style.display = 'none';
-      window.location.href = url;
+      window.open(url, '_blank');
     };
 
     document.getElementById('mirror-no').onclick = function() {

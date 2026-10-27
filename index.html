@@ -1,492 +1,305 @@
 <!DOCTYPE html>
 <html lang="ru">
-
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Изнаночка мира</title>
-  <meta name="description" content="Изнаночка мира — пространство выбора, осознанности и трансформации. Программы Бдилка, Перелом, Схемокодер и книги Андрея Волкова для внутреннего развития." />
-  <meta name="keywords" content="Изнаночка мира, otherside-world, Андрей Волков, осознанность, саморазвитие, трансформация, внутренний путь, Бдилка, Перелом, Схемокодер, психология, мышление, мироустройство, книги, ЛитРес, духовное развитие, личностный рост, практики, намерение, сознание" />
-  <link rel="icon" type="image/png" href="./modules/iznanochka_mira.ico">
-  <style>body {
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Изнаночка мира</title>
+<meta name="description" content="Изнаночка мира — пространство выбора, осознанности и трансформации. Программы Бдилка, Перелом, Схемокодер и книги Андрея Волкова для внутреннего развития.">
+<meta name="keywords" content="Изнаночка мира, otherside-world, Андрей Волков, осознанность, саморазвитие, трансформация, Бдилка, Перелом, Схемокодер, книги">
+<link rel="icon" type="image/png" href="./modules/iznanochka_mira.ico">
+<style>
+*{box-sizing:border-box}
+body{min-height:100vh;margin:0;padding:0;background:linear-gradient(rgba(3,6,12,.48),rgba(3,6,12,.72)),url("./modules/iznanochka_mira_full.png") center center/cover fixed no-repeat;background-color:#030406;color:#8fdcc0;font-family:'MatrixBCyrillic',"Courier New",monospace;text-align:center;overflow-x:hidden}
+@font-face{font-family:'MatrixBCyrillic';src:url('./modules/Balkara.ttf') format('truetype');font-weight:normal;font-style:normal}
+@keyframes chameleon{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
+@keyframes blueShimmer{0%,100%{color:#9fdcff}25%,75%{color:#6fc8ff}50%{color:#4bbcff}}
+h1{font-size:3.2rem;margin:30px 10px;color:#7fcfff;animation:blueShimmer 6s ease-in-out infinite;text-shadow:0 0 12px rgba(120,200,255,.25)}
+.link-container{max-width:760px;width:calc(100% - 20px);display:inline-block;text-align:left;padding:25px 20px;border:1px solid rgba(125,220,190,.25);border-radius:10px;box-shadow:0 10px 40px rgba(0,0,0,.45),0 0 35px rgba(70,180,170,.12);margin:30px 10px;background:rgba(12,18,28,.89);position:relative;z-index:1}
+a{display:block;font-size:1.15rem;color:#8fdcc0;margin:15px 0;position:relative;transition:transform .2s,text-shadow .2s;word-break:break-word;text-decoration:none}
+a:hover{transform:translateX(5px);text-shadow:0 0 10px #00ff00,0 0 20px #00ff00}
+.description{display:block;font-size:1rem;line-height:1.5;color:#8fdcc0;margin:12px 0 16px;background:linear-gradient(90deg,#00ffd5,#66a6ff,#ff4ecd,#ffe066,#00ffd5);background-size:300% 300%;-webkit-background-clip:text;-webkit-text-fill-color:transparent;animation:chameleon 8s ease infinite}
+hr{border:0;height:2px;margin:25px 0;background:linear-gradient(90deg,transparent,rgba(130,210,255,.35),transparent);box-shadow:0 0 12px rgba(130,210,255,.15)}
+canvas{position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none}
+.accordion-section{margin:14px 0;border:1px solid rgba(125,220,190,.25);border-radius:8px;background:rgba(5,12,20,.48);overflow:hidden}
+.accordion-title{display:flex;align-items:center;justify-content:space-between;gap:12px;width:100%;padding:14px 16px;margin:0;border:0;background:transparent;cursor:pointer;color:#8fdcc0;font:inherit;font-size:1.15rem;text-align:left;transition:background .2s,color .2s}
+.accordion-title:hover,.accordion-title.active{background:rgba(0,255,200,.08);color:#7fcfff}
+.accordion-title::after{content:"+";flex-shrink:0;font-family:monospace;font-size:1.5rem;color:#7fcfff}
+.accordion-title.active::after{content:"−"}
+.accordion-content{display:none;padding:4px 16px 16px;text-align:left}
+.accordion-content.open{display:block}
+.accordion-content .description{display:block}
+.accordion-content .accordion-section{margin:12px 0 12px 8px}
+.accordion-content a{font-size:1.1rem}
+.mirror-link{display:inline-block;padding:12px 24px;color:#00ffff;border:1px solid rgba(0,255,255,.6);border-radius:8px;background:rgba(0,0,0,.5);box-shadow:0 0 15px rgba(0,255,255,.35);transition:all .3s}
+.mirror-link:hover{color:#fff;box-shadow:0 0 25px rgba(0,255,255,.8);text-shadow:0 0 10px #00ffff}
+#mirror-modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.8);backdrop-filter:blur(6px);justify-content:center;align-items:center;z-index:9999;padding:20px}
+.mirror-dialog{background:rgba(10,10,15,.97);border:1px solid rgba(0,255,255,.6);border-radius:12px;padding:25px 30px;max-width:400px;color:#00ffff;text-align:center;font-family:"Courier New",monospace;box-shadow:0 0 25px rgba(0,255,255,.4)}
+.mirror-buttons{margin-top:20px;display:flex;justify-content:space-around;gap:15px}
+.mirror-buttons button{background:rgba(0,0,0,.6);color:#00ffff;border:1px solid rgba(0,255,255,.6);padding:8px 16px;border-radius:8px;font:inherit;cursor:pointer}
+footer{position:relative;z-index:1;padding:15px}
+@media(max-width:600px){h1{font-size:1.7rem;margin:20px 10px}.link-container{width:calc(100% - 20px);padding:15px}.accordion-title{font-size:1rem;padding:12px}.accordion-content{padding:4px 10px 12px}.description{font-size:.9rem}.mirror-link{padding:10px 14px}}
+body {
   min-height: 100vh;
-  margin: 0;
-  padding: 0;
-  background:
-    linear-gradient(rgba(3, 6, 12, 0.48), rgba(3, 6, 12, 0.72)),
-    url("./modules/iznanochka_mira_full.png") center center / cover fixed no-repeat;
-  background-color: #030406;
-  color: #8fdcc0;
-  font-family: "Courier New", monospace;
-  text-align: center;
-  overflow-x: hidden;
-  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-
-@keyframes chameleon {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
-}
-	
-h1 {
-    font-size: 3.2rem;
-    margin: 40px 15px 30px 15px;
-    word-wrap: break-word;
-
-    color: #7fcfff;
-    animation: blueShimmer 6s ease-in-out infinite;
-
-    text-shadow:
-        0 1px 2px rgba(0, 40, 80, 0.4),
-        0 3px 6px rgba(0, 40, 80, 0.25),
-        0 0 12px rgba(120, 200, 255, 0.25);
+main.link-container {
+  width: calc(100% - 20px);
+  max-width: 760px;
+  margin-top: auto;
+  margin-bottom: auto;
 }
 
-@keyframes blueShimmer {
-    0%   { color: #9fdcff; }
-    25%  { color: #6fc8ff; }
-    50%  { color: #4bbcff; }
-    75%  { color: #6fc8ff; }
-    100% { color: #9fdcff; }
+main.link-container:has(.active),
+main.link-container:has([open]) {
+  margin-top: 30px;
 }
-
-    .link-container {
-      max-width: 600px;
-      display: inline-block;
-      text-align: left;
-      padding: 25px 20px;
-      border:1px solid rgba(125,220,190,.25);
-      border-radius: 10px;
-      box-shadow:0 10px 40px rgba(0,0,0,.45),0 0 35px rgba(70,180,170,.12);
-      margin: 40px 10px 40px 10px;
-	  background: rgba(12, 18, 28, .89);
-    position: relative;
-    z-index: 1;
-    }
-
-    a {
-      display: block;
-      font-size: 1.3rem;
-      color:#8fdcc0;
-      margin: 15px 0;
-      position: relative;
-      transition: transform 0.2s, text-shadow 0.2s;
-      word-break: break-word;
-	  text-decoration: none;
-    }
-
-    a:hover {
-      transform: translateX(10px);
-      text-shadow: 0 0 10px #00ff00, 0 0 20px #00ff00, 0 0 40px #00ff00;
-    }
-
-    .paddingtop {
-      padding-top: 15px;
-    }
-
-    .description {
-      font-size: 1rem;
-      line-height: 1.4em;
-      color:#006400;
-      margin-top: 2px;
-      margin-bottom: 10px;
-	  
-	  background: linear-gradient(
-    90deg,
-    #00ffd5,
-    #66a6ff,
-    #ff4ecd,
-    #ffe066,
-    #00ffd5
-  );
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  animation: chameleon 8s ease infinite;
-	  
-    }
-
-    canvas {
-    position: fixed;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 0;
-    pointer-events: none;
+.accordion-title {
+  scroll-margin-top: 20px;
 }
-
-    @media (max-width: 600px) {
-      h1 {
-        font-size: 1.7rem;
-        margin: 20px 10px;
-      }
-
-      .link-container {
-        width: 80%;
-        padding: 15px;
-      }
-
-      a {
-        font-size: 1.1rem;
-        margin: 12px 0;
-      }
-
-      .description {
-        font-size: 0.85rem;
-      }
-    }
-
-    hr {
-      border: none;
-      height: 2px;
-      margin: 30px 0;
-      background:linear-gradient(90deg,transparent,rgba(130,210,255,.35),transparent);
-      box-shadow:0 0 12px rgba(130,210,255,.15);
-    }
-
-    @font-face {
-      font-family: 'MatrixBCyrillic';
-      src: url('./modules/Balkara.ttf') format('truetype');
-      font-weight: normal;
-      font-style: normal;
-    }
-
-    body {
-      font-family: 'MatrixBCyrillic';
-    }
-	body {
-  color:#8fdcc0; /* матрический зелёный */
-}
-
-.link-container {
-  border:1px solid rgba(125,220,190,.25);
-  box-shadow:0 10px 40px rgba(0,0,0,.45),0 0 35px rgba(70,180,170,.12);
-}
-
-a {
-  color:#8fdcc0;
-}
-
-a:hover {
-  text-shadow: 0 0 10px #00ff00, 0 0 20px #00ff00, 0 0 40px #00ff00;
-}
-
-hr {
-  background:linear-gradient(90deg,transparent,rgba(130,210,255,.35),transparent);
-  box-shadow:0 0 12px rgba(130,210,255,.15);
-}
-
-
-  </style>
+</style>
 </head>
-
 <body>
-  <canvas id="matrix"></canvas>
+<canvas id="matrix"></canvas>
+<main class="link-container">
+<h1 style="text-align:center;font-size:2rem">Изнаночка мира</h1>
+<h4 style="color:#ff3333;text-align:center">Уважай рождение, почитай старость.</h4>
 
-    <div class="link-container">
-	<center>
-    <h2>Изнаночка мира</h2></center>
-	
-	
+<div class="accordion-section">
+<button class="accordion-title" aria-expanded="false">Введение: уровни симуляции</button>
+<div class="accordion-content">
+<span class="description">Ты входишь в симуляцию земли не один. Система уже развернула вокруг тебя первых агентов — существ, называющих себя сородичами. Они уверяют, что заботятся о тебе. Кормят. Укладывают спать. Загружают в память древние инструкции, происхождение которых давно утрачено. Они называют это воспитанием. На самом деле никто уже не помнит, кто придумал привычный образ жизни и почему все продолжают считать его единственно возможным. Это твой первый безопасный сектор. Пока ты не задаёшь лишних вопросов.</span>
+<span class="description">Потом приходят друзья. Не случайно. Их подключает сама архитектура мира, когда уровень твоей наивности достигает критической отметки. Они заражают тебя меметическими вирусами, ведут в запрещённые зоны, заставляют смеяться в моменты, когда разум должен бить тревогу. Через них система проверяет, способен ли ты отличить свободу от тщательно срежиссированного хаоса. Обычно — нет.</span>
+<span class="description">Следующая фаза — коллеги. Здесь симуляция перестаёт скрывать свои намерения. Тебе выдают роль, пропуск, корпоративный календарь и бесконечную цепочку задач, смысл которых исчезает сразу после закрытия презентации на сорок слайдов. Все вокруг ведут себя так, будто знают правила игры, уверенно произносят правильные слова и с серьёзным видом обсуждают процессы, словно понимают происходящее. Но именно в этом и кроется главный секрет комплекса: большинство из них — такие же NPC, как и ты. Они не обладают тайным знанием. Они просто достаточно долго тренировались изображать компетентность, пока сама имитация не стала неотличимой от настоящей.</span>
+<span class="description">И наконец появляются близкие. Самые опасные сущности во всей системе. Они получают доступ к тем областям памяти, которые даже ты никогда не открывал. Они видят твои сбои раньше тебя. Знают, где проходит линия между настоящим и тем, что ты придумал для самозащиты. Через них симуляция запускает финальный эксперимент: проверить, выдержишь ли ты встречу с собственной копией.</span>
+<span class="description">Только спустя годы после полного ознакомления приходит подозрение. Возможно, сородичи были не стартовой зоной, друзья — не случайными спутниками, коллеги — не коллегами, а близкие — вовсе не людьми. Это были последовательные уровни одной и той же программы, которая с каждым этапом получает всё больше прав доступа к твоему сознанию.</span>
+<span class="description">И если однажды все они одновременно скажут: «Мы желаем тебе добра», не спеши расслабляться. Именно так обычно начинается новая глава любого секретного протокола.</span>
+</div>
+</div>
 
-	<center>
+<div class="accordion-section">
+<button class="accordion-title" aria-expanded="false">Инструменты коррекции симуляции</button>
+<div class="accordion-content">
+<span class="description"><b>Внимание.</b> Возможно, последовательность, заложенная системой для познания симуляции, была нарушена.</span>
+<span class="description">Не паникуй. Это не сбой и не конец прохождения. Перед тобой открылся скрытый потенциал «Нарушитель» — путь тех, кто пытается раскрыть устройство мира не в том порядке, который был предусмотрен изначальным протоколом.</span>
+<span class="description">Причина обычно проста: один участник теряет интерес к игре, другой отключает часть внутренних функций, и постепенно нарушается баланс восприятия. Симуляция не ломается — она лишь начинает получать неполные данные и что то не учитывает.</span>
+<span class="description">Для восстановления согласованности с симуляцией доступны автоматизированные инструменты коррекции. Они помогут вновь настроить восприятие, вернуть созвучие с её ритмом, восстановить последовательность и продолжить исследование неизведанных мест системы:</span>
 
-    <h4 style="color:#ff3333">Уважай рождение, почитай старость.</h4>
-	
-	</center>
-      <span class="description">
-	  
-	  
-       Ты входишь в симуляцию земли не один. Система уже развернула вокруг тебя первых агентов — существ, называющих себя сородичами. Они уверяют, что заботятся о тебе. Кормят. Укладывают спать. Загружают в память древние инструкции, происхождение которых давно утрачено. Они называют это воспитанием. На самом деле никто уже не помнит, кто придумал привычный образ жизни и почему все продолжают считать его единственно возможным. Это твой первый безопасный сектор. Пока ты не задаёшь лишних вопросов.
-<br><br>
-Потом приходят друзья. Не случайно. Их подключает сама архитектура мира, когда уровень твоей наивности достигает критической отметки. Они заражают тебя меметическими вирусами, ведут в запрещённые зоны, заставляют смеяться в моменты, когда разум должен бить тревогу. Через них система проверяет, способен ли ты отличить свободу от тщательно срежиссированного хаоса. Обычно — нет.
-<br><br>
-Следующая фаза — коллеги. Здесь симуляция перестаёт скрывать свои намерения. Тебе выдают роль, пропуск, корпоративный календарь и бесконечную цепочку задач, смысл которых исчезает сразу после закрытия презентации на сорок слайдов. Все вокруг ведут себя так, будто знают правила игры, уверенно произносят правильные слова и с серьёзным видом обсуждают процессы, словно понимают происходящее. Но именно в этом и кроется главный секрет комплекса: большинство из них — такие же NPC, как и ты. Они не обладают тайным знанием. Они просто достаточно долго тренировались изображать компетентность, пока сама имитация не стала неотличимой от настоящей.<br><br>
-И наконец появляются близкие. Самые опасные сущности во всей системе. Они получают доступ к тем областям памяти, которые даже ты никогда не открывал. Они видят твои сбои раньше тебя. Знают, где проходит линия между настоящим и тем, что ты придумал для самозащиты. Через них симуляция запускает финальный эксперимент: проверить, выдержишь ли ты встречу с собственной копией.
-<br><br>
-Только спустя годы после полного ознакомления приходит подозрение. Возможно, сородичи были не стартовой зоной, друзья — не случайными спутниками, коллеги — не коллегами, а близкие — вовсе не людьми. Это были последовательные уровни одной и той же программы, которая с каждым этапом получает всё больше прав доступа к твоему сознанию.
-<br><br>
-И если однажды все они одновременно скажут: «Мы желаем тебе добра», не спеши расслабляться. Именно так обычно начинается новая глава любого секретного протокола.
-      </span>
-      <hr><span class="description">
-        <b>Внимание.</b> Возможно, последовательность, заложенная системой для познания симуляции, была нарушена.
-<br><br>
-Не паникуй. Это не сбой и не конец прохождения. Перед тобой открылся скрытый потенциал «Нарушитель» — путь тех, кто пытается раскрыть устройство мира не в том порядке, который был предусмотрен изначальным протоколом.
-<br><br>
-Причина обычно проста: один участник теряет интерес к игре, другой отключает часть внутренних функций, и постепенно нарушается баланс восприятия. Симуляция не ломается — она лишь начинает получать искажённые данные.
-<br><br>
-Для восстановления согласованности с симуляцией доступны автоматизированные инструменты коррекции. Они помогут вновь настроить восприятие на угодную системе частоту, вернуть созвучие с её ритмом, восстановить последовательность и продолжить благополучное исследование неизведанных мест системы:
-      </span>
+<div class="accordion-section">
+<button class="accordion-title" aria-expanded="false">Бдилка за Пасьянсом Медичи</button>
+<div class="accordion-content">
+<span class="description">Создавай цепочки событий с помощью Бдилки. Произноси особые мантры созвучия и переписывай слои реальности своим обновлённым ядром личности.</span>
+<span class="description">Автоматический режим активирован. Протокол загружен по инструкции андроида Птолемея Смита из 87-й временной воронки — сущности, которая утверждала, что видела исходный код симуляции до первого запуска.</span>
+<span class="description">Внимание: вмешательство в структуру мира может вызвать побочные эффекты. Возможны сбои восприятия, самопроизвольная материализация аномальных объектов и появление разумных бутербродов, утверждающих, что они знают истинную причину происходящего.</span>
 
-      <a class="paddingtop" href="./vigil/" target="_blank" style=""><svg xmlns="http://www.w3.org/2000/svg" width="32" height="16" viewBox="0 0 256 128">
-  <rect x="0" y="16" width="256" height="96" rx="48" fill="#006400" stroke="#FFFFFF" stroke-width="12"/>
-  <rect x="127" y="16" width="2" height="96" fill="#FFFFFF"/>
-</svg> Программа: Бдилка за Пасьянсом Медичи</a> 
-      <span class="description">Создавай цепочки событий с помощью Бдилки. Произноси особые мантры созвучия и переписывай слои реальности своим обновлённым ядром личности.
-<br><br>
-Автоматический режим активирован. Протокол загружен по инструкции андроида Птолемея Смита из 87-й временной воронки — сущности, которая утверждала, что видела исходный код симуляции до первого запуска.
-<br><br>
-Внимание: вмешательство в структуру мира может вызвать побочные эффекты. Возможны сбои восприятия, самопроизвольная материализация аномальных объектов и появление разумных бутербродов, утверждающих, что они знают истинную причину происходящего.</span>
+<a href="./vigil/" target="_blank" title="Бдилка за Пасьянсом Медичи"><span style="color:#1e90ff">●</span> Открыть</a>
+</div>
+</div>
 
-      <a class="paddingtop" href="./fracture/" target="_blank" style="">
-<svg xmlns="http://www.w3.org/2000/svg" width="32" height="16" viewBox="0 0 256 128">
-  <rect x="0" y="16" width="256" height="96" rx="48" fill="#000000" stroke="#FFFFFF" stroke-width="12"/>
-  <rect x="127" y="16" width="2" height="96" fill="#FFFFFF"/>
-</svg> Программа: Перелом Тетради Смерти</a>
-      <span class="description"> Перелом активирует протокол абсолютной калибровки. Он сканирует каждую микроскопическую частицу твоего потока материализации, выявляет скрытые искажения и удаляет хаос, проникший в структуру действительности.
-<br><br>
-После завершения процедуры вселенная возвращается в режим точного функционирования — механизмы мироздания начинают вращаться с холодной точностью древнего космического механизма, где каждая шестерёнка знает своё место.
-<br><br>
-Никаких случайностей. Никаких необъяснимых отклонений. Никаких сюрпризов из тёмных слоёв симуляции. Даже если твой квантовый кот решил нарушить протокол, открыть запрещённую ветку вероятности и объявить себя независимым наблюдателем.</span>
+<div class="accordion-section">
+<button class="accordion-title" aria-expanded="false">Перелом Тетради Смерти</button>
+<div class="accordion-content">
+<span class="description">Перелом активирует протокол абсолютной калибровки. Он сканирует каждую микроскопическую частицу твоего потока материализации, выявляет скрытые искажения и удаляет хаос, проникший в структуру действительности.</span>
+<span class="description">После завершения процедуры вселенная возвращается в режим точного функционирования — механизмы мироздания начинают вращаться с холодной точностью древнего космического механизма, где каждая шестерёнка знает своё место.</span>
+<span class="description">Никаких случайностей. Никаких необъяснимых отклонений. Никаких сюрпризов из тёмных слоёв симуляции. Даже если твой квантовый кот решил нарушить протокол, открыть запрещённую ветку вероятности и объявить себя независимым наблюдателем.</span>
+<a href="./fracture/" target="_blank" title="Перелом Тетради Смерти" style="color:#ff3333"><span>●</span> Открыть</a>
+</div>
+</div>
 
-      <a class="paddingtop" href="./circuit-coder/" target="_blank" style="">
-<svg xmlns="http://www.w3.org/2000/svg" width="32" height="16" viewBox="0 0 256 128">
-  <rect x="0" y="16" width="256" height="96" rx="48" fill="#FF3333" stroke="#FFFFFF" stroke-width="12"/>
-  <rect x="127" y="16" width="2" height="96" fill="#FFFFFF"/>
-</svg> Программа: Схемокодер [Прототип]</a>
-      <span class="description">
-Говорят, каждый программист достигает работоспособности программы по одному из двух путей. Одни через исчезновение в бесконечных пустынях мёртвых скриптов, где ошибки шептали имена забытых переменных. Другие через проклятый интерфейс Notepad 6.66 — место, где строки кода ломали сознание, а неправильные отступы оставляли неизлечимые следы в душе разработчика.
-<br><br>
-Но есть истинный закон цифровой вселенной: код — это не просто инструкции. Каждый модуль является фрагментом силы. Каждая библиотека — древним артефактом доступа. Каждый алгоритм — ключом к скрытым слоям системы.
-<br><br>
-Те, кто смог объединить эти фрагменты, подчинить хаос и заставить несовместимые части работать в едином порядке, переставали быть простыми программистами.
-<br><br>
-Они становились Схемокодерами — теми, кто видел не только строки, но и саму архитектуру цифровой реальности.</span>
-	  
-	  
-	  <a class="paddingtop" href="./modules/artefact.jpg" target="_blank" style=""><!-- Синяя -->
-<svg xmlns="http://www.w3.org/2000/svg" width="32" height="16" viewBox="0 0 256 128">
-  <rect x="0" y="16" width="256" height="96" rx="48" fill="#1E90FF" stroke="#FFFFFF" stroke-width="12"/>
-  <rect x="127" y="16" width="2" height="96" fill="#FFFFFF"/>
-</svg> Артефакт: Изнаночка мира</a>
-      <span class="description">Артефакт «Изнаночка мира» раскрывает истинный порядок вещей: человек находится в центре мироустройства.
-<br><br>
-После активации артефакта действительность перестраивается вокруг владельца. Его воля, решения и намерения становятся частью механизма, который формирует события и направление мира.
-<br><br>
-Артефакт превращает человека из наблюдателя в главный узел системы — точку, через которую проходит изменение мироустройства.<br><br>Инструкция воссоздания артефакта в книге <a style="display: contents;font-size: 1.0rem;" target="_blank" href="https://www.litres.ru/book/andrey-volkov-33168547/inoagenty-bytiya-73084133/">«Иноагенты Бытия»</a>.</span>
-	  
-	   <hr>
-	   
-	   <span class="description">Если вам вдруг стало любопытно, кто дёргает за ниточки, на чём держится этот безобразно сложный мир и почему всё ещё не развалился к чёртовой матери — поздравляю, вы уже полезли не в своё дело. А раз полезли, самое время выяснить, во что именно вы ввязались.<br><br>
-	   <a class="description" target="_blank" href="https://www.litres.ru/author/andrey-volkov-33168547/"><img style="width:100%" src="./modules/seriya_knig.png"></a><br>
+<div class="accordion-section">
+<button class="accordion-title" aria-expanded="false">Схемокодер Боевого Континента 2</button>
+<div class="accordion-content">
+<span class="description">Говорят, каждый программист достигает работоспособности программы по одному из двух путей. Одни через исчезновение в бесконечных пустынях мёртвых скриптов, где ошибки шептали имена забытых переменных. Другие через проклятый интерфейс Notepad 6.66 — место, где строки кода ломали сознание, а неправильные отступы оставляли неизлечимые следы в душе разработчика.</span>
+<span class="description">Но есть истинный закон цифровой вселенной: код — это не просто инструкции. Каждый модуль является фрагментом силы. Каждая библиотека — древним артефактом доступа. Каждый алгоритм — ключом к скрытым слоям системы.</span>
+<span class="description">Те, кто смог объединить эти фрагменты, подчинить хаос и заставить несовместимые части работать в едином порядке, переставали быть простыми программистами.</span>
+<span class="description">Они становились Схемокодерами — теми, кто видел не только строки, но и саму архитектуру цифровой реальности.</span>
+<a href="./circuit-coder/" target="_blank" title="Схемокодер Боевого Континента 2 [Прототип]" style="color:#006400"><span>●</span> Открыть</a>
+</div>
+</div>
 
-В серии книг </span> 
-	   
-	   <a style="display: contents;font-size: 1.0rem;" target="_blank" href="https://www.litres.ru/series/iznanochka-mira-921074/">«Изнаночки Мира» на litres.ru (Андрей Волков)</a>
-	   
-	   <span class="description"> — восемь последовательных книг, каждая из которых подхватывает нить там, где её оставила предыдущая. В них — сборник крох для осознания нового XXI века: его странностей, открытий, материалов и идей, из которых постепенно начинает складываться вполне себе бытийная картина нового дивного мира. Естественно, с запятнанной историей.</span>
-	  
-      <hr>
-        
-	   <div style="position: relative; width: 100%; padding-top: 50%;">
-  <video controls autoplay muted loop
-style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover;">
-  <source src="./modules/7914Hz.mp4" type="video/mp4">
-  
-</video>
-</div><br><center>
-		<span class="description">
-Открывай скрытые горизонты, настрой сознание на частоту неизвестного и вливайся в наш межгалактический водоворот:<br><br>«найди своих настоящих прародителей<br>
-и свою запредельную половинку™».<br><br></span>
-<a href="./modules/7914Hz.mp3" class="mirror-link" data-message="Наша музыкальная композиция содержит заветные частоты. Готовы послушать?">
-  <svg xmlns="http://www.w3.org/2000/svg" width="60" height="22" viewBox="0 0 60 22"
-     style="vertical-align: middle; margin-right: 4px; filter: drop-shadow(0 0 3px #00ffff);">
-  <!-- Фон -->
-  <rect width="60" height="22" fill="#00ffff" opacity="0.1" rx="3"/>
+<div class="accordion-section">
+<button class="accordion-title" aria-expanded="false">Артефакт Изнаночки Мира</button>
+<div class="accordion-content">
+<span class="description">Артефакт «Изнаночка мира» раскрывает истинный порядок вещей: человек находится в центре мироустройства.</span>
+<span class="description">После активации артефакта действительность перестраивается вокруг владельца. Его воля, решения и намерения становятся частью механизма, который формирует события и направление мира.</span>
+<span class="description">Артефакт превращает человека из наблюдателя в главный узел системы — точку, через которую проходит изменение мироустройства.</span>
+<a href="./artefact/" target="_blank" title="Артефакт Изнаночки Мира"><span style="color:#000">●</span> Открыть</a>
+</div>
+</div>
+</div>
+</div>
 
-  <!-- Синусоида, символизирующая музыкальные герцы -->
-  <path fill="none" stroke="#00ffff" stroke-width="2"
-        d="
-        M0,11
-        C5,5 10,17 15,11
-        C20,5 25,17 30,11
-        C35,5 40,17 45,11
-        C50,5 55,17 60,11
-        "/>
-</svg> Наш Ритм
-</a>
-		<!-- 🔮 ССЫЛКА -->
-<a href="https://t.me/otherside_world" class="mirror-link" data-message="⚠️ Внимание! При переходе в телеграм сработает наша защитная система Зеркальный Предел, она отсеет всех шпионов за вами, по ощущениям будет как состояние невесомости, после анализа вы перейдете в безопасную ru зону. Готовы?">
-  <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 240 240" 
-       style="vertical-align: middle; margin-right: 8px; filter: drop-shadow(0 0 6px #00ffff);">
-    <circle cx="120" cy="120" r="120" fill="#00ffff" opacity="0.2"/>
-    <path fill="#00ffff" d="M50 120l135-52c5-2 10 3 8 8l-28 118c-1 5-7 7-11 4l-32-25-20 19c-4 4-11 2-12-4l-8-40-40-22c-5-3-5-10 0-12z"/>
-  </svg>Наш Телеграм
-</a>
-</center>
-
-<!-- ⚡ ОКНО ПРЕДУПРЕЖДЕНИЯ -->
-<div id="mirror-modal">
-  <div class="mirror-dialog">
-    <p id="mirror-message">...</p>
-    <div class="mirror-buttons">
-      <button id="mirror-yes">Да</button>
-      <button id="mirror-no">Нет</button>
-    </div>
-  </div>
+<div class="accordion-section">
+<button class="accordion-title" aria-expanded="false">Серия книг «Изнаночка Мира»</button>
+<div class="accordion-content">
+<span class="description">Если вам вдруг стало любопытно, кто дёргает за ниточки, на чём держится этот безобразно сложный мир и почему всё ещё не развалился к чёртовой матери — поздравляю, вы уже полезли не в своё дело. А раз полезли, самое время выяснить, во что именно вы ввязались.</span>
+<div class="book-series">
+  <a href="https://www.litres.ru/author/andrey-volkov-33168547/"
+     target="_blank"
+     rel="noopener noreferrer"
+     class="book-series__link">
+    <img
+      src="./modules/seriya_knig.png"
+      alt="Серия книг «Изнаночка мира»"
+      class="book-series__image">
+    <span class="book-series__caption">Открыть серию книг</span>
+  </a>
 </div>
 
 <style>
-/* 🌌 Основной стиль ссылки */
-.mirror-link {
-  display:inline-block;
-  padding:12px 24px;
-  color:#00ffff;
-  font-family:"Courier New", monospace;
-  text-decoration:none;
-  border:1px solid rgba(0,255,255,0.6);
-  border-radius:8px;
-  background:rgba(0,0,0,0.5);
-  box-shadow:0 0 15px rgba(0,255,255,0.6), inset 0 0 10px rgba(255,255,255,0.15);
-  transition:all 0.4s ease;
-}
-.mirror-link:hover {
-  color:#fff;
-  box-shadow:0 0 25px rgba(0,255,255,0.8), inset 0 0 20px rgba(255,255,255,0.3);
-  text-shadow:0 0 10px #00ffff;
+.book-series {
+  display: flex;
+  justify-content: center;
+  margin: 35px auto;
+  padding: 0 15px;
 }
 
-/* 🪞 Зеркальное модальное окно */
-#mirror-modal {
-  display:none;
-  position:fixed;
-  top:0;
-  left:0;
-  width:100%;
-  height:100%;
-  background:rgba(0,0,0,0.8);
-  backdrop-filter: blur(6px);
-  justify-content:center;
-  align-items:center;
-  z-index:9999;
+.book-series__link {
+  position: relative;
+  display: block;
+  width: 100%;
+  max-width: 600px;
+  overflow: hidden;
+  border: 1px solid rgba(143, 220, 192, 0.3);
+  border-radius: 14px;
+  background: #0b121b;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+  text-decoration: none;
+  transition: border-color 0.3s, box-shadow 0.3s, transform 0.3s;
 }
 
-/* 💠 Диалог внутри */
-.mirror-dialog {
-  background:rgba(10,10,15,0.95);
-  border:1px solid rgba(0,255,255,0.6);
-  border-radius:12px;
-  padding:25px 30px;
-  max-width:400px;
-  color:#00ffff;
-  text-align:center;
-  font-family:"Courier New", monospace;
-  box-shadow:0 0 25px rgba(0,255,255,0.6), inset 0 0 15px rgba(255,255,255,0.1);
-  animation:fadeIn 0.4s ease-out;
+.book-series__link:hover {
+  border-color: #8fdcc0;
+  box-shadow: 0 12px 38px rgba(143, 220, 192, 0.16);
+  transform: translateY(-3px);
 }
 
-.mirror-buttons {
-  margin-top:20px;
-  display:flex;
-  justify-content:space-around;
+.book-series__image {
+  display: block;
+  width: 100%;
+  height: auto;
 }
 
-.mirror-buttons button {
-  background:rgba(0,0,0,0.6);
-  color:#00ffff;
-  border:1px solid rgba(0,255,255,0.6);
-  padding:8px 16px;
-  border-radius:8px;
-  font-family:"Courier New", monospace;
-  cursor:pointer;
-  transition:all 0.3s ease;
-}
-.mirror-buttons button:hover {
-  background:rgba(0,255,255,0.1);
-  color:#fff;
-  box-shadow:0 0 10px #00ffff;
+.book-series__caption {
+  display: block;
+  padding: 14px 18px;
+  color: #8fdcc0;
+  font-size: 14px;
+  letter-spacing: 1px;
+  text-align: center;
+  text-transform: uppercase;
+  background: linear-gradient(135deg, #111d29, #080d14);
 }
 
-@keyframes fadeIn {
-  from {opacity:0; transform:scale(0.9);}
-  to {opacity:1; transform:scale(1);}
+.book-series__caption::after {
+  content: " ↗";
+  margin-left: 5px;
+}
+
+@media (max-width: 600px) {
+  .book-series {
+    margin: 22px auto;
+    padding: 0 10px;
+  }
+
+  .book-series__link {
+    border-radius: 10px;
+  }
+
+  .book-series__caption {
+    padding: 12px;
+    font-size: 12px;
+  }
 }
 </style>
+<span class="description">В серии книг «Изнаночки Мира» — восемь последовательных книг, каждая из которых подхватывает нить там, где её оставила предыдущая. В них — сборник крох для осознания нового XXI века: его странностей, открытий, материалов и идей, из которых постепенно начинает складываться вполне себе бытийная картина нового дивного мира. Естественно, с запятнанной историей.</span>
+</div>
+</div>
+
+<div class="accordion-section">
+<button class="accordion-title" aria-expanded="false">Наш ритм и сообщество</button>
+<div class="accordion-content">
+<div style="position:relative;width:100%;padding-top:50%">
+<video controls autoplay muted loop style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover">
+<source src="./modules/7914Hz.mp4" type="video/mp4">
+</video>
+</div>
+<span class="description" style="text-align:center">Открывай скрытые горизонты, настрой сознание на частоту неизвестного и вливайся в наш межгалактический водоворот:<br><br>«найди своих настоящих прародителей<br>и свою запредельную половинку™».</span>
+<div style="text-align:center">
+<a href="./modules/7914Hz.mp3" class="mirror-link" data-message="Наша музыкальная композиция содержит заветные синусоидальные частоты. Готовы послушать?">〰 Наш Ритм</a>
+<a href="https://t.me/otherside_world" class="mirror-link" data-message="Перед переходом в Telegram вас на всякий случай подстрахует система «Зеркальный Предел». Продолжим?">Наш Телеграм</a>
+</div>
+</div>
+</div>
+</main>
+
+<div id="mirror-modal" role="dialog" aria-modal="true">
+<div class="mirror-dialog">
+<p id="mirror-message">...</p>
+<div class="mirror-buttons"><button id="mirror-yes">Да</button><button id="mirror-no">Нет</button></div>
+</div>
+</div>
+
+<footer><a target="_blank" style="display:inline;font-size:1.2rem" href="https://github.com/it-salamandr">it-salamandr © 2025 - <script>document.write(new Date().getFullYear())</script></a></footer>
 
 <script>
-document.querySelectorAll('.mirror-link').forEach(link => {
-  link.addEventListener('click', function(e) {
+/* Вложенный аккордеон: закрывает только соседей текущего уровня. */
+document.querySelectorAll('.accordion-title').forEach(function(title){
+  title.addEventListener('click',function(){
+    var content=this.nextElementSibling;
+    var parent=this.parentElement;
+    var willOpen=!content.classList.contains('open');
+
+    var siblings=parent.parentElement.querySelectorAll(':scope > .accordion-section > .accordion-title');
+    siblings.forEach(function(other){
+      if(other!==title){
+        other.classList.remove('active');
+        other.setAttribute('aria-expanded','false');
+        var otherContent=other.nextElementSibling;
+        otherContent.classList.remove('open');
+        otherContent.querySelectorAll('.accordion-title.active').forEach(function(nested){
+          nested.classList.remove('active');
+          nested.setAttribute('aria-expanded','false');
+        });
+        otherContent.querySelectorAll('.accordion-content.open').forEach(function(nestedContent){
+          nestedContent.classList.remove('open');
+        });
+      }
+    });
+
+    this.classList.toggle('active',willOpen);
+    this.setAttribute('aria-expanded',String(willOpen));
+    content.classList.toggle('open',willOpen);
+	this.scrollIntoView({
+  behavior: 'smooth',
+  block: 'start'
+});
+  });
+});
+
+/* Подтверждение перехода для специальных ссылок. */
+document.querySelectorAll('.mirror-link').forEach(function(link){
+  link.addEventListener('click',function(e){
     e.preventDefault();
-
-    const message = this.dataset.message || 'Вы уверены, что хотите покинуть страницу?';
-    const url = this.href;
-
-    const modal = document.getElementById('mirror-modal');
-    const msg = document.getElementById('mirror-message');
-    msg.textContent = message;
-
-    modal.style.display = 'flex';
-
-    document.getElementById('mirror-yes').onclick = function() {
-      modal.style.display = 'none';
-      window.location.href = url;
+    var url=this.href;
+    document.getElementById('mirror-message').textContent=this.dataset.message||'Вы уверены, что хотите перейти?';
+    document.getElementById('mirror-modal').style.display='flex';
+    document.getElementById('mirror-yes').onclick=function(){
+      document.getElementById('mirror-modal').style.display='none';
+      window.open(url, '_blank');
     };
-
-    document.getElementById('mirror-no').onclick = function() {
-      modal.style.display = 'none';
+    document.getElementById('mirror-no').onclick=function(){
+      document.getElementById('mirror-modal').style.display='none';
     };
   });
 });
+
+
 </script>
-		
-		
-    </div>
 
 
-    <style>
-      #matrix-seq {}
-
-      #matrix-seq .char {}
-
-      #matrix-seq .char.revealed {}
-
-      @keyframes flicker {
-        0% {
-          opacity: 0.1;
-        }
-
-        50% {
-          opacity: 1;
-        }
-
-        100% {
-          opacity: 0.1;
-        }
-      }
-
-      #matrix-seq .char.scramble {
-        opacity: 1;
-        animation: flicker 120ms infinite;
-        transform: translateY(-4px) scale(1.02);
-      }
-    </style>
-    <style>
-      #matrix-seq.big {
-        transform: scale(2);
-      }
-
-      #matrix-seq.shrink {
-        transform: scale(1);
-      }
-
-      .char {
-        display: inline-block;
-      }
-
-      .reveal-text {
-        opacity: 0;
-        transform: scale(0.8) skewX(5deg);
-        transition: all 0.6s ease-out;
-      }
-
-      .reveal-text.active {
-        opacity: 1;
-        transform: scale(1) skewX(0deg);
-      }
-    </style>
-
-	
 	
 <script>
 const canvas = document.getElementById("matrix");
@@ -806,8 +619,6 @@ window.addEventListener("resize", () => {
   ctx.clearRect(0, 0, width, height);
 });
 </script>
-
-
 <!-- Yandex.Metrika counter -->
 <script type="text/javascript">
     (function(m,e,t,r,i,k,a){
@@ -821,12 +632,5 @@ window.addEventListener("resize", () => {
 </script>
 <noscript><div><img src="https://mc.yandex.ru/watch/106046314" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
 <!-- /Yandex.Metrika counter -->
-
-    <br>
-    <a target="_blank" style="display:inline;font-size:1.2rem;" href="https://github.com/it-salamandr">
-    it-salamandr © 2025 - <script>document.write(new Date().getFullYear())</script>
-</a>
-    <br><br>&nbsp;
 </body>
-
 </html>

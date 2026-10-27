@@ -1,237 +1,574 @@
 <!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Схемокодер Боевого Континента 2 - Прототип</title>
-        <meta name="keywords" content="Квантовое мышление, Пакетный код, Схемокодер" />
-        <meta name="description" content="Разработка кода одним пакетом." />
-        <link rel="icon" href="./modules/favicon.png?v=1.5" type="image/x-icon" />
-        <link rel="stylesheet" href="./modules/style.css?v=2" />
-        <script src="./modules/functions.js?v=2"></script>
-        <script src="./modules/config.js?v=1.3"></script>
-    </head>
-    <body>
-	
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-	<center><h1>
-                    БК-2: Схемокодер (прототип)
-                </h1></center>
-        <div>
-            <div class="button-group">
-                <h2>
-                    <b id="placeholder"><img src="./modules/favicon.png?v=1.5" style="max-width:28px;margin-bottom:-8px;"></b>
-                    <span id="dynamic-content"></span>
-                </h2>
-            </div>
-            <div>
-			
-			<!-- Вставьте этот фрагмент в нужное место вашей страницы -->
-<style>
-  .collapsible-wrapper {
-    font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
-    margin: 0.5rem 0;
-  }
+    <title>Схемокодер Боевого Континента 2</title>
+    <meta name="keywords" content="Квантовое мышление, Пакетный код, Схемокодер">
+    <meta name="description" content="Разработка кода одним пакетом.">
 
-  .collapsible-toggle {
-    cursor: pointer;
-    color: #0366d6;
-    text-decoration: none;
-    background: none;
-    border: none;
-    padding: 0;
-    font: inherit;
-  }
+    <link rel="icon" href="./modules/favicon.png?v=1.5" type="image/x-icon">
+    <link rel="stylesheet" href="./modules/style.css?v=2">
 
-  .collapsible-toggle:focus {
-    outline: 2px solid rgba(3,102,214,0.3);
-    outline-offset: 2px;
-  }
+    <script src="./modules/functions.js?v=2"></script>
+    <script src="./modules/config.js?v=1.3"></script>
 
-  .collapsible-content {
+    <style>
+        /* Кнопка справки в правом верхнем углу */
+        .intro-help-button {
+            position: fixed;
+            top: 15px;
+            right: 15px;
+            z-index: 10000;
+
+            width: 40px;
+            height: 40px;
+            padding: 0;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            border: 1px solid rgba(143, 220, 192, 0.7);
+            border-radius: 50%;
+
+            background: rgba(7, 17, 27, 0.92);
+            color: #8fdcc0;
+
+            font-family: Arial, sans-serif;
+            font-size: 24px;
+            font-weight: bold;
+            line-height: 1;
+
+            cursor: pointer;
+
+            box-shadow:
+                0 0 12px rgba(143, 220, 192, 0.2),
+                inset 0 0 8px rgba(143, 220, 192, 0.05);
+
+            transition:
+                background 0.2s ease,
+                color 0.2s ease,
+                box-shadow 0.2s ease,
+                transform 0.2s ease;
+        }
+
+        .intro-help-button:hover {
+            background: #8fdcc0;
+            color: #07111b;
+            box-shadow: 0 0 18px rgba(143, 220, 192, 0.45);
+            transform: scale(1.08);
+        }
+
+        .intro-help-button:focus-visible {
+            outline: 2px solid #8fdcc0;
+            outline-offset: 4px;
+        }
+
+        /* Затемнение фона при открытой справке */
+        .intro-help-overlay {
+            position: fixed;
+            inset: 0;
+            z-index: 9998;
+
+            background: rgba(0, 0, 0, 0.65);
+
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.25s ease, visibility 0.25s ease;
+        }
+
+        .intro-help-overlay.open {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* Окно справки */
+        .intro-help-panel {
+            position: fixed;
+            top: 65px;
+            right: 15px;
+            z-index: 9999;
+
+            width: min(760px, calc(100% - 30px));
+            max-height: calc(100vh - 90px);
+
+            overflow-y: auto;
+            box-sizing: border-box;
+
+            padding: 24px;
+
+            background: rgba(9, 17, 28, 0.98);
+            color: #e1e8ef;
+
+            border: 1px solid rgba(143, 220, 192, 0.35);
+            border-radius: 14px;
+
+            box-shadow: 0 12px 45px rgba(0, 0, 0, 0.55);
+
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-8px);
+
+            transition:
+                opacity 0.25s ease,
+                transform 0.25s ease,
+                visibility 0.25s ease;
+        }
+
+        .intro-help-panel.open {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .intro-help-panel h2 {
+            margin-top: 0;
+            padding-right: 35px;
+            color: #8fdcc0;
+        }
+
+        .intro-help-panel p {
+            line-height: 1.65;
+        }
+
+        .intro-help-panel a {
+            color: #8fdcc0;
+        }
+
+        .intro-help-panel hr {
+            border: none;
+            border-top: 1px solid rgba(143, 220, 192, 0.25);
+            margin: 20px 0;
+        }
+
+        .intro-help-close {
+            position: absolute;
+            top: 12px;
+            right: 14px;
+
+            width: 30px;
+            height: 30px;
+
+            border: none;
+            border-radius: 6px;
+
+            background: transparent;
+            color: #8fdcc0;
+
+            font-size: 25px;
+            cursor: pointer;
+        }
+
+        .intro-help-close:hover {
+            background: rgba(143, 220, 192, 0.12);
+        }
+
+        body.intro-help-open {
+            overflow: hidden;
+        }
+
+        @media (max-width: 600px) {
+            .intro-help-button {
+                top: 10px;
+                right: 10px;
+                width: 36px;
+                height: 36px;
+            }
+
+            .intro-help-panel {
+                top: 56px;
+                right: 10px;
+                width: calc(100% - 20px);
+                max-height: calc(100vh - 70px);
+                padding: 18px;
+                border-radius: 10px;
+            }
+        }
+		.schemocoder-title {
+    margin: 28px 0 32px;
+    color: #e5e0d5;
+    font-size: clamp(26px, 3vw, 36px);
+    font-weight: 500;
+    letter-spacing: 1.2px;
+    line-height: 1.3;
+    text-align: center;
+
+    text-shadow:
+        0 2px 8px rgba(0, 0, 0, 0.65),
+        0 0 24px rgba(220, 183, 125, 0.12);
+}
+
+.schemocoder-title .title-accent {
+    color: #dfbd83;
+}
+
+@media (max-width: 600px) {
+    .schemocoder-title {
+        margin: 20px 0 24px;
+        letter-spacing: 0.5px;
+    }
+}
+.intro-help-panel {
+    /* Остальные существующие свойства оставь */
+
+    display: flex;
+    flex-direction: column;
     overflow: hidden;
-    transition: max-height 0.28s ease, opacity 0.28s ease;
-    max-height: 0;
+}.schemocoder-help {
+    flex: 1;
+    min-height: 0;
+    overflow-y: auto;
+}.intro-help-footer {
+    flex-shrink: 0;
+    display: flex;
+    justify-content: flex-end;
+    padding-top: 12px;
+    margin-top: 12px;
+    border-top: 1px solid rgba(143, 220, 192, 0.25);
+    background: rgba(9, 17, 28, 0.98);
+}
+
+.intro-help-footer button {
+    padding: 9px 16px;
+    border: 1px solid rgba(143, 220, 192, 0.5);
+    border-radius: 7px;
+    background: rgba(143, 220, 192, 0.1);
+    color: #8fdcc0;
+    cursor: pointer;
+}
+
+.intro-help-footer button:hover {
+    background: rgba(143, 220, 192, 0.2);
+}
+.intro-help-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: auto;
+    height: auto;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    z-index: 9998;
+    background: rgba(0, 0, 0, 0.65);
     opacity: 0;
-  }
+    visibility: hidden;
+    transition: opacity 0.25s ease, visibility 0.25s ease;
+}
+body {
+    background-color: #2e2e2e;
+    background-image: url("./modules/background-tile.png");
+    background-repeat: repeat;
+    background-size: auto;
+}
+    </style><script>
+document.addEventListener('DOMContentLoaded', function () {
+    const buttons = document.querySelector('.button-group');
+    const help = document.querySelector('.intro-help-button');
 
-  .collapsible-content.open {
-    /* достаточно большой max-height для большинства блоков — при необходимости увеличьте */
-    max-height: 1200px;
-    opacity: 1;
-  }
+    if (!buttons || !help) return;
 
-  /* Немного внутреннего отступа для читаемости */
-  .collapsible-inner {
-    padding: 0.6rem 0 0.4rem 0;
-  }
-</style>
-
-<div class="collapsible-wrapper">
-  <!-- ссылка-активатор. role="button" + aria-expanded для доступности -->
-  <a href="#" id="introToggle" class="collapsible-toggle" role="button" aria-expanded="false" aria-controls="introContent">
-    [вводная]
-  </a>
-
-  <div id="introContent" class="collapsible-content" aria-hidden="true">
-    <div class="collapsible-inner">
-      <p>
-        Это прототип версии программы «Схемокодер» на примере базового составления схемы html+js,
-        созданного по мотивам книги
-        <a href="https://www.litres.ru/book/andrey-volkov-33168547/zapretnaya-zona-shemokoderov-72731461/" target="_blank" rel="noopener noreferrer">
-          Запретная зона Схемокодеров
-        </a>.
-      </p>
-
-      <p>
-        В её основе лежит возможность собирать визуальные схемы (блоков, контейнеров и связей) и на их основе формировать HTML-страницу:
-        элементы добавляются, удаляются, редактируются; контейнеры получают статус модульных, поддерживаются команды
-        «перейти к элементу N», «подключить модульный контейнер N».
-      </p>
-
-      <p>
-        Проект полностью в тестовом режиме: выбор возможностей ограничен, например, пока можно только задавать стили и текстовые атрибуты.
-      </p>
-	  <p>Цель программы — дать пользователю возможность «программировать» через визуальные схемы, упорядочивать структуру элементов, видеть зависимости и видеть, как по итогу генерируется код в виде массива.</p>
-	  
-	  <br><p>Выбирайте сверху тип схемы (кнопки: Контейнер, Атрибут, Рефлекс, Функционал) и вводите ниже для неё данные (пример в <a target="_blank" href="./presentation.html">видео-презентации</a>).</p>
-	  <hr>
-	  <p>Тестовый запуск пока включает в себя:<br>
-        1. последовательный авто-проход по элементам (игнор контейнеров на 1-м уровне).<br>
-        2. рефлекс понимает команду "продолжить с другого элемента": <mark>перейти на {id: N}</mark><br>
-        3. контейнеры в корне программы "игнорируются авто-проходом" и им присваивается статус модульный: TAG_NAME модульный<br>
-        4. функционал понимает команду "заинклудить модульный контейнер": <mark>подключить {id: N}</mark><br><br>
-        p.s. значение N заменять на число, например: подключить {id: 23}<br>
-        p.s. максимум вложенных инклудов (для тестового запуска): 2.<br>
-        p.s. максимум зациклиенных переходов (для сформированной страницы): 10.<br>
-        p.s. в атрибуты можно пока добавлять только стили и innerText<br>
-		p.s. в атрибуты можно добавить рефлексы (автозапуск их не запустит)
-
-        <hr />
-        В результате из собранной схемы будет формироваться html-страница, которая пока отображает любые тэги например <mark>div</mark>, <mark>table</mark>, <mark>tr</mark>, <mark>td</mark> (контейнеров),<br>задает текст тэгам <mark>innerText: TEXT</mark> (атрибутов)<br>и задат любой
-        стиль тэгам например <mark>color: green</mark>, <mark>text-shadow: 0 0 15px red</mark> (атрибутов).</p>
-    </div>
-  </div>
-</div>
-
-<script>
-  (function () {
-    var toggle = document.getElementById('introToggle');
-    var content = document.getElementById('introContent');
-
-    function openContent() {
-      content.classList.add('open');
-      content.setAttribute('aria-hidden', 'false');
-      toggle.setAttribute('aria-expanded', 'true');
+    function updateHelpButton() {
+        const rect = buttons.getBoundingClientRect();
+        help.style.visibility =
+            rect.bottom > 0 && rect.top < window.innerHeight
+                ? 'visible'
+                : 'hidden';
     }
 
-    function closeContent() {
-      content.classList.remove('open');
-      content.setAttribute('aria-hidden', 'true');
-      toggle.setAttribute('aria-expanded', 'false');
-    }
+    window.addEventListener('scroll', updateHelpButton, { passive: true });
+    window.addEventListener('resize', updateHelpButton);
 
-    // Переключатель по клику
-    toggle.addEventListener('click', function (e) {
-      e.preventDefault();
-      if (content.classList.contains('open')) closeContent();
-      else openContent();
-    });
-
-    // Открыть/закрыть по клавише Enter/Space при фокусе на ссылке
-    toggle.addEventListener('keydown', function (e) {
-      if (e.key === 'Enter' || e.key === ' ') {
-        e.preventDefault();
-        toggle.click();
-      }
-    });
-  })();
+    updateHelpButton();
+});
 </script>
+</head>
+
+<body>
+
+    <!-- Кнопка справки -->
+    <button type="button"
+            id="introToggle"
+            class="intro-help-button"
+            aria-label="Открыть справку"
+            title="Справка"
+            aria-expanded="false"
+            aria-controls="introContent">?</button>
+
+    <!-- Затемнение -->
+    <div id="introOverlay"
+         class="intro-help-overlay"
+         aria-hidden="true"></div>
+
+    <!-- Окно справки -->
+    <div id="introContent"
+         class="intro-help-panel"
+         role="dialog"
+         aria-modal="true"
+         aria-labelledby="introTitle"
+         aria-hidden="true">
+
+        <button type="button"
+                id="introClose"
+                class="intro-help-close"
+                aria-label="Закрыть справку">&times;</button>
+
+        <h2 id="introTitle">Справка по Схемокодеру</h2>
 
 
-            </div>
-            <input type="text" id="itemName" autocomplete="off" placeholder="Команда" />
+        <div class="schemocoder-help">
+
+    <p>
+        Добро пожаловать в Схемокодер — среду визуального программирования, где на примере HTML и JavaScript можно создавать веб-страницы, выстраивая логику из отдельных элементов.<br><br>Для работы со средой выбирайте тип элемента: «Контейнер», «Атрибут», «Рефлекс» или «Функционал»,
+        вводите команды в поле ниже и подбирайте контейнеры для месторасположения команды.
+        Рефлексы в дополнение можно размещать в атрибутах.
+        Пример работы представлен в
+        <a target="_blank" href="./presentation.html">видео-презентации</a>.
+    </p>
+<hr>
+    <h3>Формирование HTML-страницы</h3>
+
+    <h4>Контейнеры — структура страницы</h4>
+
+    <p>
+        Контейнеры определяют структуру страницы и позволяют объединять элементы
+        в группы. Примеры контейнеров: <mark>div</mark>, <mark>table</mark>,
+        <mark>tr</mark>, <mark>td</mark>.
+    </p>
+
+    <h4>Атрибуты — содержимое и оформление</h4>
+
+    <p>
+        Атрибуты задают текстовое содержимое и внешний вид HTML-элементов.
+        Для добавления текста используется команда <mark>innerText: TEXT</mark>,
+        где <code>TEXT</code> заменяется нужным текстом.
+    </p>
+
+    <p>Для оформления элементов используются CSS-стили. Например:</p>
+
+    <ul>
+        <li><mark>color: green</mark> — задаёт зелёный цвет текста.</li>
+        <li><mark>text-shadow: 0 0 15px red</mark> — добавляет тексту красную тень со свечением.</li>
+    </ul>
+<hr>
+    <h3>Управление выполнением схемы</h3>
+
+    <h4>Тестовый запуск и модульные контейнеры</h4>
+
+    <p>
+        При тестовом запуске элементы обрабатываются последовательно, в порядке
+        их расположения в схеме. Контейнеры верхнего уровня пропускаются при
+        автоматическом проходе и получают статус модульных. Название такого
+        контейнера принимает формат <mark>TAG_NAME модульный</mark>.
+        Модульные контейнеры можно подключать из других элементов схемы.
+    </p>
+
+    <h4>Изменение порядка выполнения</h4>
+
+    <p>
+        Чтобы изменить обычный порядок выполнения и перейти к другому элементу,
+        используйте команду рефлекса <mark>перейти на {id: N}</mark>,
+        где <code>N</code> — ID элемента, к которому необходимо перейти.
+    </p>
+
+    <h4>Подключение модульных контейнеров</h4>
+
+    <p>
+        Для подключения модульного контейнера используется команда функционала
+        <mark>подключить {id: N}</mark>, где <code>N</code> — ID нужного контейнера.
+        Например, <mark>подключить {id: 23}</mark> подключает модульный контейнер с ID 23.
+    </p>
+
+    <h4>Ограничения тестового запуска</h4>
+
+    <ul>
+        <li>Максимальная глубина вложенных подключений модулей — 2 уровня.</li>
+        <li>Максимальное количество зацикленных переходов при формировании страницы — 10.</li>
+    </ul>
+
+</div>
+		
+		
+    </div>
+
+    <center>
+        <h1 class="schemocoder-title">
+    <span class="title-accent">БК-2:</span> Схемокодер
+</h1>
+    </center>
+
+    <div>
+        <div class="button-group">
+            <h2 class="schema-heading">
+                <b id="placeholder">
+                    <img src="./modules/favicon.png?v=1.5"
+                         style="max-width:28px; margin-bottom:-8px;"
+                         alt="">
+                </b>
+
+                <span id="dynamic-content"></span>
+            </h2>
+        </div>
+
+        <div>
+            <input type="text"
+                   id="itemName"
+                   autocomplete="off"
+                   placeholder="Команда">
+
             <select id="parentId">
                 <option value="">Корень программы</option>
             </select>
-			<button id="runButton" style="display: inline;" onclick="runSequence()">Тестовый запуск</button>
-            <button id="addItem" style="display: inline;" onclick="addItem()">Добавить элемент</button>
-            <button id="updateItem" style="display: none;" onclick="updateItem()">Сохранить элемент</button>
-            <button id="deleteItem" style="display: none;" onclick="deleteItem()">Удалить элемент</button>
-            <button id="closeupdateItem" style="display: none;" onclick="builder.unselectItem()">Отменить изменение</button>
+
+            <button id="runButton"
+                    style="display:inline;"
+                    onclick="runSequence()">Тестовый запуск</button>
+
+            <button id="addItem"
+                    style="display:inline;"
+                    onclick="addItem()">Добавить элемент</button>
+
+            <button id="updateItem"
+                    style="display:none;"
+                    onclick="updateItem()">Сохранить элемент</button>
+
+            <button id="deleteItem"
+                    style="display:none;"
+                    onclick="deleteItem()">Удалить элемент</button>
+
+            <button id="closeupdateItem"
+                    style="display:none;"
+                    onclick="builder.unselectItem()">Отменить изменение</button>
         </div>
-        <hr />
-        <div id="nested-list">Собираться схема будет здесь.</div>
-        <hr />
-        
-        
-        <center><b>Результат сформированной страницы:</b></center>
-        <iframe style="width: min(1180px, 100%);" id="output" readonly></iframe>
-        <hr />
-        <center><b>Код сформированной страницы:</b></center>
-        <textarea style="width: min(1180px, 100%);" id="output2"></textarea>
-        <br>
-        <br>
-        <center>promo v.2 | <a target="_blank" href="https://t.me/otherside_world">телеграм разработчика</a> | <a href="https://otherside-world.ru/">другие проекты</a></center>
-		<!-- Yandex.Metrika counter -->
-<script type="text/javascript">
-    (function(m,e,t,r,i,k,a){
-        m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
-        m[i].l=1*new Date();
-        for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
-        k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
-    })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=106046314', 'ym');
+    </div>
 
-    ym(106046314, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", accurateTrackBounce:true, trackLinks:true});
-</script>
-<noscript><div><img src="https://mc.yandex.ru/watch/106046314" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
-<!-- /Yandex.Metrika counter -->
+    <hr>
+
+    <div id="nested-list">Собираться схема будет здесь.</div>
+
+    <hr>
+
+    <center>
+        <b>Результат сформированной страницы:</b>
+    </center>
+
+    <iframe style="width:min(1180px, 100%);" id="output"></iframe>
+
+    <hr>
+
+    <center>
+        <b>Код сформированной страницы:</b>
+    </center>
+
+    <textarea style="width:min(1180px, 100%);" id="output2"></textarea>
+
+    <br><br>
+
+    <center>
+        v.2 |
+        <a target="_blank" href="https://t.me/otherside_world">телеграм разработчика</a> |
+        <a href="https://otherside-world.ru/">другие проекты</a>
+    </center>
+
+    <!-- Управление справкой -->
+    <script>
+        (function () {
+            var toggle = document.getElementById('introToggle');
+            var content = document.getElementById('introContent');
+            var overlay = document.getElementById('introOverlay');
+            var closeButton = document.getElementById('introClose');
+
+            function openContent() {
+                content.classList.add('open');
+                overlay.classList.add('open');
+                document.body.classList.add('intro-help-open');
+
+                content.setAttribute('aria-hidden', 'false');
+                overlay.setAttribute('aria-hidden', 'false');
+                toggle.setAttribute('aria-expanded', 'true');
+                toggle.setAttribute('aria-label', 'Закрыть справку');
+
+                closeButton.focus();
+            }
+
+            function closeContent() {
+                content.classList.remove('open');
+                overlay.classList.remove('open');
+                document.body.classList.remove('intro-help-open');
+
+                content.setAttribute('aria-hidden', 'true');
+                overlay.setAttribute('aria-hidden', 'true');
+                toggle.setAttribute('aria-expanded', 'false');
+                toggle.setAttribute('aria-label', 'Открыть справку');
+
+                toggle.focus();
+            }
+
+            toggle.addEventListener('click', function () {
+                if (content.classList.contains('open')) {
+                    closeContent();
+                } else {
+                    openContent();
+                }
+            });
+
+            closeButton.addEventListener('click', closeContent);
+            overlay.addEventListener('click', closeContent);
+
+            document.addEventListener('keydown', function (e) {
+                if (e.key === 'Escape' && content.classList.contains('open')) {
+                    closeContent();
+                }
+            });
+        })();
+    </script>
+
+    <!-- Yandex.Metrika counter -->
+    <script type="text/javascript">
+        (function (m, e, t, r, i, k, a) {
+            m[i] = m[i] || function () {
+                (m[i].a = m[i].a || []).push(arguments);
+            };
+
+            m[i].l = 1 * new Date();
+
+            for (var j = 0; j < document.scripts.length; j++) {
+                if (document.scripts[j].src === r) {
+                    return;
+                }
+            }
+
+            k = e.createElement(t);
+            a = e.getElementsByTagName(t)[0];
+            k.async = 1;
+            k.src = r;
+            a.parentNode.insertBefore(k, a);
+        })(window, document, 'script',
+            'https://mc.yandex.ru/metrika/tag.js?id=106046314', 'ym');
+
+        ym(106046314, 'init', {
+            ssr: true,
+            webvisor: true,
+            clickmap: true,
+            ecommerce: "dataLayer",
+            accurateTrackBounce: true,
+            trackLinks: true
+        });
+    </script>
+
+    <noscript>
+        <div>
+            <img src="https://mc.yandex.ru/watch/106046314"
+                 style="position:absolute; left:-9999px;"
+                 alt="">
+        </div>
+    </noscript>
+    <!-- /Yandex.Metrika counter -->
 
 
-<script>
-const bg = new Image();
-bg.src = './modules/background.png';
-
-bg.onload = function () {
-    const w = bg.width;
-    const h = bg.height;
-
-    const canvas = document.createElement('canvas');
-    canvas.width = w * 2;
-    canvas.height = h * 2;
-
-    const ctx = canvas.getContext('2d');
-
-    // Верхний левый — оригинал
-    ctx.drawImage(bg, 0, 0);
-
-    // Верхний правый — отражение по горизонтали
-    ctx.save();
-    ctx.translate(w * 2, 0);
-    ctx.scale(-1, 1);
-    ctx.drawImage(bg, 0, 0);
-    ctx.restore();
-
-    // Нижний левый — отражение по вертикали
-    ctx.save();
-    ctx.translate(0, h * 2);
-    ctx.scale(1, -1);
-    ctx.drawImage(bg, 0, 0);
-    ctx.restore();
-
-    // Нижний правый — отражение по обеим осям
-    ctx.save();
-    ctx.translate(w * 2, h * 2);
-    ctx.scale(-1, -1);
-    ctx.drawImage(bg, 0, 0);
-    ctx.restore();
-
-    document.body.style.backgroundImage =
-        'url("' + canvas.toDataURL() + '")';
-
-    document.body.style.backgroundRepeat = 'repeat';
-    document.body.style.backgroundColor = '#2e2e2e';
-};
-</script>
-    </body>
+</body>
 </html>
