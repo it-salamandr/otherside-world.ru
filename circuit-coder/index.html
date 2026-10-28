@@ -11,8 +11,8 @@
     <link rel="icon" href="./modules/favicon.png?v=1.5" type="image/x-icon">
     <link rel="stylesheet" href="./modules/style.css?v=2">
 
-    <script src="./modules/functions.js?v=2"></script>
-    <script src="./modules/config.js?v=1.3"></script>
+    <script src="./modules/functions.js?v=2.3"></script>
+    <script src="./modules/config.js?v=1.5"></script>
 
     <style>
         /* Кнопка справки в правом верхнем углу */
@@ -105,7 +105,7 @@
             border: 1px solid rgba(143, 220, 192, 0.35);
             border-radius: 14px;
 
-            box-shadow: 0 12px 45px rgba(0, 0, 0, 0.55);
+            box-shadow: 0 12px 45px rgba(0, 0, 0, 0.15);
 
             opacity: 0;
             visibility: hidden;
@@ -265,6 +265,48 @@ body {
     background-repeat: repeat;
     background-size: auto;
 }
+html {
+    scrollbar-gutter: stable;
+}
+
+body.intro-help-open {
+    overflow: hidden;
+}
+.highlight {
+  padding: 3px 7px;
+  border-radius: 4px;
+  background: rgba(46, 213, 115, 0.15);
+  color: #2ed573;
+  border: 1px solid #2ed573;
+  box-shadow: 0 0 8px rgba(46, 213, 115, 0.4);
+  font-weight: 600;
+}
+#dynamic-content {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px 14px;
+}
+
+
+#addItem {
+    min-height: 42px;
+    margin: 10px 0 16px;
+    padding: 10px 20px;
+    background: #263b57;
+    border-color: #4d719e;
+    color: #dceaff;
+    font-weight: 600;
+}
+
+#addItem:hover {
+    background: #304b6e;
+    border-color: #79a7e4;
+    box-shadow: 0 0 0 3px rgba(105, 157, 231, .08);
+}
+
+
+
     </style><script>
 document.addEventListener('DOMContentLoaded', function () {
     const buttons = document.querySelector('.button-group');
@@ -340,27 +382,30 @@ document.addEventListener('DOMContentLoaded', function () {
         <mark>tr</mark>, <mark>td</mark>.
     </p>
 
-    <h4>Атрибуты — содержимое и оформление</h4>
+    <h4>Рефлексы — содержимое</h4>
 
     <p>
-        Атрибуты задают текстовое содержимое и внешний вид HTML-элементов.
+        Рефлексы задают текстовое содержимое.<br>
         Для добавления текста используется команда <mark>innerText: TEXT</mark>,
         где <code>TEXT</code> заменяется нужным текстом.
     </p>
+
+    <h4>Атрибуты — оформление</h4>
 
     <p>Для оформления элементов используются CSS-стили. Например:</p>
 
     <ul>
         <li><mark>color: green</mark> — задаёт зелёный цвет текста.</li>
         <li><mark>text-shadow: 0 0 15px red</mark> — добавляет тексту красную тень со свечением.</li>
+        <li><mark>background-image: url("./modules/background-tile.png")</mark> — задает фон в виде картинки.</li>
     </ul>
 <hr>
     <h3>Управление выполнением схемы</h3>
 
-    <h4>Тестовый запуск и модульные контейнеры</h4>
+    <h4>Запуск и модульные контейнеры</h4>
 
     <p>
-        При тестовом запуске элементы обрабатываются последовательно, в порядке
+        При запуске элементы обрабатываются последовательно, в порядке
         их расположения в схеме. Контейнеры верхнего уровня пропускаются при
         автоматическом проходе и получают статус модульных. Название такого
         контейнера принимает формат <mark>TAG_NAME модульный</mark>.
@@ -380,10 +425,10 @@ document.addEventListener('DOMContentLoaded', function () {
     <p>
         Для подключения модульного контейнера используется команда функционала
         <mark>подключить {id: N}</mark>, где <code>N</code> — ID нужного контейнера.
-        Например, <mark>подключить {id: 23}</mark> подключает модульный контейнер с ID 23.
+        Например, <mark>подключить {id: 1}</mark> подключает модульный контейнер с ID 1.
     </p>
 
-    <h4>Ограничения тестового запуска</h4>
+    <h4>Ограничения запуска</h4>
 
     <ul>
         <li>Максимальная глубина вложенных подключений модулей — 2 уровня.</li>
@@ -395,26 +440,31 @@ document.addEventListener('DOMContentLoaded', function () {
 		
     </div>
 
-    <center>
-        <h1 class="schemocoder-title">
-    <span class="title-accent">БК-2:</span> Схемокодер
-</h1>
-    </center>
+
 
     <div>
         <div class="button-group">
+		
+		<center style="
+    width: 100%;
+    display: block;
+    padding: 0px;
+    margin: 0px;
+">
+        <h1 class="schemocoder-title" style="background: rgba(0, 0, 0, 0.15);margin: 0px;padding: 10px 10px;border-radius: 8px;width: min(1180px, 100%);display: block;">
+    <img src="./modules/favicon.png?v=1.5" style="max-width:45px; margin-bottom:-8px;" alt=""> <span class="title-accent">БК-2:</span> Схемокодер
+</h1>
+    </center>
+		
             <h2 class="schema-heading">
-                <b id="placeholder">
-                    <img src="./modules/favicon.png?v=1.5"
-                         style="max-width:28px; margin-bottom:-8px;"
-                         alt="">
+                <b id="placeholder" style="padding:5px;">
+                     Загрузка компонентов...
                 </b>
 
-                <span id="dynamic-content"></span>
+                <div id="dynamic-content"></div>
             </h2>
-        </div>
-
-        <div>
+			
+        
             <input type="text"
                    id="itemName"
                    autocomplete="off"
@@ -424,12 +474,9 @@ document.addEventListener('DOMContentLoaded', function () {
                 <option value="">Корень программы</option>
             </select>
 
-            <button id="runButton"
-                    style="display:inline;"
-                    onclick="runSequence()">Тестовый запуск</button>
 
             <button id="addItem"
-                    style="display:inline;"
+                    style="display:inline;width: min(1180px, 100%);margin:0px;margin-left: auto;margin-right: auto;"
                     onclick="addItem()">Добавить элемент</button>
 
             <button id="updateItem"
@@ -443,33 +490,81 @@ document.addEventListener('DOMContentLoaded', function () {
             <button id="closeupdateItem"
                     style="display:none;"
                     onclick="builder.unselectItem()">Отменить изменение</button>
+        
         </div>
+
+    </div>
+
+    <hr>
+	
+	
+    <div>
+        <div class="button-group">
+		
+		
+		<center style="
+    width: 100%;
+    display: block;
+    padding: 0px;
+    margin: 0px;
+">
+        <h2 class="schemocoder-title" style="background: rgba(0, 0, 0, 0.15);margin: 0px;padding: 10px 10px;border-radius: 8px;width: min(1180px, 100%);display: block;">
+    Логика кода
+</h2>
+    </center>
+		
+		
+    <div id="nested-list" style="margin: 0px;width:100%;"></div>
+	
+	<center style="padding: 5px 0 4px;width: 100%"><button id="runButton" style="display:inline;width: 100%;margin:0px;margin-left: auto;margin-right: auto;" onclick="runSequence()" class="">Запустить</button></center>
+    </div>
+    </div>
+	
+    <hr>
+
+
+    <div>
+        <div class="button-group">
+
+		<center style="
+    width: 100%;
+    display: block;
+    padding: 0px;
+    margin: 0px;
+">
+        <h2 class="schemocoder-title" style="background: rgba(0, 0, 0, 0.15);margin: 0px;padding: 10px 10px;border-radius: 8px;width: min(1180px, 100%);display: block;">
+    Результат работы кода
+</h2>
+    </center>
+	
+    <iframe style="width:min(1180px, 100%);margin: 0px;" id="output"></iframe>
+    </div>
     </div>
 
     <hr>
 
-    <div id="nested-list">Собираться схема будет здесь.</div>
 
-    <hr>
-
-    <center>
-        <b>Результат сформированной страницы:</b>
+    <div>
+        <div class="button-group">
+		
+		<center style="
+    width: 100%;
+    display: block;
+    padding: 0px;
+    margin: 0px;
+">
+        <h2 class="schemocoder-title" style="background: rgba(0, 0, 0, 0.15);margin: 0px;padding: 10px 10px;border-radius: 8px;width: min(1180px, 100%);display: block;">
+    Сформированный код
+</h2>
     </center>
+		
+    <textarea style="width:min(1180px, 100%);margin: 0px;" id="output2"></textarea>
+    </div>
+    </div>
 
-    <iframe style="width:min(1180px, 100%);" id="output"></iframe>
 
-    <hr>
-
-    <center>
-        <b>Код сформированной страницы:</b>
-    </center>
-
-    <textarea style="width:min(1180px, 100%);" id="output2"></textarea>
-
-    <br><br>
-
-    <center>
-        v.2 |
+    <center style="padding:0px">
+        Посл. версия 2.0 |
         <a target="_blank" href="https://t.me/otherside_world">телеграм разработчика</a> |
         <a href="https://otherside-world.ru/">другие проекты</a>
     </center>
@@ -526,9 +621,16 @@ document.addEventListener('DOMContentLoaded', function () {
             });
         })();
     </script>
+	
+<!-- Yandex.Metrika counter -->
+<script>
+(function () {
+    var initialized = false;
 
-    <!-- Yandex.Metrika counter -->
-    <script type="text/javascript">
+    function loadMetrika() {
+        if (initialized) return;
+        initialized = true;
+
         (function (m, e, t, r, i, k, a) {
             m[i] = m[i] || function () {
                 (m[i].a = m[i].a || []).push(arguments);
@@ -537,9 +639,7 @@ document.addEventListener('DOMContentLoaded', function () {
             m[i].l = 1 * new Date();
 
             for (var j = 0; j < document.scripts.length; j++) {
-                if (document.scripts[j].src === r) {
-                    return;
-                }
+                if (document.scripts[j].src === r) return;
             }
 
             k = e.createElement(t);
@@ -554,20 +654,39 @@ document.addEventListener('DOMContentLoaded', function () {
             ssr: true,
             webvisor: true,
             clickmap: true,
-            ecommerce: "dataLayer",
+            ecommerce: 'dataLayer',
             accurateTrackBounce: true,
             trackLinks: true
         });
-    </script>
+    }
 
-    <noscript>
-        <div>
-            <img src="https://mc.yandex.ru/watch/106046314"
-                 style="position:absolute; left:-9999px;"
-                 alt="">
-        </div>
-    </noscript>
-    <!-- /Yandex.Metrika counter -->
+    // Запуск через 3 секунды после загрузки DOM
+    if (document.readyState === 'complete') {
+        setTimeout(loadMetrika, 3000);
+    } else {
+        window.addEventListener('load', function () {
+            setTimeout(loadMetrika, 3000);
+        });
+    }
+
+    // Если пользователь начал взаимодействовать — запускаем раньше
+    ['scroll', 'mousemove', 'touchstart', 'click'].forEach(function (event) {
+        window.addEventListener(event, loadMetrika, {
+            once: true,
+            passive: true
+        });
+    });
+})();
+</script>
+
+<noscript>
+    <div>
+        <img src="https://mc.yandex.ru/watch/106046314"
+             style="position:absolute;left:-9999px;"
+             alt="">
+    </div>
+</noscript>
+<!-- /Yandex.Metrika counter -->
 
 
 </body>

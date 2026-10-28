@@ -848,7 +848,7 @@ updateLightning();
 
     <button type="submit">Заказать</button>
 	<button id="buttonClose" onclick="Website2APK.exitApp()" style="display:none;">Закрыть программу</button>
-    <button id="buttonAndroid" onclick="window.location = 'https://otherside-world.ru/modules/perelom_ts_v12.apk';" style="display:none;">Приложение на телефон (android)</button>
+    <button id="buttonAndroid" onclick="window.location = 'https://otherside-world.ru/modules/perelom_ts_v13.apk';" style="display:none;">Приложение на телефон (android)</button>
   </form>
 
   <div class="output" id="result">
@@ -1896,18 +1896,73 @@ function addQuickFillLinks() {
     methodInput.parentNode.appendChild(methodLink);
 }
 </script>
-<!-- Yandex.Metrika counter -->
-<script type="text/javascript">
-    (function(m,e,t,r,i,k,a){
-        m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
-        m[i].l=1*new Date();
-        for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
-        k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
-    })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=106046314', 'ym');
 
-    ym(106046314, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", accurateTrackBounce:true, trackLinks:true});
+
+<!-- Yandex.Metrika counter -->
+<script>
+(function () {
+    var initialized = false;
+
+    function loadMetrika() {
+        if (initialized) return;
+        initialized = true;
+
+        (function (m, e, t, r, i, k, a) {
+            m[i] = m[i] || function () {
+                (m[i].a = m[i].a || []).push(arguments);
+            };
+
+            m[i].l = 1 * new Date();
+
+            for (var j = 0; j < document.scripts.length; j++) {
+                if (document.scripts[j].src === r) return;
+            }
+
+            k = e.createElement(t);
+            a = e.getElementsByTagName(t)[0];
+            k.async = 1;
+            k.src = r;
+            a.parentNode.insertBefore(k, a);
+        })(window, document, 'script',
+            'https://mc.yandex.ru/metrika/tag.js?id=106046314', 'ym');
+
+        ym(106046314, 'init', {
+            ssr: true,
+            webvisor: true,
+            clickmap: true,
+            ecommerce: 'dataLayer',
+            accurateTrackBounce: true,
+            trackLinks: true
+        });
+    }
+
+    // Запуск через 3 секунды после загрузки DOM
+    if (document.readyState === 'complete') {
+        setTimeout(loadMetrika, 3000);
+    } else {
+        window.addEventListener('load', function () {
+            setTimeout(loadMetrika, 3000);
+        });
+    }
+
+    // Если пользователь начал взаимодействовать — запускаем раньше
+    ['scroll', 'mousemove', 'touchstart', 'click'].forEach(function (event) {
+        window.addEventListener(event, loadMetrika, {
+            once: true,
+            passive: true
+        });
+    });
+})();
 </script>
-<noscript><div><img src="https://mc.yandex.ru/watch/106046314" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+
+<noscript>
+    <div>
+        <img src="https://mc.yandex.ru/watch/106046314"
+             style="position:absolute;left:-9999px;"
+             alt="">
+    </div>
+</noscript>
 <!-- /Yandex.Metrika counter -->
+
 </body>
 </html>
