@@ -366,6 +366,126 @@ class NestedArrayBuilder {
     }
 }
 
+// Готовые заготовки команд
+const commandTemplates = {
+    teg: [
+        { label: "div — отдельный блок", value: "div" },
+        { label: "table — таблица", value: "table" },
+        { label: "tr — строка таблицы", value: "tr" },
+        { label: "td — ячейка таблицы", value: "td" },
+        { label: "h1 — заголовок", value: "h1" }
+    ],
+
+    reflex: [
+        { label: "innerText: TEXT — добавить текст", value: "innerText: TEXT" }
+    ],
+
+    atribut: [
+        { label: "color: green — цвет текста", value: "color: green" },
+        { label: "text-shadow — тень текста", value: "text-shadow: 0 0 15px red" },
+        {
+            label: "background-image — фоновое изображение",
+            value: 'background-image: url("./modules/background-tile.png")'
+        }
+    ],
+
+    function: [
+        { label: "подключить {id: N} — подключить модуль", value: "подключить {id: N}" }
+    ]
+};
+
+
+// Обновление списка заготовок
+function updateCommandTemplates() {
+    const list = document.getElementById("commandTemplates");
+    const selectedType = document.querySelector('input[name="itemType"]:checked');
+
+    if (!list) return;
+
+    list.innerHTML = "";
+
+    if (!selectedType) return;
+
+    (commandTemplates[selectedType.value] || []).forEach(function (template) {
+        const option = document.createElement("div");
+
+        option.textContent = template.label;
+
+        option.style.cssText = `
+    padding:10px 12px;
+    cursor:pointer;
+    font-size:14px;
+    font-weight:500;
+    color:#222;
+    background:#fff;
+    border-bottom:1px solid #ddd;
+`;
+
+        option.onmouseenter = function () {
+            this.style.background = "#eaf5ff";
+        };
+
+        option.onmouseleave = function () {
+            this.style.background = "#fff";
+        };
+
+        option.onmousedown = function (event) {
+            event.preventDefault();
+
+            document.getElementById("itemName").value = template.value;
+
+            list.style.display = "none";
+        };
+
+        list.appendChild(option);
+    });
+}
+
+
+// Управление выпадающим списком
+function initCommandTemplates() {
+    const input = document.getElementById("itemName");
+    const list = document.getElementById("commandTemplates");
+    const wrapper = document.getElementById("itemNameWrap");
+
+    if (!input || !list || !wrapper) return;
+
+    // Открытие списка при нажатии на input
+    input.addEventListener("focus", function () {
+        updateCommandTemplates();
+        list.style.display = "block";
+    });
+
+    input.addEventListener("click", function () {
+        updateCommandTemplates();
+        list.style.display = "block";
+    });
+	
+	input.addEventListener("input", function () {
+    list.style.display = "none";
+});
+
+    // Закрытие при нажатии вне поля
+    document.addEventListener("click", function (event) {
+        if (!wrapper.contains(event.target)) {
+            list.style.display = "none";
+        }
+    });
+
+    // Закрытие клавишей Escape
+    input.addEventListener("keydown", function (event) {
+        if (event.key === "Escape") {
+            list.style.display = "none";
+        }
+    });
+}
+
+if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initCommandTemplates);
+} else {
+    initCommandTemplates();
+}
+
 const builder = new NestedArrayBuilder();
 let currentId = 1;
 

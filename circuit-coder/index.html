@@ -11,8 +11,7 @@
     <link rel="icon" href="./modules/favicon.png?v=1.5" type="image/x-icon">
     <link rel="stylesheet" href="./modules/style.css?v=2">
 
-    <script src="./modules/functions.js?v=2.3"></script>
-    <script src="./modules/config.js?v=1.5"></script>
+    <script src="./modules/functions.js?v=2.6"></script>
 
     <style>
         /* Кнопка справки в правом верхнем углу */
@@ -305,8 +304,29 @@ body.intro-help-open {
     box-shadow: 0 0 0 3px rgba(105, 157, 231, .08);
 }
 
+#dynamic-content label {
+    background: #203b5c;
+    border: 1px solid #4b83ad;
+    color: #ffffff;
+    border-radius: 7px;
+    transition: all .2s ease;
+}
 
+#dynamic-content label:hover {
+    background: #164b65;
+    border-color: #36a6c8;
+}
 
+#dynamic-content label:has(input:checked) {
+    background: #172b46;
+    border-color: #304967;
+    color: #dce8f5;
+    box-shadow: 0 0 0 1px rgba(54, 166, 200, .2);
+}
+
+#dynamic-content input[type="radio"] {
+    accent-color: #48b9d5;
+}
     </style><script>
 document.addEventListener('DOMContentLoaded', function () {
     const buttons = document.querySelector('.button-group');
@@ -328,6 +348,7 @@ document.addEventListener('DOMContentLoaded', function () {
     updateHelpButton();
 });
 </script>
+
 </head>
 
 <body>
@@ -378,7 +399,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     <p>
     Контейнеры определяют структуру страницы и позволяют объединять элементы
-    в группы. Основные контейнеры:
+    в группы. Например:
 </p>
 <ul>
     <li><mark>div</mark> — обозначает отдельный блок страницы.</li>
@@ -418,14 +439,6 @@ document.addEventListener('DOMContentLoaded', function () {
         Модульные контейнеры можно подключать из других элементов схемы.
     </p>
 
-    <h4>Изменение порядка выполнения</h4>
-
-    <p>
-        Чтобы изменить обычный порядок выполнения и перейти к другому элементу,
-        используйте команду рефлекса <mark>перейти на {id: N}</mark>,
-        где <code>N</code> — ID элемента, к которому необходимо перейти.
-    </p>
-
     <h4>Подключение модульных контейнеров</h4>
 
     <p>
@@ -440,7 +453,161 @@ document.addEventListener('DOMContentLoaded', function () {
         <li>Максимальная глубина вложенных подключений модулей — 2 уровня.</li>
         <li>Максимальное количество зацикленных переходов при формировании страницы — 10.</li>
     </ul>
+<hr><div class="help-section">
 
+    <h3>Пример сборки схемы с вложениями</h3>
+
+    <p>Рассмотрим создание карточки товара с использованием контейнеров, рефлексов, атрибутов и функционала.</p>
+
+    <h4>Структура схемы</h4>
+
+    <pre style="
+        padding:15px;
+        background:#172b46;
+        color:#dce8f5;
+        border:1px solid #304967;
+        border-radius:8px;
+        overflow-x:auto;
+        line-height:1.6;
+        font-size:13px;
+    "><code>[ID: 1] [атрибут] margin: 0
+[ID: 2] [атрибут] padding: 30px
+[ID: 3] [атрибут] box-sizing: border-box
+[ID: 4] [атрибут] background: linear-gradient(135deg, #0d1b2a, #142d45)
+[ID: 5] [атрибут] color: #dce8f5
+[ID: 6] [атрибут] font-family: Arial, sans-serif
+
+[ID: 7] [контейнер] div
+├── [ID: 8] [атрибут] max-width: 600px
+├── [ID: 9] [атрибут] margin: 40px auto
+├── [ID: 10] [атрибут] padding: 30px
+├── [ID: 11] [атрибут] background: #172b46
+├── [ID: 12] [атрибут] border: 1px solid #304967
+├── [ID: 13] [атрибут] border-radius: 16px
+├── [ID: 14] [атрибут] box-shadow: 0 10px 35px rgba(0,0,0,.35)
+│
+├── [ID: 15] [контейнер] h1
+│   ├── [ID: 16] [атрибут] margin: 0 0 15px
+│   ├── [ID: 17] [атрибут] color: #ffffff
+│   ├── [ID: 18] [атрибут] font-size: 28px
+│   └── [ID: 19] [рефлекс] innerText: Удочка HIGASHI
+│
+├── [ID: 20] [контейнер] div
+│   ├── [ID: 21] [атрибут] margin-bottom: 25px
+│   ├── [ID: 22] [атрибут] color: #a9bfd5
+│   ├── [ID: 23] [атрибут] font-size: 15px
+│   └── [ID: 24] [рефлекс] innerText: Универсальная удочка для рыбалки.
+│
+├── [ID: 25] [контейнер] table
+│   ├── [ID: 26] [атрибут] width: 100%
+│   ├── [ID: 27] [атрибут] border-collapse: collapse
+│   ├── [ID: 28] [атрибут] margin-bottom: 25px
+│   │
+│   ├── [ID: 29] [контейнер] tr
+│   │   ├── [ID: 30] [контейнер] td
+│   │   │   ├── [ID: 31] [атрибут] padding: 12px 8px
+│   │   │   ├── [ID: 32] [атрибут] border-bottom: 1px solid #304967
+│   │   │   ├── [ID: 33] [атрибут] color: #8faac4
+│   │   │   └── [ID: 34] [рефлекс] innerText: Длина
+│   │   │
+│   │   └── [ID: 35] [контейнер] td
+│   │       ├── [ID: 36] [атрибут] padding: 12px 8px
+│   │       ├── [ID: 37] [атрибут] border-bottom: 1px solid #304967
+│   │       ├── [ID: 38] [атрибут] text-align: right
+│   │       ├── [ID: 39] [атрибут] font-weight: bold
+│   │       └── [ID: 40] [рефлекс] innerText: 2,4 м
+│   │
+│   └── [ID: 41] [контейнер] tr
+│       ├── [ID: 42] [контейнер] td
+│       │   ├── [ID: 43] [атрибут] padding: 12px 8px
+│       │   ├── [ID: 44] [атрибут] border-bottom: 1px solid #304967
+│       │   ├── [ID: 45] [атрибут] color: #8faac4
+│       │   └── [ID: 46] [рефлекс] innerText: Материал
+│       │
+│       └── [ID: 47] [контейнер] td
+│           ├── [ID: 48] [атрибут] padding: 12px 8px
+│           ├── [ID: 49] [атрибут] border-bottom: 1px solid #304967
+│           ├── [ID: 50] [атрибут] text-align: right
+│           ├── [ID: 51] [атрибут] font-weight: bold
+│           └── [ID: 52] [рефлекс] innerText: Карбон
+│
+└── [ID: 53] [контейнер] button
+    ├── [ID: 54] [атрибут] width: 100%
+    ├── [ID: 55] [атрибут] padding: 13px
+    ├── [ID: 56] [атрибут] background: #164b65
+    ├── [ID: 57] [атрибут] color: #ffffff
+    ├── [ID: 58] [атрибут] border: 1px solid #36a6c8
+    ├── [ID: 59] [атрибут] border-radius: 9px
+    ├── [ID: 60] [атрибут] cursor: pointer
+    ├── [ID: 61] [атрибут] font-size: 15px
+    ├── [ID: 62] [атрибут] font-weight: bold
+    └── [ID: 63] [рефлекс] innerText: Подробнее
+
+[ID: 64] [функционал] подключить {id: 7}</code></pre>
+
+    <h4>Результат сформированной страницы</h4>
+
+    <div style="
+    margin:0;
+    padding:30px;
+    box-sizing:border-box;
+    background:linear-gradient(135deg, #0d1b2a, #142d45);
+    color:#dce8f5;
+    font-family:Arial, sans-serif;
+">
+    <div style="
+        max-width:600px;
+        margin:40px auto;
+        padding:30px;
+        background:#172b46;
+        border:1px solid #304967;
+        border-radius:16px;
+        box-shadow:0 10px 35px rgba(0,0,0,.35);
+    ">
+        <h1 style="
+            margin:0 0 15px;
+            color:#fff;
+            font-size:28px;
+        ">Удочка HIGASHI</h1>
+
+        <div style="
+            margin-bottom:25px;
+            color:#a9bfd5;
+            font-size:15px;
+        ">Универсальная удочка для рыбалки.</div>
+
+        <table style="
+            width:100%;
+            border-collapse:collapse;
+            margin-bottom:25px;
+        ">
+            <tr>
+                <td style="padding:12px 8px; border-bottom:1px solid #304967; color:#8faac4;">Длина</td>
+                <td style="padding:12px 8px; border-bottom:1px solid #304967; text-align:right; font-weight:bold;">2,4 м</td>
+            </tr>
+            <tr>
+                <td style="padding:12px 8px; border-bottom:1px solid #304967; color:#8faac4;">Материал</td>
+                <td style="padding:12px 8px; border-bottom:1px solid #304967; text-align:right; font-weight:bold;">Карбон</td>
+            </tr>
+        </table>
+
+        <button type="button" style="
+            width:100%;
+            padding:13px;
+            background:#164b65;
+            color:#fff;
+            border:1px solid #36a6c8;
+            border-radius:9px;
+            cursor:pointer;
+            font-size:15px;
+            font-weight:bold;
+        ">Подробнее</button>
+    </div>
+</div>
+
+    <p>В примере показано, как контейнеры объединяются во вложенную структуру, рефлексы задают содержимое, атрибуты оформляют элементы, а функционал позволяет подключать модульные контейнеры.</p>
+
+</div>
 </div>
 		
 		
@@ -463,18 +630,58 @@ document.addEventListener('DOMContentLoaded', function () {
     </center>
 		
             <h2 class="schema-heading">
-                <b id="placeholder" style="padding:5px;">
-                     Загрузка компонентов...
-                </b>
+                <div id="dynamic-content" style="display:flex; flex-wrap:wrap; gap:8px;">
 
-                <div id="dynamic-content"></div>
+    <label for="teg" style="display:inline-flex; align-items:center; gap:5px; margin:0; padding:7px 13px; border:1px solid #888; border-radius:7px; cursor:pointer;">
+        <input type="radio" id="teg" name="itemType" value="teg" checked="" style="margin:0; padding:0; width:auto;">
+        Контейнер
+    </label>
+
+    <label for="atribut" style="display:inline-flex; align-items:center; gap:5px; margin:0; padding:7px 13px; border:1px solid #888; border-radius:7px; cursor:pointer;">
+        <input type="radio" id="atribut" name="itemType" value="atribut" style="margin:0; padding:0; width:auto;">
+        Атрибут
+    </label>
+
+    <label for="reflex" style="display:inline-flex; align-items:center; gap:5px; margin:0; padding:7px 13px; border:1px solid #888; border-radius:7px; cursor:pointer;">
+        <input type="radio" id="reflex" name="itemType" value="reflex" style="margin:0; padding:0; width:auto;">
+        Рефлекс
+    </label>
+
+    <label for="function" style="display:inline-flex; align-items:center; gap:5px; margin:0; padding:7px 13px; border:1px solid #888; border-radius:7px; cursor:pointer;">
+        <input type="radio" id="function" name="itemType" value="function" style="margin:0; padding:0; width:auto;">
+        Функционал
+    </label>
+
+</div>
             </h2>
 			
         
-            <input type="text"
-                   id="itemName"
-                   autocomplete="off"
-                   placeholder="Команда">
+            <div id="itemNameWrap" style="position:relative; width:100%;">
+
+    <input type="text"
+           id="itemName"
+           autocomplete="off"
+           placeholder="Команда"
+           style="width:100%; box-sizing:border-box;">
+
+    <div id="commandTemplates"
+         style="
+            display:none;
+            position:absolute;
+            top:100%;
+            left:0;
+            width:100%;
+            max-height:240px;
+            overflow-y:auto;
+            background:#fff;
+            border:1px solid #ccc;
+            border-radius:6px;
+            box-shadow:0 5px 15px rgba(0,0,0,.18);
+            z-index:9999;
+         ">
+    </div>
+
+</div>
 
             <select id="parentId">
                 <option value="">Корень программы</option>
