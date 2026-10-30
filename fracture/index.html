@@ -848,7 +848,7 @@ updateLightning();
 
     <button type="submit">Заказать</button>
 	<button id="buttonClose" onclick="Website2APK.exitApp()" style="display:none;">Закрыть программу</button>
-    <button id="buttonAndroid" onclick="window.location = 'https://otherside-world.ru/modules/perelom_ts_v13.apk';" style="display:none;">Приложение на телефон (android)</button>
+    <button id="buttonAndroid" onclick="window.location = 'https://otherside-world.ru/modules/perelom_ts_v14.apk';" style="display:none;">Приложение на телефон (android)</button>
   </form>
 
   <div class="output" id="result">
@@ -1256,12 +1256,21 @@ function getAncientRomanMonth() {
   
   if(found.img!=''){
   
-  return `<img src="${found.img}" alt="Перелом на ${found.name}" style="float: left; width: auto; height: 52px; margin-right: 15px;margin-top: 5px; margin-bottom: 0px; border-radius: 6px;">Перелом на ${found.name}. ${found.desc}`;
+  document.getElementById('RomanMonth').style.cssText = `
+    background: linear-gradient(90deg, rgba(0,0,0,0.85), rgba(0,0,0,0.55)), url('${found.img}') left center / cover no-repeat;
+    border-radius: 10px;
+    border: 1px solid rgba(190,170,130,0.3);
+    color: #e8dcc5;
+    min-height: 52px;
+    display: flex;
+    align-items: center;
+    box-shadow: inset 0 0 25px rgba(0,0,0,0.5);
+	text-align: center;
+`;
   
   }
-  else{
+  
   return `Перелом на ${found.name}. ${found.desc}`;
-  }
   
   }
   else{
