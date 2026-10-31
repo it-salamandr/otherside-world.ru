@@ -472,7 +472,7 @@ document.addEventListener('DOMContentLoaded', function () {
     "><code>[ID: 1] [атрибут] margin: 0
 [ID: 2] [атрибут] padding: 30px
 [ID: 3] [атрибут] box-sizing: border-box
-[ID: 4] [атрибут] background: linear-gradient(135deg, #0d1b2a, #142d45)
+[ID: 4] [атрибут] background-image: url("./modules/background-tile.png")
 [ID: 5] [атрибут] color: #dce8f5
 [ID: 6] [атрибут] font-family: Arial, sans-serif
 
@@ -544,13 +544,59 @@ document.addEventListener('DOMContentLoaded', function () {
 
 [ID: 64] [функционал] подключить {id: 7}</code></pre>
 
+<style>#buildSchemaButton.building {
+    pointer-events: none;
+    cursor: wait;
+    background: linear-gradient(135deg, #176b82, #208eaa);
+    box-shadow: 0 0 20px rgba(54, 166, 200, .4);
+    opacity: .9;
+}
+
+#buildSchemaButton.building .build-icon {
+    display: inline-block;
+    animation: schemaGear 1s linear infinite;
+}
+
+#buildSchemaButton.building .build-text {
+    animation: schemaPulse 1.2s ease-in-out infinite;
+}
+
+@keyframes schemaGear {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+@keyframes schemaPulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: .55; }
+}</style>
+<a href="#" id="buildSchemaButton" onclick="buildHigashiRodSchema(); return false;" style="
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    padding: 12px 20px;
+    margin: 10px 0;
+    color: #dce8f5;
+    background: linear-gradient(135deg, #164b65, #176b82);
+    border: 1px solid #36a6c8;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    box-shadow: 0 4px 15px rgba(22, 107, 130, .25);
+    transition: all .25s ease;
+">
+    <span class="build-icon" style="font-size: 18px;">⚙</span>
+    <span class="build-text">Автоматически собрать схему в Схемокодере</span>
+</a>
+
     <h4>Результат сформированной страницы</h4>
 
     <div style="
     margin:0;
     padding:30px;
     box-sizing:border-box;
-    background:linear-gradient(135deg, #0d1b2a, #142d45);
+    background-image: url('./modules/background-tile.png');
     color:#dce8f5;
     font-family:Arial, sans-serif;
 ">
@@ -889,6 +935,175 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 })();
+</script>
+
+<script>
+function buildHigashiRodSchema() {
+
+    const buildButton = document.getElementById('buildSchemaButton');
+
+    if (buildButton.classList.contains('building')) return;
+
+    buildButton.classList.add('building');
+    buildButton.querySelector('.build-text').textContent = 'Собираем схему...';
+
+    const item = (name, type, children = []) => ({
+        id: 0,
+        name,
+        type,
+        children
+    });
+
+    const attr = name => item(name, 'atribut');
+    const reflex = name => item(name, 'reflex');
+
+    const container = (name, attrs = [], children = []) =>
+        item(name, 'teg', [...attrs, ...children]);
+
+    const schema = [
+
+        attr('margin: 0'),
+        attr('padding: 30px'),
+        attr('box-sizing: border-box'),
+        attr('background-image: url("./modules/background-tile.png")'),
+        attr('color: #dce8f5'),
+        attr('font-family: Arial, sans-serif'),
+
+        container('div', [
+            attr('max-width: 600px'),
+            attr('margin: 40px auto'),
+            attr('padding: 30px'),
+            attr('background: #172b46'),
+            attr('border: 1px solid #304967'),
+            attr('border-radius: 16px'),
+            attr('box-shadow: 0 10px 35px rgba(0,0,0,.35)')
+        ], [
+
+            container('h1', [
+                attr('margin: 0 0 15px'),
+                attr('color: #ffffff'),
+                attr('font-size: 28px')
+            ], [
+                reflex('innerText: Удочка HIGASHI')
+            ]),
+
+            container('div', [
+                attr('margin-bottom: 25px'),
+                attr('color: #a9bfd5'),
+                attr('font-size: 15px')
+            ], [
+                reflex('innerText: Универсальная удочка для рыбалки.')
+            ]),
+
+            container('table', [
+                attr('width: 100%'),
+                attr('border-collapse: collapse'),
+                attr('margin-bottom: 25px')
+            ], [
+
+                container('tr', [], [
+
+                    container('td', [
+                        attr('padding: 12px 8px'),
+                        attr('border-bottom: 1px solid #304967'),
+                        attr('color: #8faac4')
+                    ], [
+                        reflex('innerText: Длина')
+                    ]),
+
+                    container('td', [
+                        attr('padding: 12px 8px'),
+                        attr('border-bottom: 1px solid #304967'),
+                        attr('text-align: right'),
+                        attr('font-weight: bold')
+                    ], [
+                        reflex('innerText: 2,4 м')
+                    ])
+
+                ]),
+
+                container('tr', [], [
+
+                    container('td', [
+                        attr('padding: 12px 8px'),
+                        attr('border-bottom: 1px solid #304967'),
+                        attr('color: #8faac4')
+                    ], [
+                        reflex('innerText: Материал')
+                    ]),
+
+                    container('td', [
+                        attr('padding: 12px 8px'),
+                        attr('border-bottom: 1px solid #304967'),
+                        attr('text-align: right'),
+                        attr('font-weight: bold')
+                    ], [
+                        reflex('innerText: Карбон')
+                    ])
+
+                ])
+
+            ]),
+
+            container('button', [
+                attr('width: 100%'),
+                attr('padding: 13px'),
+                attr('background: #164b65'),
+                attr('color: #ffffff'),
+                attr('border: 1px solid #36a6c8'),
+                attr('border-radius: 9px'),
+                attr('cursor: pointer'),
+                attr('font-size: 15px'),
+                attr('font-weight: bold')
+            ], [
+                reflex('innerText: Подробнее')
+            ])
+
+        ]),
+
+        item('подключить {id: 7}', 'function')
+
+    ];
+
+    // Назначаем ID в правильном порядке:
+    // сначала родитель, затем все его дочерние элементы.
+    let nextId = 1;
+
+    function assignIds(items) {
+        items.forEach(element => {
+            element.id = nextId++;
+
+            if (element.children && element.children.length) {
+                assignIds(element.children);
+            }
+        });
+    }
+
+    assignIds(schema);
+
+    // Заменяем предыдущую схему
+    builder.items = schema;
+    builder.selectedItemId = null;
+    builder.previousState = null;
+
+    currentId = nextId;
+
+    builder.unselectItem();
+    render();
+
+        console.log('Схема HIGASHI создана. Элементов:', nextId - 1);
+
+    // Показываем завершение сборки
+    buildButton.querySelector('.build-icon').textContent = '✓';
+    buildButton.querySelector('.build-text').textContent = 'Схема успешно собрана!';
+
+    buildButton.classList.remove('building');
+
+    // Закрываем справку после завершения анимации
+    setTimeout(function () {
+        document.getElementById('introClose').click();
+    }, 800);
+}
 </script>
 
 <noscript>
