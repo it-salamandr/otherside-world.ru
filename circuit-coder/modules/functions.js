@@ -276,30 +276,28 @@ class NestedArrayBuilder {
     }
 
     addOptions(selectElement, items, level = 1) {
-        items.forEach((item) => {
-            if ((document.querySelector('input[name="itemType"]:checked').value === "reflex" && item.type === "atribut") || item.type === "teg") {
-                var see = true;
-            } else {
-                var see = false;
+    items.forEach((item) => {
+        if (item.type === "teg") {
+            const option = document.createElement("option");
+            option.value = item.id;
+
+            const prefix = "&nbsp;".repeat(level * 2);
+            let name = item.name;
+
+            if (level === 1) {
+                name = "[модульный] " + name;
             }
 
-            if (see) {
-                const option = document.createElement("option");
-                option.value = item.id;
-                var prefix = "&nbsp;".repeat(level * 2);
-                var name = item.name;
-                if (item.type === "teg" && level == 1) {
-                    name = "[модульный] " + name;
-                }
-                option.innerHTML = `${prefix}[id: ${item.id}] ${name}`;
-                selectElement.appendChild(option);
+            option.innerHTML = `${prefix}[id: ${item.id}] ${name}`;
+            selectElement.appendChild(option);
+        }
 
-                if (item.children.length > 0) {
-                    this.addOptions(selectElement, item.children, level + 1);
-                }
-            }
-        });
-    }
+        // Продолжаем обход вложенных элементов
+        if (item.children.length > 0) {
+            this.addOptions(selectElement, item.children, level + 1);
+        }
+    });
+}
 
     generateOutput() {
         return JSON.stringify(this.items, null, 2);
