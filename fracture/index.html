@@ -1237,16 +1237,16 @@ function getAncientRomanMonth() {
 
   // Диапазоны месяцев (от 1 марта)
   const ranges = [
-    { name: "1-м узле сна: ЗАПРЕТНАЯ ПАМЯТЬ",img: 'https://otherside-world.ru/fracture/modules/images/uzly_snov/1.jpg',desc: "Перед тобой спертый воздух, пыль в солнечном луче, напряжённая тишина. Всё внутри давно смирилось с тем, что ты не вернёшься.",   number: 5, from: 123, to: 153 },
-    { name: "2-м узле сна: ПОРОГОВЫЕ ЛИЦА",img: 'https://otherside-world.ru/fracture/modules/images/uzly_snov/2.jpg', desc: "Вежливая ловушка. Всё кажется 'правильным': мягкие голоса, разумные аргументы, знакомые лица. Но внутри — нарастающий холод.",   number: 6, from: 154, to: 183 },
-    { name: "3-м узле сна: ОБРАТНАЯ СТОРОНА", img: 'https://otherside-world.ru/fracture/modules/images/uzly_snov/3.jpg',desc: "Тревожная встреча. Кто-то похож на тебя, но искажён.",  number: 7, from: 184, to: 213 },
-    { name: "4-м узле сна: ШЕПОТ ПРЕДКОВ",img: 'https://otherside-world.ru/fracture/modules/images/uzly_snov/4.jpg',desc: "Приглушённо, по древнему, сакрально.",     number: 8, from: 214, to: 244 },
-    { name: "5-м узле сна: ВХОЖДЕНИЕ В РОЛЬ",img: 'https://otherside-world.ru/fracture/modules/images/uzly_snov/5.jpg',  desc: "Символично, почти все мифическое.",  number: 9, from: 245, to: 274 },
-    { name: "6-м узле сна: БЕЛАЯ ПУСТОТА", img: 'https://otherside-world.ru/fracture/modules/images/uzly_snov/6.jpg',desc: "Белый шум, ничто, спокойствие, почти смерть.",   number: 10,from: 275, to: 305 },
-    { name: "7-м узле сна: ЗЕРКАЛО ТЕЛА", img: 'https://otherside-world.ru/fracture/modules/images/uzly_snov/7.jpg',desc: "Ты внутри сна — но не управляешь. Все движения автоматичны. Всё — как будто не твое.",     number: 1, from: 1,   to: 31 },
-    { name: "8-м узле сна: МЕХАНИЗМ ВРЕМЕНИ", img: 'https://otherside-world.ru/fracture/modules/images/uzly_snov/8.jpg',desc: "Ты снова в том же месте. Повтор. День сурка. Всё предсказуемо — и бесконечно.",    number: 2, from: 32,  to: 61 },
-    { name: "9-м узле сна: ДОПРОС ЧУВСТВАМИ",img: 'https://otherside-world.ru/fracture/modules/images/uzly_snov/9.jpg',desc: "Напряжение растёт, будто гром перед ударом.",       number: 3, from: 62,  to: 92 },
-    { name: "10-м узле сна: МИР БЕЗ ЗАКОНОВ",img: 'https://otherside-world.ru/fracture/modules/images/uzly_snov/10.jpg', desc: "Абсурд, сломанные законы, но всё — логично по-своему.",     number: 4, from: 93,  to: 122 }
+    { name: "1-м узле сна: ЗАПРЕТНАЯ ПАМЯТЬ",img: './modules/images/uzly_snov/1.jpg',desc: "Перед тобой спертый воздух, пыль в солнечном луче, напряжённая тишина. Всё внутри давно смирилось с тем, что ты не вернёшься.",   number: 5, from: 123, to: 153 },
+    { name: "2-м узле сна: ПОРОГОВЫЕ ЛИЦА",img: './modules/images/uzly_snov/2.jpg', desc: "Вежливая ловушка. Всё кажется 'правильным': мягкие голоса, разумные аргументы, знакомые лица. Но внутри — нарастающий холод.",   number: 6, from: 154, to: 183 },
+    { name: "3-м узле сна: ОБРАТНАЯ СТОРОНА", img: './modules/images/uzly_snov/3.jpg',desc: "Тревожная встреча. Кто-то похож на тебя, но искажён.",  number: 7, from: 184, to: 213 },
+    { name: "4-м узле сна: ШЕПОТ ПРЕДКОВ",img: './modules/images/uzly_snov/4.jpg',desc: "Приглушённо, по древнему, сакрально.",     number: 8, from: 214, to: 244 },
+    { name: "5-м узле сна: ВХОЖДЕНИЕ В РОЛЬ",img: './modules/images/uzly_snov/5.jpg',  desc: "Символично, почти все мифическое.",  number: 9, from: 245, to: 274 },
+    { name: "6-м узле сна: БЕЛАЯ ПУСТОТА", img: './modules/images/uzly_snov/6.jpg',desc: "Белый шум, ничто, спокойствие, почти смерть.",   number: 10,from: 275, to: 305 },
+    { name: "7-м узле сна: ЗЕРКАЛО ТЕЛА", img: './modules/images/uzly_snov/7.jpg',desc: "Ты внутри сна — но не управляешь. Все движения автоматичны. Всё — как будто не твое.",     number: 1, from: 1,   to: 31 },
+    { name: "8-м узле сна: МЕХАНИЗМ ВРЕМЕНИ", img: './modules/images/uzly_snov/8.jpg',desc: "Ты снова в том же месте. Повтор. День сурка. Всё предсказуемо — и бесконечно.",    number: 2, from: 32,  to: 61 },
+    { name: "9-м узле сна: ДОПРОС ЧУВСТВАМИ",img: './modules/images/uzly_snov/9.jpg',desc: "Напряжение растёт, будто гром перед ударом.",       number: 3, from: 62,  to: 92 },
+    { name: "10-м узле сна: МИР БЕЗ ЗАКОНОВ",img: './modules/images/uzly_snov/10.jpg', desc: "Абсурд, сломанные законы, но всё — логично по-своему.",     number: 4, from: 93,  to: 122 }
   ];
 
   // Ищем соответствующий месяц по диапазону
