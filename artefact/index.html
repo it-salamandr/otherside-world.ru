@@ -131,9 +131,9 @@ body {
    <li><div><strong>Приклеить кусочек палочки Пало Санто.</strong><br>Она задаёт восточный вектор Лунного камня. Разместить ближе к контейнеру, выберите наибольшую сторону контейнера и приклейте вровень центра выбранной стороны контейнера.</div></li>
    <li><div><strong>Закрепить очин пера.</strong><br>На стороне контейнера, противоположной приклеенного Пало Санто, приклейте очин вороньего пера ближе к контейнеру. Он будет задавать западный сектор Снежного обсидиана.</div></li>
    <li><div><strong>Разложить камни по кругу в лунной последовательности.</strong><br>Ориентир - у Пало Санто размещается Лунный камень. Камни размещайте по средней окружности платформы в часовой последовательности отмеченном попунктно в <a href="#section-3" class="scroll-link" onclick="scrollToElement('section-3'); return false;">3-м разделе</a>. Размерьте одинаковый отступ между центрами камней.</div></li>
-   <li><div><strong>Закрепить монеты по периферии.</strong><br>Приклейте по внешнему периметру камней исторические монеты из месячного перечня по одной из дня недели (повторы считать уже имеющимися) и действующие деньги восьми стран, с которыми предполагается взаимодействие. Определить какие страны вам подходят для кланового развития можно через инструменты Перелома и Бдилки  (<a target="_blank" href="https://otherside-world.ru/" class="scroll-link">см. инструменты коррекции симуляции</a>).</div></li>
+   <li><div><strong>Закрепить монеты по периферии.</strong><br>Приклейте по внешнему периметру камней исторические монеты из месячного перечня по одной из дня недели (повторы считать уже имеющимися) и действующие деньги восьми стран, с которыми предполагается взаимодействие. Определить какие страны вам подходят для кланового развития можно через инструменты Перелома и Бдилки  (<a target="_blank" href="https://otherside-world.ru/" class="scroll-link">см. инструменты коррекции симуляции</a>). </div></li>
    <li><div><strong>Нанести масла.</strong><br>По одной капле соответствующего масла отмеченном в <a href="#section-3" class="scroll-link" onclick="scrollToElement('section-3'); return false;">3-м разделе</a> на каждый из десяти камней. Для шунгита масла нет, оставить как есть.</div></li>
-   <li><div><strong>Закрепите прищепку с присоской.</strong><br>Закрепите прищепку на корпусе платформы напротив середины камня Селенит. Прикрепите к прищепке присоску так, чтобы компас располагался на ней строго горизонтально. Отметьте на присоске линию, проходящую через центр камня Селенит, это поможет быстро определять направление статического севера у артефакта. Зафиксируйте конструкцию клеем.</div></li>
+   <li><div><strong>Закрепите прищепку с присоской.</strong><br>Закрепите прищепку на корпусе платформы напротив середины камня Селенит. Прикрепите к прищепке присоску так, чтобы компас располагался на ней строго горизонтально. Отметьте на присоске линию, проходящую через центр камня Селенит, это поможет быстро определять направление статического севера у артефакта. Зафиксируйте конструкцию клеем. Примерно будет выглядить <a href="./modules/artefact_1.jpg" target="_blank">так</a>.</div></li>
    <li><div><strong>Соединить элементы пластилином.</strong><br>Заполнить пластилином места расположения монет, прищепки, участки вокруг камней и нижнюю часть зеркала, сформировав связующую цепь между элементами.</div></li>
    <li><div><strong>Окрасить пластилин по зонам.</strong><br>Восток — зелёный (Лунный камень находится посередине зелёной тройки); далее по часовой стрелке: юг — красный, запад — чёрный, север — синий. Боковые поверхности и поддон окрасить белым. Прищепку только снизу покрасить, в местах контакта с платформой.</div></li>
    <li><div><strong>Защитить окрашенные поверхности.</strong><br>Покрыть краску двумя слоями глянцевого акрилового лака. Приготовьтесь что это затянется, наносите слои очень тонко и ожидайте полного высыхания.</div></li>
@@ -1135,6 +1135,116 @@ function restoreMaterialChecks(){
 renderCoins();restoreMaterialChecks();
 </script>
 
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+
+    const style = document.createElement('style');
+    style.textContent = `
+        .image-viewer {
+            position: fixed;
+            inset: 0;
+            z-index: 999999;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            background: rgba(0,0,0,.94);
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .image-viewer.active {
+            display: flex;
+        }
+
+        .image-viewer img {
+            max-width: 100%;
+            max-height: 100%;
+            width: auto;
+            height: auto;
+            object-fit: contain;
+            cursor: default;
+        }
+
+        .image-viewer-close {
+            position: absolute;
+            top: 20px;
+            right: 25px;
+            width: 48px;
+            height: 48px;
+            border: 1px solid rgba(255,255,255,.35);
+            border-radius: 50%;
+            background: rgba(255,255,255,.12);
+            color: #fff;
+            font-size: 32px;
+            line-height: 1;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: .2s;
+        }
+
+        .image-viewer-close:hover {
+            background: #d71920;
+            border-color: #d71920;
+            transform: rotate(90deg);
+        }
+
+        body.image-viewer-open {
+            overflow: hidden;
+        }
+    `;
+    document.head.appendChild(style);
+
+    const viewer = document.createElement('div');
+    viewer.className = 'image-viewer';
+    viewer.innerHTML = `
+        <button class="image-viewer-close" aria-label="Закрыть">&times;</button>
+        <img src="" alt="">
+    `;
+    document.body.appendChild(viewer);
+
+    const viewerImg = viewer.querySelector('img');
+
+    function openImage(url) {
+        viewerImg.src = url;
+        viewer.classList.add('active');
+        document.body.classList.add('image-viewer-open');
+    }
+
+    function closeImage() {
+        viewer.classList.remove('active');
+        document.body.classList.remove('image-viewer-open');
+        viewerImg.src = '';
+    }
+
+    document.addEventListener('click', function (e) {
+        const link = e.target.closest('a[href]');
+
+        if (!link) return;
+
+        const url = link.href;
+
+        if (!/\.(jpg|jpeg|png|gif|webp|bmp|svg)(\?.*)?$/i.test(url)) return;
+
+        e.preventDefault();
+        openImage(url);
+    });
+
+    viewer.querySelector('.image-viewer-close').addEventListener('click', closeImage);
+
+    viewer.addEventListener('click', function (e) {
+        if (e.target === viewer) closeImage();
+    });
+
+    document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && viewer.classList.contains('active')) {
+            closeImage();
+        }
+    });
+
+});
+</script>
 
 
 <!-- Yandex.Metrika counter -->
