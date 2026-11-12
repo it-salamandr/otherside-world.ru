@@ -17,7 +17,7 @@ h1{font-size:3.2rem;margin:30px 10px;color:#7fcfff;animation:blueShimmer 6s ease
 .link-container{max-width:760px;width:calc(100% - 20px);display:inline-block;text-align:left;padding:25px 20px;border:1px solid rgba(125,220,190,.25);border-radius:10px;box-shadow:0 10px 40px rgba(0,0,0,.45),0 0 35px rgba(70,180,170,.12);margin:30px 10px;background:rgba(12,18,28,.89);position:relative;z-index:1}
 a{display:block;font-size:1.15rem;color:#8fdcc0;margin:15px 0;position:relative;transition:transform .2s,text-shadow .2s;word-break:break-word;text-decoration:none}
 a:hover{transform:translateX(5px);text-shadow:0 0 10px #00ff00,0 0 20px #00ff00}
-.description{display:block;font-size:1rem;line-height:1.5;color:#8fdcc0;margin:12px 0 16px;background:linear-gradient(90deg,#00ffd5,#66a6ff,#ff4ecd,#ffe066,#00ffd5);background-size:300% 300%;-webkit-background-clip:text;-webkit-text-fill-color:transparent;animation:chameleon 8s ease infinite}
+.description{display:block;font-size:1rem;line-height:1.5;color:#8fdcc0;margin:12px 0 16px;background:linear-gradient(90deg,#00ffd5,#66a6ff,#ff4ecd,#ffe066,#00ffd5);background-size:300% 300%;-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
 hr{border:0;height:2px;margin:25px 0;background:linear-gradient(90deg,transparent,rgba(130,210,255,.35),transparent);box-shadow:0 0 12px rgba(130,210,255,.15)}
 canvas{position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none}
 .accordion-section{margin:14px 0;border:1px solid rgba(125,220,190,.25);border-radius:8px;background:rgba(5,12,20,.48);overflow:hidden}
@@ -67,81 +67,1123 @@ main.link-container:has([open]) {
 <h1 style="text-align:center;font-size:2rem">Изнаночка мира</h1>
 <h4 style="color:#ff3333;text-align:center">Добро пожаловать в метафизическую кибернетику — направление, объединяющее программирование, философию и эзотерическое познание.<br><br>Здесь логика встречается с интуицией, а алгоритмы становятся способом осмысления сложных взаимосвязей.</h4>
 
+
+
 <div class="accordion-section">
-<button class="accordion-title" aria-expanded="false">Введение: уровни симуляции</button>
+    <button class="accordion-title" aria-expanded="false">Первооснова</button>
+    <div class="accordion-content">
+
+        <span class="description">
+            В начале было Слово. Не человеческое слово, произнесённое голосом, а первозвук — божественный язык, посредством которого возникло само мироздание. В этой концепции творение можно представить как величайшее произнесение: из первоначального замысла рождаются смыслы, из смыслов — формы, из форм — материя и жизнь. Всё сущее становится частью единого высказывания, в котором каждая вещь занимает своё место.
+        </span>
+
+        <span class="description">
+            Человеческий язык — лишь отголосок, своеобразная симуляция этого первичного языка. Мы не создаём мир из ничего, но повторяем в малом сам принцип творения: соединяем звуки, наделяем их значениями, формируем образы и воплощаем замыслы. Каждое осмысленное слово становится попыткой воспроизвести тот порядок, по которому, согласно этой картине мира, однажды возникло всё существующее.
+        </span>
+
+
+
+        <span class="description">
+            Русский язык в этом отношении представляет особый простор для исследования. Его звучание, корни, словообразование и многослойность значений позволяют искать скрытые переклички между словами, обнаруживать неожиданные смысловые связи и создавать новые конструкции. Возможно, именно в этих связях сохранилось отдалённое эхо божественного языка — первоосновы, из которой возник сам принцип именования и творения.
+        </span>
+        
+
+
+
+<style>
+.name-symbolics-widget {
+    --ns-text: #8fdcc0;
+    --ns-muted: rgba(143,220,192,.65);
+    --ns-border: rgba(125,220,190,.25);
+    --ns-bg: rgba(12,18,28,.89);
+    --ns-panel: rgba(5,12,20,.48);
+    --ns-accent: #7fcfff;
+    --ns-glow: rgba(70,180,170,.12);
+
+    width: 100%;
+    box-sizing: border-box;
+    color: var(--ns-text);
+    font-family: inherit;
+}
+
+.name-symbolics-widget *,
+.name-symbolics-widget *::before,
+.name-symbolics-widget *::after {
+    box-sizing: border-box;
+}
+
+.name-symbolics-widget .ns-container {
+    width: 100%;
+    max-width: 850px;
+    margin: 0 auto;
+}
+
+.name-symbolics-widget .ns-title {
+    margin: 0 0 10px;
+    color: var(--ns-accent);
+    font-size: 30px;
+    text-align: center;
+    text-shadow: 0 0 12px rgba(120,200,255,.25);
+}
+
+.name-symbolics-widget .ns-subtitle {
+    margin: 0 0 25px;
+    color: var(--ns-muted);
+    text-align: center;
+    line-height: 1.5;
+}
+
+.name-symbolics-widget .ns-panel {
+    padding: 25px;
+    background: rgba(12,18,28,.72);
+    border: 1px solid var(--ns-border);
+    border-radius: 12px;
+    margin-bottom: 20px;
+    box-shadow: 0 8px 25px rgba(0,0,0,.2),
+                0 0 20px var(--ns-glow);
+}
+
+.name-symbolics-widget .ns-input-row {
+    display: flex;
+    gap: 10px;
+}
+
+.name-symbolics-widget input {
+    flex: 1;
+    min-width: 0;
+    padding: 15px;
+    border: 1px solid var(--ns-border);
+    border-radius: 7px;
+    font-family: inherit;
+    font-size: 17px;
+    outline: none;
+    background: rgba(3,6,12,.75);
+    color: var(--ns-text);
+    transition: border-color .2s, box-shadow .2s;
+}
+
+.name-symbolics-widget input::placeholder {
+    color: rgba(143,220,192,.45);
+}
+
+.name-symbolics-widget input:focus {
+    border-color: var(--ns-accent);
+    box-shadow: 0 0 12px rgba(127,207,255,.18);
+}
+
+.name-symbolics-widget .ns-button {
+    padding: 0 25px;
+    border: 1px solid rgba(127,207,255,.5);
+    border-radius: 7px;
+    background: linear-gradient(135deg, rgba(20,75,105,.9), rgba(10,35,55,.95));
+    color: var(--ns-accent);
+    font-family: inherit;
+    font-size: 15px;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: background .2s, box-shadow .2s, color .2s;
+}
+
+.name-symbolics-widget .ns-button:hover {
+    background: rgba(30,100,135,.65);
+    color: #fff;
+    box-shadow: 0 0 15px rgba(127,207,255,.25);
+}
+
+.name-symbolics-widget .ns-result {
+    display: none;
+    margin-top: 25px;
+}
+
+.name-symbolics-widget .ns-result h2 {
+    margin: 0 0 18px;
+    color: var(--ns-accent);
+    font-size: 25px;
+    text-shadow: 0 0 10px rgba(127,207,255,.2);
+}
+
+.name-symbolics-widget .ns-meaning {
+    padding: 20px;
+    background: rgba(5,12,20,.65);
+    border: 1px solid rgba(125,220,190,.18);
+    border-left: 4px solid var(--ns-accent);
+    border-radius: 5px;
+    font-size: 16px;
+    line-height: 1.7;
+    color: var(--ns-text);
+}
+
+.name-symbolics-widget .ns-meaning p {
+    margin: 12px 0 0;
+}
+
+.name-symbolics-widget .ns-meaning strong {
+    color: var(--ns-accent);
+}
+
+.name-symbolics-widget .ns-interpretation {
+    margin-top: 18px;
+    font-size: 14px;
+    color: var(--ns-muted);
+    line-height: 1.7;
+}
+
+.name-symbolics-widget .ns-section-title {
+    margin: 30px 0 15px;
+    color: var(--ns-accent);
+    font-size: 20px;
+}
+
+.name-symbolics-widget .ns-letters {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.name-symbolics-widget .ns-letter {
+    padding: 13px 15px;
+    border: 1px solid var(--ns-border);
+    border-radius: 8px;
+    background: rgba(5,12,20,.55);
+    transition: border-color .2s, box-shadow .2s;
+}
+
+.name-symbolics-widget .ns-letter:hover {
+    border-color: rgba(127,207,255,.5);
+    box-shadow: 0 0 12px rgba(127,207,255,.1);
+}
+
+.name-symbolics-widget .ns-letter b {
+    display: block;
+    margin-bottom: 5px;
+    color: var(--ns-accent);
+    font-size: 20px;
+}
+
+.name-symbolics-widget .ns-letter span {
+    color: var(--ns-text);
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.name-symbolics-widget .ns-dictionary {
+    margin-top: 25px;
+    background: rgba(12,18,28,.72);
+    border: 1px solid var(--ns-border);
+    border-radius: 9px;
+    box-shadow: 0 0 20px var(--ns-glow);
+}
+
+
+.name-symbolics-widget .ns-dictionary summary:hover {
+    background: rgba(0,255,200,.06);
+}
+
+.name-symbolics-widget .ns-dictionary-content {
+    padding: 0 20px 20px;
+    color: var(--ns-text);
+}
+
+.name-symbolics-widget .ns-dictionary-content h3 {
+    margin: 20px 0 10px;
+    color: var(--ns-accent);
+    font-size: 16px;
+}
+
+.name-symbolics-widget .ns-dictionary-content ul {
+    padding-left: 20px;
+    margin: 0;
+    columns: 2;
+}
+
+.name-symbolics-widget .ns-dictionary-content li {
+    margin-bottom: 7px;
+    font-size: 14px;
+    line-height: 1.5;
+    break-inside: avoid;
+    color: var(--ns-text);
+}
+
+.name-symbolics-widget .ns-dictionary-content p {
+    color: var(--ns-accent);
+}
+
+.name-symbolics-widget .ns-note {
+    margin-top: 25px;
+    color: var(--ns-muted);
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+@media (max-width: 550px) {
+    .name-symbolics-widget .ns-title {
+        font-size: 25px;
+    }
+
+    .name-symbolics-widget .ns-panel {
+        padding: 17px;
+    }
+
+    .name-symbolics-widget .ns-input-row {
+        flex-direction: column;
+    }
+
+    .name-symbolics-widget .ns-button {
+        padding: 14px;
+    }
+
+    .name-symbolics-widget .ns-dictionary-content ul {
+        columns: 1;
+    }
+}
+
+</style>
+
+<div class="name-symbolics-widget">
+    <div class="ns-container">
+<div class="description">
+    В каждом звуке можно увидеть собственный символический оттенок:
+</div>
+     
+
+        <details class="ns-dictionary">
+            <summary class="accordion-title">Символический словарь букв</summary>
+            <div class="ns-dictionary-content"></div>
+        </details>
+
+<br>
+<span class="description">
+            Отдельный звук — словно элемент первичного замысла, сочетание звуков — уже движение к форме. Из букв складываются слова, из слов — образы и понятия, из понятий — целые картины действительности. Так язык воспроизводит в человеческом масштабе принцип созидания: сначала возникает замысел, затем ему даётся имя, а после он обретает очертания в сознании и поступках:
+        </span>
+<br>
+        <div class="ns-panel">
+
+            <div class="ns-input-row">
+                <input
+                    type="text"
+                    class="ns-name-input"
+                    placeholder="Введите имя, например Андрей"
+                    autocomplete="off"
+                >
+
+                <button type="button" class="ns-button ns-interpret-button">
+                    Раскрыть имя
+                </button>
+            </div>
+
+            <div class="ns-result">
+
+                <h2 class="ns-result-title" style="display:none;"></h2>
+
+                <div class="ns-meaning"></div>
+
+                <div class="ns-interpretation"></div>
+
+                <h3 class="ns-section-title">
+                    Значение каждой буквы
+                </h3>
+
+                <div class="ns-letters"></div>
+
+            </div>
+        </div>
+
+
+    </div>
+</div>
+
+
+<script>
+(function () {
+    'use strict';
+
+    const script = document.currentScript;
+    const root = script.previousElementSibling;
+
+    if (!root || !root.classList.contains('name-symbolics-widget')) {
+        console.error('Name Symbolics: виджет не найден');
+        return;
+    }
+
+    const input = root.querySelector('.ns-name-input');
+    const button = root.querySelector('.ns-interpret-button');
+    const result = root.querySelector('.ns-result');
+    const resultTitle = root.querySelector('.ns-result-title');
+    const meaning = root.querySelector('.ns-meaning');
+    const interpretation = root.querySelector('.ns-interpretation');
+    const letterContainer = root.querySelector('.ns-letters');
+    const dictionaryContainer = root.querySelector('.ns-dictionary-content');
+
+    if (!input || !button || !result || !resultTitle ||
+        !meaning || !interpretation || !letterContainer ||
+        !dictionaryContainer) {
+        console.error('Name Symbolics: не найдены элементы виджета');
+        return;
+    }
+
+    // =====================================================
+    // СЛОВАРЬ БУКВ
+    // =====================================================
+
+    const alphabet = {
+        'А': ['сила', 'полнота', 'радость', 'начало'],
+        'Е': ['проявление', 'раскрытие', 'переход'],
+        'Ё': ['пробуждение', 'вспышка', 'неожиданность'],
+        'И': ['ясность', 'сосредоточенность', 'различение'],
+        'О': ['покой', 'гармония', 'целостность'],
+        'У': ['стойкость', 'направленность', 'жизненная сила'],
+        'Ы': ['глубина', 'первозданность', 'неизведанное'],
+        'Э': ['готовность', 'действие', 'раскрытая энергия'],
+        'Ю': ['единение', 'обращение', 'взаимность'],
+        'Я': ['самость', 'осознание', 'воплощение'],
+
+        'Б': ['рождение', 'накопление', 'возникновение'],
+        'В': ['проникновение', 'наполнение'],
+        'Г': ['опора', 'граница', 'устойчивость'],
+        'Д': ['созидание', 'установление', 'порядок'],
+        'Ж': ['влага', 'жизнь', 'живое начало'],
+        'З': ['зарождение', 'искра', 'пробуждение'],
+        'Й': ['связующее движение', 'переход'],
+        'К': ['форма', 'закрепление', 'граница'],
+        'Л': ['течение', 'плавность', 'движение'],
+        'М': ['материя', 'вместилище', 'рождение'],
+        'Н': ['глубина', 'внутреннее пространство'],
+        'П': ['основа', 'предел', 'устойчивость'],
+        'Р': ['сила', 'изобилие', 'напор'],
+        'С': ['связь', 'течение', 'объединение'],
+        'Т': ['структура', 'опора', 'утверждение'],
+        'Ф': ['оболочка', 'форма', 'защита'],
+        'Х': ['связь', 'пересечение', 'соединение'],
+        'Ц': ['соединение', 'точность', 'направленность'],
+        'Ч': ['различение', 'выбор', 'осознание'],
+        'Ш': ['пространство', 'распространение', 'множество'],
+        'Щ': ['расширение', 'охват', 'проникновение'],
+        'Ъ': ['разделение', 'твёрдая граница'],
+        'Ь': ['смягчение', 'изменение характера']
+    };
+
+    const vowels = 'АЕЁИОУЫЭЮЯ';
+
+    // =====================================================
+    // СМЫСЛОВЫЕ ГРУППЫ
+    // =====================================================
+
+    const groups = {
+        'сила': 'energy',
+        'жизненная сила': 'energy',
+        'напор': 'energy',
+        'полнота': 'fullness',
+        'изобилие': 'fullness',
+        'радость': 'joy',
+
+        'начало': 'beginning',
+        'рождение': 'beginning',
+        'возникновение': 'beginning',
+        'зарождение': 'beginning',
+        'живое начало': 'beginning',
+
+        'проявление': 'expression',
+        'раскрытие': 'expression',
+        'раскрытая энергия': 'expression',
+
+        'переход': 'transition',
+        'связующее движение': 'transition',
+
+        'пробуждение': 'awakening',
+        'искра': 'awakening',
+        'вспышка': 'impulse',
+        'неожиданность': 'impulse',
+
+        'ясность': 'awareness',
+        'сосредоточенность': 'awareness',
+        'различение': 'awareness',
+        'осознание': 'awareness',
+        'самость': 'awareness',
+        'выбор': 'awareness',
+
+        'покой': 'harmony',
+        'гармония': 'harmony',
+        'целостность': 'harmony',
+
+        'стойкость': 'stability',
+        'устойчивость': 'stability',
+        'опора': 'stability',
+        'основа': 'stability',
+
+        'направленность': 'direction',
+        'точность': 'direction',
+
+        'глубина': 'depth',
+        'внутреннее пространство': 'depth',
+        'первозданность': 'depth',
+        'неизведанное': 'depth',
+
+        'действие': 'action',
+        'готовность': 'action',
+
+        'единение': 'connection',
+        'взаимность': 'connection',
+        'связь': 'connection',
+        'объединение': 'connection',
+        'соединение': 'connection',
+        'обращение': 'connection',
+        'пересечение': 'connection',
+
+        'форма': 'form',
+        'закрепление': 'form',
+        'структура': 'form',
+        'оболочка': 'form',
+
+        'граница': 'boundary',
+        'предел': 'boundary',
+        'твёрдая граница': 'boundary',
+
+        'созидание': 'creation',
+        'установление': 'creation',
+        'порядок': 'creation',
+        'воплощение': 'creation',
+
+        'течение': 'movement',
+        'плавность': 'movement',
+        'движение': 'movement',
+
+        'материя': 'matter',
+        'вместилище': 'matter',
+        'влага': 'matter',
+        'жизнь': 'matter',
+
+        'накопление': 'accumulation',
+        'наполнение': 'accumulation',
+        'проникновение': 'penetration',
+
+        'распространение': 'expansion',
+        'расширение': 'expansion',
+        'охват': 'expansion',
+        'пространство': 'expansion',
+        'множество': 'expansion',
+
+        'защита': 'protection',
+        'разделение': 'separation',
+        'смягчение': 'softening',
+        'изменение характера': 'softening'
+    };
+
+    // =====================================================
+    // ОПИСАНИЯ СМЫСЛОВ
+    // =====================================================
+
+    const descriptions = {
+        energy: 'внутренняя энергия и сила',
+        fullness: 'полнота жизни',
+        joy: 'радость бытия',
+        beginning: 'зарождение нового',
+        expression: 'раскрытие возможностей',
+        transition: 'переход к новому состоянию',
+        awakening: 'пробуждение',
+        impulse: 'неожиданный импульс',
+        awareness: 'осознанность и ясность',
+        harmony: 'гармония и целостность',
+        stability: 'устойчивость и опора',
+        direction: 'определённость направления',
+        depth: 'глубина внутреннего мира',
+        action: 'готовность действовать',
+        connection: 'единение и взаимосвязь',
+        form: 'обретение формы',
+        boundary: 'границы и разграничение',
+        creation: 'созидание и воплощение',
+        movement: 'движение и развитие',
+        matter: 'материальное воплощение',
+        accumulation: 'накопление и наполнение',
+        penetration: 'проникновение в глубину',
+        expansion: 'расширение возможностей',
+        protection: 'защита и сохранение',
+        separation: 'разделение и обособление',
+        softening: 'смягчение и изменение'
+    };
+
+    // Именительный падеж для описания гласных.
+    const vowelDescriptions = {
+        energy: 'внутренняя сила',
+        fullness: 'жизненная полнота',
+        joy: 'радость бытия',
+        beginning: 'зарождение нового',
+        expression: 'раскрытие возможностей',
+        transition: 'переход к новому состоянию',
+        awakening: 'пробуждение',
+        impulse: 'новый импульс',
+        awareness: 'ясность и осознанность',
+        harmony: 'внутренняя гармония',
+        stability: 'устойчивость',
+        direction: 'определённость направления',
+        depth: 'глубина внутреннего мира',
+        action: 'готовность к действию',
+        connection: 'единение и взаимосвязь',
+        form: 'обретение формы',
+        boundary: 'обозначение границ',
+        creation: 'созидание',
+        movement: 'движение и развитие',
+        matter: 'материальное воплощение',
+        accumulation: 'накопление',
+        penetration: 'проникновение в глубину',
+        expansion: 'расширение возможностей',
+        protection: 'защита',
+        separation: 'разделение',
+        softening: 'мягкость и гибкость'
+    };
+
+    // Действия для описания согласных.
+    const consonantDescriptions = {
+        energy: 'проявлять решительность и внутреннюю силу',
+        fullness: 'наполнять действия содержанием',
+        joy: 'сохранять живость и открытость',
+        beginning: 'создавать новое и начинать перемены',
+        expression: 'выражать внутренние качества через поступки',
+        transition: 'адаптироваться к переменам',
+        awakening: 'замечать новые возможности',
+        impulse: 'откликаться на происходящее',
+        awareness: 'осознанно выбирать направление',
+        harmony: 'сочетать разные стороны жизни',
+        stability: 'сохранять устойчивость и надёжность',
+        direction: 'действовать целенаправленно',
+        depth: 'проникать в суть происходящего',
+        action: 'переходить от намерений к действиям',
+        connection: 'выстраивать связи и находить взаимопонимание',
+        form: 'придавать замыслам конкретную форму',
+        boundary: 'определять границы и отстаивать принципы',
+        creation: 'созидать и упорядочивать окружающее',
+        movement: 'развиваться и двигаться вперёд',
+        matter: 'воплощать идеи в реальных делах',
+        accumulation: 'накапливать опыт и знания',
+        penetration: 'разбираться в скрытых причинах',
+        expansion: 'расширять возможности',
+        protection: 'защищать важное',
+        separation: 'различать главное и второстепенное',
+        softening: 'проявлять гибкость и учитывать обстоятельства'
+    };
+
+    // =====================================================
+    // ВСПОМОГАТЕЛЬНЫЕ ФУНКЦИИ
+    // =====================================================
+
+    function getType(letter) {
+        if (vowels.indexOf(letter) !== -1) return 'vowel';
+        if (letter === 'Ъ' || letter === 'Ь') return 'sign';
+        return 'consonant';
+    }
+
+    function unique(arr) {
+        return Array.from(new Set(arr));
+    }
+
+    function getGroups(letters) {
+        const result = [];
+
+        letters.forEach(function (letter) {
+            (alphabet[letter] || []).forEach(function (word) {
+                const group = groups[word];
+
+                if (group && result.indexOf(group) === -1) {
+                    result.push(group);
+                }
+            });
+        });
+
+        return result;
+    }
+
+    function getDescriptions(groupList, max) {
+        return unique(
+            groupList.map(function (group) {
+                return descriptions[group] || '';
+            }).filter(Boolean)
+        ).slice(0, max || 4);
+    }
+
+    function list(items) {
+        items = unique(items.filter(Boolean));
+
+        if (!items.length) return '';
+        if (items.length === 1) return items[0];
+        if (items.length === 2) {
+            return items[0] + ' и ' + items[1];
+        }
+
+        return items.slice(0, -1).join(', ') +
+            ' и ' + items[items.length - 1];
+    }
+
+    function getDominant(letter) {
+        const meanings = alphabet[letter] || [];
+
+        if (!meanings.length) return '';
+
+        return meanings[0];
+    }
+
+    // =====================================================
+    // НАЧАЛО ИМЕНИ
+    // =====================================================
+
+    function buildBeginning(letter) {
+        const meaning = getDominant(letter);
+
+        const texts = {
+            'сила': 'Имя открывается образом силы. Это исходный импульс, вокруг которого складывается дальнейшее символическое содержание.',
+            'полнота': 'Начало имени связано с полнотой — образом завершённости, жизненной наполненности и внутреннего потенциала.',
+            'радость': 'Первая буква задаёт светлый импульс: радость, открытость и стремление к проявлению.',
+            'начало': 'Первая буква обозначает зарождение — момент, с которого начинается движение и раскрытие нового.',
+            'проявление': 'Имя начинается с проявления: внутреннее содержание получает возможность стать видимым.',
+            'раскрытие': 'Начало имени символизирует раскрытие — постепенный выход скрытого содержания наружу.',
+            'переход': 'Первая буква задаёт переходный импульс, связывающий одно состояние с другим.',
+            'пробуждение': 'Начало имени связано с пробуждением — появлением нового движения и осознания.',
+            'вспышка': 'Первая буква символизирует вспышку: яркий импульс, запускающий дальнейшее движение.',
+            'неожиданность': 'Имя начинается с неожиданного поворота, открывающего возможность нового развития.',
+            'ясность': 'Первая буква задаёт стремление к ясности, пониманию и осмысленному восприятию.',
+            'покой': 'Начало имени несёт образ покоя — состояния внутреннего равновесия и собранности.',
+            'стойкость': 'Первая буква обозначает стойкость и способность сохранять выбранное направление.',
+            'глубина': 'Имя открывается образом глубины — обращением к скрытому, ещё не раскрытому содержанию.',
+            'готовность': 'Начало имени символизирует готовность к проявлению и переходу от возможности к действию.',
+            'единение': 'Первая буква задаёт мотив единения, взаимности и стремления к связи.',
+            'самость': 'Имя начинается с образа самости — осознания собственного центра и индивидуального начала.'
+        };
+
+        return texts[meaning] || (
+            'Первая буква «' + letter +
+            '» задаёт начальный смысловой импульс имени: ' +
+            meaning + '.'
+        );
+    }
+
+    // =====================================================
+    // ВНУТРЕННЕЕ СОДЕРЖАНИЕ
+    // =====================================================
+
+    function buildVowels(letters) {
+        if (!letters.length) return '';
+
+        const found = getGroups(letters);
+
+        const selected = unique(
+            found.map(function (group) {
+                return vowelDescriptions[group] || '';
+            }).filter(Boolean)
+        ).slice(0, 3);
+
+        if (!selected.length) return '';
+
+        return 'Гласные раскрывают внутреннюю сторону имени. ' +
+            'В их сочетании проявляется ' + list(selected) +
+            '. Вместе они формируют эмоциональную и смысловую основу имени.';
+    }
+
+    // =====================================================
+    // ВНЕШНЕЕ ПРОЯВЛЕНИЕ
+    // =====================================================
+
+    
+function buildConsonants(letters, vowelLetters) {
+    if (!letters.length) return '';
+
+    const consonantGroups = getGroups(letters);
+    const vowelGroups = getGroups(vowelLetters);
+
+    const filtered = consonantGroups.filter(function (group) {
+        return vowelGroups.indexOf(group) === -1;
+    });
+
+    const descriptions = {
+        energy: 'решительность',
+        fullness: 'содержательность действий',
+        joy: 'открытость миру',
+        beginning: 'способность создавать новое',
+        expression: 'выражение внутренних качеств через поступки',
+        transition: 'гибкость в период перемен',
+        awakening: 'восприимчивость к новым возможностям',
+        impulse: 'быстрый отклик на происходящее',
+        awareness: 'осознанность в выборе направления',
+        harmony: 'стремление к равновесию',
+        stability: 'внутренняя устойчивость',
+        direction: 'целеустремлённость',
+        depth: 'стремление проникать в суть вещей',
+        action: 'готовность переходить к действиям',
+        connection: 'умение выстраивать отношения',
+        form: 'способность придавать замыслам форму',
+        boundary: 'умение обозначать личные границы',
+        creation: 'созидательный подход',
+        movement: 'постоянное развитие',
+        matter: 'практическое воплощение идей',
+        accumulation: 'накопление опыта',
+        penetration: 'способность видеть скрытые причины',
+        expansion: 'расширение собственных возможностей',
+        protection: 'стремление оберегать важное',
+        separation: 'умение отделять главное от второстепенного',
+        softening: 'гибкость в отношениях и обстоятельствах'
+    };
+
+    const selected = unique(filtered)
+        .map(function (group) {
+            return descriptions[group] || '';
+        })
+        .filter(Boolean)
+        .slice(0, 3);
+
+    if (!selected.length) return '';
+
+    let description = '';
+
+    if (selected.length === 1) {
+        description = selected[0];
+    } else if (selected.length === 2) {
+        description = selected[0] + '; кроме того, ' + selected[1];
+    } else {
+        description = selected[0] +
+            '; кроме того, ' + selected[1] +
+            '; ещё одна особенность — ' + selected[2];
+    }
+
+    return 'Согласные отвечают за внешнее проявление внутреннего содержания имени. ' +
+        'Они раскрывают характер взаимодействия с окружающим миром: ' +
+        description + '. ' +
+        'Так внутренние качества находят отражение в поступках, решениях и поведении.';
+}
+
+
+    // =====================================================
+    // ОСОБЕННОСТИ ЗНАКОВ
+    // =====================================================
+
+    function buildSigns(letters) {
+        if (!letters.length) return '';
+
+        const parts = [];
+
+        letters.forEach(function (letter) {
+            if (letter === 'Ъ') {
+                parts.push('твёрдый знак обозначает разграничение и чёткую границу');
+            }
+
+            if (letter === 'Ь') {
+                parts.push('мягкий знак смягчает переход и меняет характер звучания');
+            }
+        });
+
+        if (!parts.length) return '';
+
+        return 'Отдельный оттенок вносят знаки. ' +
+            list(parts) +
+            ', добавляя имени особый характер переходов и связей.';
+    }
+
+    // =====================================================
+    // ЗАВЕРШЕНИЕ ИМЕНИ
+    // =====================================================
+
+    function buildEnding(letter, firstLetter) {
+        if (!letter || letter === firstLetter) return '';
+
+        const meaning = getDominant(letter);
+
+        const endings = {
+            'сила': 'В завершении имени вновь проявляется мотив силы, придающий всему образу энергичный акцент.',
+            'полнота': 'Финальный акцент связан с полнотой и ощущением завершённости.',
+            'радость': 'Последняя буква оставляет оттенок радости и открытости.',
+            'начало': 'Завершение возвращает к мотиву начала, словно оставляя возможность нового цикла.',
+            'переход': 'Имя завершается образом перехода, сохраняя ощущение движения и продолжения.',
+            'единение': 'Последняя буква подчёркивает мотив связи и взаимности.',
+            'глубина': 'Завершающий оттенок обращает внимание на глубину и скрытые стороны содержания.',
+            'ясность': 'Финальный акцент связан с ясностью и осмысленностью.',
+            'гармония': 'Завершение оставляет ощущение гармонии и внутреннего равновесия.',
+            'воплощение': 'Последняя буква связывает символический образ с его воплощением.',
+            'движение': 'Имя завершается мотивом движения, не позволяя образу застыть.'
+        };
+
+        if (endings[meaning]) return endings[meaning];
+		
+		if(letter=='Ь' || letter=='Ъ') return '';
+
+        return 'Последняя буква «' + letter +
+            '» добавляет заключительный оттенок: ' + meaning + '.';
+    }
+
+    // =====================================================
+    // ОБЩИЙ СМЫСЛ
+    // =====================================================
+
+    function buildConclusion(letters) {
+        const found = getGroups(letters);
+
+        const has = function (group) {
+            return found.indexOf(group) !== -1;
+        };
+
+        const variants = [
+            {
+                test: function () {
+                    return has('energy') && has('creation');
+                },
+                text: 'В целом это образ силы, которая не остаётся внутренним потенциалом, а стремится воплотиться в созидании.'
+            },
+            {
+                test: function () {
+                    return has('depth') && has('awareness');
+                },
+                text: 'В целом это образ погружения в глубину, поиска понимания и постепенного обретения ясности.'
+            },
+            {
+                test: function () {
+                    return has('beginning') && has('movement');
+                },
+                text: 'В целом это образ постоянного обновления: зарождение нового здесь естественно переходит в движение.'
+            },
+            {
+                test: function () {
+                    return has('harmony') && has('connection');
+                },
+                text: 'В целом это образ единства, в котором отдельные части обретают смысл через взаимосвязь и согласованность.'
+            },
+            {
+                test: function () {
+                    return has('stability') && has('direction');
+                },
+                text: 'В целом это образ последовательности и определённости, где выбранное направление опирается на прочную основу.'
+            },
+            {
+                test: function () {
+                    return has('expression') && has('action');
+                },
+                text: 'В целом это образ перехода от внутренней возможности к её активному проявлению.'
+            },
+            {
+                test: function () {
+                    return has('fullness') && has('joy');
+                },
+                text: 'В целом это образ жизненной наполненности, открытости и стремления воспринимать мир во всей его полноте.'
+            },
+            {
+                test: function () {
+                    return has('transition') && has('expansion');
+                },
+                text: 'В целом это образ перемен, через которые открываются новые возможности и расширяется пространство опыта.'
+            }
+        ];
+
+        for (let i = 0; i < variants.length; i++) {
+            if (variants[i].test()) {
+                return variants[i].text;
+            }
+        }
+
+        if (has('energy')) {
+            return 'В целом это образ внутренней силы, которая становится источником движения и раскрытия возможностей.';
+        }
+
+        if (has('awareness')) {
+            return 'В целом это образ осмысленного восприятия, стремления различать, понимать и находить собственное направление.';
+        }
+
+        if (has('creation')) {
+            return 'В целом это образ созидания, в котором замысел получает форму и постепенно воплощается.';
+        }
+
+        if (has('depth')) {
+            return 'В целом это образ глубины и обращения к скрытому содержанию, которое постепенно открывает новые стороны.';
+        }
+
+        if (has('connection')) {
+            return 'В целом это образ взаимосвязи, объединения и поиска общего между отдельными частями.';
+        }
+
+        return 'В целом имя можно прочитать как образ, в котором внутреннее содержание постепенно находит своё внешнее выражение.';
+    }
+
+    // =====================================================
+    // ОТОБРАЖЕНИЕ
+    // =====================================================
+
+    function addParagraph(container, text) {
+        if (!text) return;
+
+        const p = document.createElement('p');
+        p.textContent = text;
+        container.appendChild(p);
+    }
+
+    function interpretName() {
+        const name = input.value
+            .trim()
+            .toUpperCase()
+            .replace(/[^А-ЯЁЪЬ]/g, '');
+
+        if (!name) {
+            input.focus();
+            return;
+        }
+
+        const letters = Array.from(name).filter(function (letter) {
+            return Object.prototype.hasOwnProperty.call(alphabet, letter);
+        });
+
+        if (!letters.length) {
+            alert('Введите имя русскими буквами.');
+            return;
+        }
+
+        const vowelLetters = letters.filter(function (letter) {
+            return getType(letter) === 'vowel';
+        });
+
+        const consonantLetters = letters.filter(function (letter) {
+            return getType(letter) === 'consonant';
+        });
+
+        const signLetters = letters.filter(function (letter) {
+            return getType(letter) === 'sign';
+        });
+
+        const paragraphs = [
+            buildBeginning(letters[0]),
+            buildVowels(vowelLetters),
+            buildConsonants(consonantLetters, vowelLetters),
+            buildSigns(signLetters),
+            buildEnding(letters[letters.length - 1], letters[0])
+        ];
+
+        const displayName =
+            name.charAt(0) + name.slice(1).toLowerCase();
+
+        resultTitle.textContent = displayName;
+        meaning.innerHTML = '';
+
+        const title = document.createElement('strong');
+        title.textContent = 'Символическое значение имени';
+        meaning.appendChild(title);
+
+        paragraphs.forEach(function (paragraph) {
+            addParagraph(meaning, paragraph);
+        });
+
+        const finalParagraph = document.createElement('p');
+        const finalTitle = document.createElement('strong');
+
+        finalTitle.textContent = 'Общий образ: ';
+
+        finalParagraph.appendChild(finalTitle);
+        finalParagraph.appendChild(
+            document.createTextNode(buildConclusion(letters))
+        );
+
+        meaning.appendChild(finalParagraph);
+
+        interpretation.textContent =
+            'Последовательность букв: ' +
+            letters.join(' — ') + '.';
+
+        letterContainer.innerHTML = '';
+
+        letters.forEach(function (letter, index) {
+            const card = document.createElement('div');
+            card.className = 'ns-letter';
+
+            const letterTitle = document.createElement('b');
+            letterTitle.textContent = (index + 1) + '. ' + letter;
+
+            const text = document.createElement('span');
+            text.textContent = alphabet[letter].join(', ');
+
+            card.appendChild(letterTitle);
+            card.appendChild(text);
+            letterContainer.appendChild(card);
+        });
+
+        result.style.display = 'block';
+    }
+
+    // =====================================================
+    // СЛОВАРЬ
+    // =====================================================
+
+    function buildDictionary() {
+        dictionaryContainer.innerHTML = '';
+
+        const vowelTitle = document.createElement('h3');
+        vowelTitle.textContent = 'Гласные';
+
+        const vowelList = document.createElement('ul');
+
+        const consonantTitle = document.createElement('h3');
+        consonantTitle.textContent = 'Согласные и знаки';
+
+        const consonantList = document.createElement('ul');
+
+        Object.keys(alphabet).forEach(function (letter) {
+            const item = document.createElement('li');
+
+            item.textContent =
+                letter + ' — ' +
+                alphabet[letter].join(', ') + ';';
+
+            if (getType(letter) === 'vowel') {
+                vowelList.appendChild(item);
+            } else {
+                consonantList.appendChild(item);
+            }
+        });
+
+        dictionaryContainer.appendChild(vowelTitle);
+        dictionaryContainer.appendChild(vowelList);
+        dictionaryContainer.appendChild(consonantTitle);
+        dictionaryContainer.appendChild(consonantList);
+    }
+
+    // =====================================================
+    // СОБЫТИЯ
+    // =====================================================
+
+    button.addEventListener('click', interpretName);
+
+    input.addEventListener('keydown', function (event) {
+        if (event.key === 'Enter') {
+            interpretName();
+        }
+    });
+
+    buildDictionary();
+
+})();
+</script>
+
+
+      
+
+    </div>
+</div>
+
+
+<div class="accordion-section">
+<button class="accordion-title" aria-expanded="false">Симуляция</button>
 <div class="accordion-content">
-<span class="description">Ты входишь в симуляцию земли не один. Система уже развернула вокруг тебя первых агентов — существ, называющих себя сородичами. Они уверяют, что заботятся о тебе. Кормят. Укладывают спать. Загружают в память древние инструкции, происхождение которых давно утрачено. Они называют это воспитанием. На самом деле никто уже не помнит, кто придумал привычный образ жизни и почему все продолжают считать его единственно возможным. Это твой первый безопасный сектор. Пока ты не задаёшь лишних вопросов.</span>
+<span class="description">Твоё знакомство с симуляцией русского языка начинается в родном доме, среди своих сородичей. Они окружают тебя заботой: кормят, укладывают спать, помогают познавать окружающий мир и передают первые знания. Вместе с ними ты усваиваешь привычки, правила и представления, которые складывались на протяжении многих поколений. Со временем они становятся естественной частью твоей жизни — настолько привычной, что редко возникает вопрос, откуда всё пошло и почему мир устроен именно так. Это твой первый безопасный сектор — знакомая среда, в которой закладываются основы твоего представления о мире.</span>
 <span class="description">Потом приходят друзья. Не случайно. Их подключает сама архитектура мира, когда уровень твоей наивности достигает критической отметки. Они заражают тебя меметическими вирусами, ведут в запрещённые зоны, заставляют смеяться в моменты, когда разум должен бить тревогу. Через них система проверяет, способен ли ты отличить свободу от тщательно срежиссированного хаоса. Обычно — нет.</span>
 <span class="description">Следующая фаза — коллеги. Здесь симуляция перестаёт скрывать свои намерения. Тебе выдают роль, пропуск, корпоративный календарь и бесконечную цепочку задач, смысл которых исчезает сразу после закрытия презентации на сорок слайдов. Все вокруг ведут себя так, будто знают правила игры, уверенно произносят правильные слова и с серьёзным видом обсуждают процессы, словно понимают происходящее. Но именно в этом и кроется главный секрет комплекса: большинство из них — такие же NPC, как и ты. Они не обладают тайным знанием. Они просто достаточно долго тренировались изображать компетентность, пока сама имитация не стала неотличимой от настоящей.</span>
 <span class="description">И наконец появляются близкие. Самые опасные сущности во всей системе. Они получают доступ к тем областям памяти, которые даже ты никогда не открывал. Они видят твои сбои раньше тебя. Знают, где проходит линия между настоящим и тем, что ты придумал для самозащиты. Через них симуляция запускает финальный эксперимент: проверить, выдержишь ли ты встречу с собственной копией.</span>
-<span class="description">Только спустя годы после полного ознакомления приходит подозрение. Возможно, сородичи были не стартовой зоной, друзья — не случайными спутниками, коллеги — не коллегами, а близкие — вовсе не людьми. Это были последовательные уровни одной и той же программы, которая с каждым этапом получает всё больше прав доступа к твоему сознанию.</span>
+<span class="description">Только спустя годы после полного ознакомления приходит подозрение. Возможно, сородичи были не стартовой зоной, друзья — не случайными спутниками, коллеги — не коллегами, а близкие — вовсе не людьми. Это были последовательные уровни одной и той симуляции, которая с каждым этапом получала всё больше прав доступа к твоему осознанию.</span>
 <span class="description">И если однажды все они одновременно скажут: «Мы желаем тебе добра», не спеши расслабляться. Именно так обычно начинается новая глава любого секретного протокола.</span>
 </div>
 </div>
 
-<div class="accordion-section">
-<button class="accordion-title" aria-expanded="false">Инструменты коррекции симуляции</button>
-<div class="accordion-content">
-<span class="description"><b>Внимание.</b> Возможно, последовательность, заложенная системой для познания симуляции, была нарушена.</span>
-<span class="description">Не паникуй. Это не сбой и не конец прохождения. Перед тобой открылся скрытый потенциал «Нарушитель» — путь тех, кто пытается раскрыть устройство мира не в том порядке, который был предусмотрен изначальным протоколом.</span>
-<span class="description">Причина обычно проста: один участник теряет интерес к игре, другой отключает часть внутренних функций, и постепенно нарушается баланс восприятия. Симуляция не ломается — она лишь начинает получать неполные данные и что то не учитывает.</span>
-<span class="description">Для восстановления согласованности с симуляцией доступны автоматизированные инструменты коррекции. Они помогут вновь настроить восприятие, вернуть созвучие с её ритмом, восстановить последовательность и продолжить исследование неизведанных мест системы:</span>
 
 <div class="accordion-section">
-<button class="accordion-title" aria-expanded="false">Бдилка за Пасьянсом Медичи</button>
+<button class="accordion-title" aria-expanded="false">Архитектура</button>
 <div class="accordion-content">
-<span class="description">Создавай цепочки событий с помощью Бдилки. Произноси особые мантры созвучия и переписывай слои реальности своим обновлённым ядром личности.</span>
-<span class="description">Автоматический режим активирован. Протокол загружен по инструкции андроида Птолемея Смита из 87-й временной воронки — сущности, которая утверждала, что видела исходный код симуляции до первого запуска.</span>
-<span class="description">Внимание: вмешательство в структуру мира может вызвать побочные эффекты. Возможны сбои восприятия, самопроизвольная материализация аномальных объектов и появление разумных бутербродов, утверждающих, что они знают истинную причину происходящего.</span>
-
-<a href="./vigil/" target="_blank" title="Бдилка за Пасьянсом Медичи"><span style="color:#1e90ff">●</span> Открыть</a>
-</div>
-</div>
-
-<div class="accordion-section">
-<button class="accordion-title" aria-expanded="false">Перелом Тетради Смерти</button>
-<div class="accordion-content">
-<span class="description">Перелом активирует протокол абсолютной калибровки. Он сканирует каждую микроскопическую частицу твоего потока материализации, выявляет скрытые искажения и удаляет хаос, проникший в структуру действительности.</span>
-<span class="description">После завершения процедуры вселенная возвращается в режим точного функционирования — механизмы мироздания начинают вращаться с холодной точностью древнего космического механизма, где каждая шестерёнка знает своё место.</span>
-<span class="description">Никаких случайностей. Никаких необъяснимых отклонений. Никаких сюрпризов из тёмных слоёв симуляции. Даже если твой квантовый кот решил нарушить протокол, открыть запрещённую ветку вероятности и объявить себя независимым наблюдателем.</span>
-<a href="./fracture/" target="_blank" title="Перелом Тетради Смерти" style="color:#ff3333"><span>●</span> Открыть</a>
-</div>
-</div>
-
-<div class="accordion-section">
-<button class="accordion-title" aria-expanded="false">Схемокодер Боевого Континента 2</button>
-<div class="accordion-content">
-<span class="description">Говорят, каждый программист достигает работоспособности программы по одному из двух путей. Одни через исчезновение в бесконечных пустынях мёртвых скриптов, где ошибки шептали имена забытых переменных. Другие через проклятый интерфейс Notepad 6.66 — место, где строки кода ломали сознание, а неправильные отступы оставляли неизлечимые следы в душе разработчика.</span>
-<span class="description">Но есть истинный закон цифровой вселенной: код — это не просто инструкции. Каждый модуль является фрагментом силы. Каждая библиотека — древним артефактом доступа. Каждый алгоритм — ключом к скрытым слоям системы.</span>
-<span class="description">Те, кто смог объединить эти фрагменты, подчинить хаос и заставить несовместимые части работать в едином порядке, переставали быть простыми программистами.</span>
-<span class="description">Они становились Схемокодерами — теми, кто видел не только строки, но и саму архитектуру цифровой реальности.</span>
-<a href="./circuit-coder/" target="_blank" title="Схемокодер Боевого Континента 2 [Прототип]" style="color:#006400"><span>●</span> Открыть</a>
-</div>
-</div>
-
-<div class="accordion-section">
-<button class="accordion-title" aria-expanded="false">Артефакт Изнаночки Мира</button>
-<div class="accordion-content">
-<span class="description">Артефакт «Изнаночка мира» раскрывает истинный порядок вещей: человек находится в центре мироустройства.</span>
-<span class="description">После активации артефакта действительность перестраивается вокруг владельца. Его воля, решения и намерения становятся частью механизма, который формирует события и направление мира.</span>
-<span class="description">Артефакт превращает человека из наблюдателя в главный узел системы — точку, через которую проходит изменение мироустройства.</span>
-<a href="./artefact/" target="_blank" title="Артефакт Изнаночки Мира"><span style="color:#000">●</span> Открыть</a>
-</div>
-</div>
-</div>
-</div>
-
-<div class="accordion-section">
-<button class="accordion-title" aria-expanded="false">Серия книг «Изнаночка Мира»</button>
-<div class="accordion-content">
-<span class="description">Если вам вдруг стало любопытно, кто дёргает за ниточки, на чём держится этот безобразно сложный мир и почему всё ещё не развалился к чёртовой матери — поздравляю, вы уже полезли не в своё дело. А раз полезли, самое время выяснить, во что именно вы ввязались.</span>
+<span class="description">Если вам вдруг стало любопытно, кто дёргает за ниточки нашей симуляции, на каких принципах держится эта безобразно сложная система и почему она до сих пор не развалилась к чёртовой матери, — поздравляю, вы уже на пороге «Метафизической кибернетики». Самое время разобраться, как всё это устроено и во что вы ввязались.</span>
 <div class="book-series">
   <a href="https://www.litres.ru/author/andrey-volkov-33168547/"
      target="_blank"
      rel="noopener noreferrer"
      class="book-series__link">
     <img
-      src="./modules/seriya_knig.png"
+      src="./modules/seriya_knig_otherside_world.png"
       alt="Серия книг «Изнаночка мира»"
       class="book-series__image">
     <span class="book-series__caption">Открыть серию книг</span>
@@ -219,7 +1261,60 @@ main.link-container:has([open]) {
 </div>
 
 <div class="accordion-section">
-<button class="accordion-title" aria-expanded="false">Наш ритм и сообщество</button>
+<button class="accordion-title" aria-expanded="false">Коррекция нарушений</button>
+<div class="accordion-content">
+<span class="description"><b>Внимание.</b> Возможно, последовательность, заложенная системой для познания симуляции, была тобой нарушена.</span>
+<span class="description">Не паникуй. Это не сбой и не конец прохождения. Перед тобой открылся скрытый потенциал «Нарушитель» — путь тех, кто пытается раскрыть устройство мира не в том порядке, который был предусмотрен изначальным протоколом.</span>
+<span class="description">Причина обычно проста: один участник теряет интерес к игре, другой отключает часть внутренних функций, и постепенно нарушается баланс восприятия. Симуляция не ломается — она лишь начинает получать неполные данные и что то не учитывает.</span>
+<span class="description">Для восстановления согласованности с симуляцией доступны автоматизированные инструменты коррекции. Они помогут вновь настроить восприятие, вернуть созвучие с её ритмом, восстановить последовательность и продолжить исследование неизведанных мест системы:</span>
+
+<div class="accordion-section">
+<button class="accordion-title" aria-expanded="false">Бдилка за Пасьянсом Медичи</button>
+<div class="accordion-content">
+<span class="description">Создавай цепочки событий с помощью Бдилки. Произноси особые мантры созвучия и переписывай слои реальности своим обновлённым ядром личности.</span>
+<span class="description">Автоматический режим активирован. Протокол загружен по инструкции андроида Птолемея Смита из 87-й временной воронки — сущности, которая утверждала, что видела исходный код симуляции до первого запуска.</span>
+<span class="description">Внимание: вмешательство в структуру мира может вызвать побочные эффекты. Возможны сбои восприятия, самопроизвольная материализация аномальных объектов и появление разумных бутербродов, утверждающих, что они знают истинную причину происходящего.</span>
+
+<a href="./vigil/" target="_blank" title="Бдилка за Пасьянсом Медичи"><span style="color:#1e90ff">●</span> Открыть</a>
+</div>
+</div>
+
+<div class="accordion-section">
+<button class="accordion-title" aria-expanded="false">Перелом Тетради Смерти</button>
+<div class="accordion-content">
+<span class="description">Перелом активирует протокол абсолютной калибровки. Он сканирует каждую микроскопическую частицу твоего потока материализации, выявляет скрытые искажения и удаляет хаос, проникший в структуру действительности.</span>
+<span class="description">После завершения процедуры вселенная возвращается в режим точного функционирования — механизмы мироздания начинают вращаться с холодной точностью древнего космического механизма, где каждая шестерёнка знает своё место.</span>
+<span class="description">Никаких случайностей. Никаких необъяснимых отклонений. Никаких сюрпризов из тёмных слоёв симуляции. Даже если твой квантовый кот решил нарушить протокол, открыть запрещённую ветку вероятности и объявить себя независимым наблюдателем.</span>
+<a href="./fracture/" target="_blank" title="Перелом Тетради Смерти" style="color:#ff3333"><span>●</span> Открыть</a>
+</div>
+</div>
+
+<div class="accordion-section">
+<button class="accordion-title" aria-expanded="false">Схемокодер Боевого Континента 2</button>
+<div class="accordion-content">
+<span class="description">Говорят, каждый программист достигает работоспособности программы по одному из двух путей. Одни через исчезновение в бесконечных пустынях мёртвых скриптов, где ошибки шептали имена забытых переменных. Другие через проклятый интерфейс Notepad 6.66 — место, где строки кода ломали сознание, а неправильные отступы оставляли неизлечимые следы в душе разработчика.</span>
+<span class="description">Но есть истинный закон цифровой вселенной: код — это не просто инструкции. Каждый модуль является фрагментом силы. Каждая библиотека — древним артефактом доступа. Каждый алгоритм — ключом к скрытым слоям системы.</span>
+<span class="description">Те, кто смог объединить эти фрагменты, подчинить хаос и заставить несовместимые части работать в едином порядке, переставали быть простыми программистами.</span>
+<span class="description">Они становились Схемокодерами — теми, кто видел не только строки, но и саму архитектуру цифровой реальности.</span>
+<a href="./circuit-coder/" target="_blank" title="Схемокодер Боевого Континента 2 [Прототип]" style="color:#006400"><span>●</span> Открыть</a>
+</div>
+</div>
+
+<div class="accordion-section">
+<button class="accordion-title" aria-expanded="false">Артефакт Изнаночки Мира</button>
+<div class="accordion-content">
+<span class="description">Артефакт «Изнаночка мира» раскрывает истинный порядок вещей: человек находится в центре мироустройства.</span>
+<span class="description">После активации артефакта действительность перестраивается вокруг владельца. Его воля, решения и намерения становятся частью механизма, который формирует события и направление мира.</span>
+<span class="description">Артефакт превращает человека из наблюдателя в главный узел системы — точку, через которую проходит изменение мироустройства.</span>
+<a href="./artefact/" target="_blank" title="Артефакт Изнаночки Мира"><span style="color:#000">●</span> Открыть</a>
+</div>
+</div>
+</div>
+</div>
+
+
+<div class="accordion-section">
+<button class="accordion-title" aria-expanded="false">Обратная связь</button>
 <div class="accordion-content">
 <div style="position:relative;width:100%;padding-top:50%">
 <video controls autoplay muted loop style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover">
